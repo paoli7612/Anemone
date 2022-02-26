@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CountController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -27,3 +28,4 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/account', [UserController::class, 'account'])->name('account');
+Route::get('/counts', [CountController::class, 'index'])->name('counts');

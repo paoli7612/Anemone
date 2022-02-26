@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +15,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        Product::create(['name' => 'Acqua naturale', 'stock' => 24]);
+        Product::create(['name' => 'Acqua frizzante', 'stock' => 24]);
+        Product::create(['name' => 'Cocacola plastica', 'stock' => 16]);
+        Product::create(['name' => 'Cocacola zero plastica', 'stock' => 16]);
+        Product::create(['name' => 'Cocacola vetro', 'stock' => 32]);
+        Product::create(['name' => 'Cocacola zero vetro', 'stock' => 32]);
     }
 }

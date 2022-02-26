@@ -3,9 +3,8 @@
         <a class="navbar-brand" href="{{ url('/') }}">
             {{ config('app.name', 'Laravel') }}
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-            aria-expanded="false" aria-label="{{ __('Menu') }}">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Menu') }}">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -18,7 +17,14 @@
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('products') }}">{{ __('Products') }}</a>
+                    <a class="nav-link" href="{{ route('products') }}">
+                        <i class="fa-solid fa-box"></i>
+                        {{ __('Products') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('counts') }}">
+                        <i class="fa-solid fa-calculator"></i>
+                        {{ __('Counts') }}</a>
                 </li>
                 <!-- Authentication Links -->
                 @guest
@@ -28,11 +34,13 @@
                         </li>
                     @endif
 
-                    @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-                    @endif
+                    <!--
+                        @if (Route::has('register'))
+    <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </li>
+    @endif
+                        -->
                 @else
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
@@ -46,12 +54,11 @@
                             </a>
                             <hr>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
+                                                     document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                class="d-none">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
                         </div>
