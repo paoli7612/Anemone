@@ -5,6 +5,7 @@
 
         @foreach ($products as $product)
             <div class="card-body">
+                <b>{{ $product->category->name }}</b>
                 {{ $product->name }}
             </div>
         @endforeach
