@@ -20,6 +20,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'surname',
+        'username',
         'email',
         'password',
     ];
@@ -43,10 +45,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public static function new($username, $email, $password)
+    public static function new($name, $surname, $username, $email, $password)
     {
         User::create([
-            'name' => $username,
+            'name' => $name,
+            'surname' => $surname,
+            'username' => $username,
             'email' => $email,
             'password' => Hash::make($password)
         ]);

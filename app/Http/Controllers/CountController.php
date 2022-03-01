@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class CountController extends Controller
 {
     public function index()
     {
-        return view('count', ['products' => Product::all()]);
+        return view('counts', [
+            'date' => Carbon::now(),
+            'products' => Product::all()
+        ]);
     }
 }

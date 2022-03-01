@@ -36,6 +36,6 @@ class DatabaseSeeder extends Seeder
         Product::new('Integrale', 16, $panetti);
         Product::new('Kamut', 16, $panetti);
 
-        User::new('tomaoli', 'paoli7612@gmail.com', 'qwerty');
+        User::new('Tommaso', 'Paoli', 'tomaoli', 'paoli7612@gmail.com', 'qwerty');
     }
 }
