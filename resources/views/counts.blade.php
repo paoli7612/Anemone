@@ -4,6 +4,11 @@
     <div class="text-center">
         <h1>{{ $date->format('d l F') }}</h1>
     </div>
+
+    <div id="app">
+        <example-component></example-component>
+     </div>
+
     @foreach (['Tugurio', 'Cella', 'Bancone'] as $room)
         <div class="card">
             <div class="card-header ">
@@ -14,7 +19,7 @@
             <div class="card-body">
                 <table class="table">
                     @foreach ($products as $product)
-                        <tr class="bg-success">
+                        <tr>
                             <td>{{ $product->name }}</td>
                             <td><input type="number" class="form-control" placeholder="x{{ $product->stock }}"></td>
                             <td><input type="number" class="form-control" placeholder="x1"></td>
