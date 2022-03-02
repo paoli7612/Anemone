@@ -6,27 +6,22 @@
     </div>
 
     <div id="app">
-        <example-component></example-component>
-     </div>
-
-    @foreach (['Tugurio', 'Cella', 'Bancone'] as $room)
-        <div class="card">
-            <div class="card-header ">
-                <b>
-                    {{ $room }}
-                </b>
+        @foreach (['Tugurio', 'Cella', 'Bancone'] as $room)
+            <div class="card">
+                <div class="card-header ">
+                    <b>
+                        {{ $room }}
+                    </b>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        @foreach ($products as $product)
+                            <product-component name="{{ $product->name }}" stock="{{ $product->stock }}">
+                            </product-component>
+                        @endforeach
+                    </table>
+                </div>
             </div>
-            <div class="card-body">
-                <table class="table">
-                    @foreach ($products as $product)
-                        <tr>
-                            <td>{{ $product->name }}</td>
-                            <td><input type="number" class="form-control" placeholder="x{{ $product->stock }}"></td>
-                            <td><input type="number" class="form-control" placeholder="x1"></td>
-                        </tr>
-                    @endforeach
-                </table>
-            </div>
-        </div>
-    @endforeach
+        @endforeachs
+    </div>
 @endsection

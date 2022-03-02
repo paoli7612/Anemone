@@ -1,10 +1,5 @@
 <template>
     <div class="container">
-    <ul>
-        <li v-for="product in products" :key="product.name">
-            {{ product.name }}
-        </li>
-    </ul>
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -22,8 +17,8 @@
 <script>
     export default {
         props:['title', 'url'],
-        mounted() {
-            console.log('Component mounted.')
+        mounted(){
+            console.log('ci siamo');
         }
     }
 </script>
