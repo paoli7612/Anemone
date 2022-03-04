@@ -1,22 +1,27 @@
 <?php
-
 namespace App\Models;
+use App\core\Database;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+class Product {
 
-class Product extends Model
-{
-    use HasFactory;
-    public $timestamps = false;
-
-    public static function new($nome, $stock, Category $category)
+    public static function get($id)
     {
-        Product::create(['name' => $nome, "stock" => $stock, 'category_id' => $category->id]);
+        return Database::get($id, self::class, 'prodotti');
     }
 
-    public function category()
+    public static function all()
     {
-        return $this->belongsTo(Category::class);
+        return Database::all(self::class, 'prodotti');
     }
+
+    public static function tipi()
+    {
+        return array('Impasto', 'Formaggi', 'Salumi', 'Salse', 'Scatolame');
+    }
+
+    public static function byTipo($tipo)
+    {
+        return Database::select('prodotti', self::class, "tipo='$tipo'");
+    } 
+
 }

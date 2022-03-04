@@ -1,58 +1,19 @@
-<?php
-
+<?php 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Hash;
-use Laravel\Sanctum\HasApiTokens;
+use App\core\Database;
 
-class User extends Authenticatable
-{
-    use HasApiTokens, HasFactory, Notifiable;
+class User {
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'name',
-        'surname',
-        'username',
-        'email',
-        'password',
-    ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-
-    public static function new($name, $surname, $username, $email, $password)
+    public static function get($id)
     {
-        User::create([
-            'name' => $name,
-            'surname' => $surname,
-            'username' => $username,
-            'email' => $email,
-            'password' => Hash::make($password)
-        ]);
+        return Database::get($id, self::class, 'utenti');
     }
-}
+
+    public static function update($id, $field, $value)
+    {
+        Database::query("UPDATE utenti SET $field=$value WHERE id=$id");
+    }
+
+
+};
