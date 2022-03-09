@@ -5,7 +5,13 @@ use App\core\Request; ?>
 
 <div class="w3-bar w3-top w3-xlarge w3-center">
     <div class="w3-bar w3-card-4" style="border-radius: 0px 0px 10px 10px;">
-
+        
+        <a href="/" class="w3-bar-item w3-button <?= (Request::name() == 'Home') ? 'w3-white' : 'w3-theme' ?> ">
+            <span class="w3-hide-small w3-hide-medium">
+                Home
+            </span>
+            <i class="fa-solid fa-house"></i>
+        </a>
 
         <?php if (Auth::check()) : ?>
             <a href="/inventory" class="w3-bar-item w3-button <?= (Request::name() == 'Inventory') ? 'w3-white' : 'w3-theme' ?> ">
@@ -20,18 +26,17 @@ use App\core\Request; ?>
                 </span>
                 <i class="fa-solid fa-person-biking"></i>
             </a>
+            <a href="/money" class="w3-bar-item w3-button <?= (Request::name() == 'Money') ? 'w3-white' : 'w3-theme' ?> ">
+                <span class="w3-hide-small w3-hide-medium">
+                    Money
+                </span>
+                <i class="fa-solid fa-money-bill"></i>
+            </a>
             <a href="/settings" class="w3-bar-item w3-button <?= (Request::name() == 'Settings') ? 'w3-white' : 'w3-theme' ?> ">
                 <span class="w3-hide-small w3-hide-medium">
                     Impostazioni
                 </span>
                 <i class="fa-solid fa-cog"></i>
-            </a>
-        <?php else : ?>
-            <a href="/" class="w3-bar-item w3-button <?= (Request::name() == 'Home') ? 'w3-white' : 'w3-theme' ?> ">
-                <span class="w3-hide-small w3-hide-medium">
-                    Home
-                </span>
-                <i class="fa-solid fa-house"></i>
             </a>
         <?php endif ?>
     </div>

@@ -1,10 +1,6 @@
-<div class="w3-panel w3-theme w3-card-4 w3-rouund-large">
-
+<div class="w3-panel w3-theme w3-card-4 w3-round-large">
     <form action="inventory">
-        <?php
-
-        use App\Models\Product; ?>
-
+        <?php use App\Models\Product; ?>
         <div class="w3-panel w3-center">
             <div class="w3-third">
                 <div class="w3-row">
@@ -53,33 +49,41 @@
 
         </div>
         <script>
-            $(document).ready(function() {
-                $('tbody input').on('keyup', function() {
+
+            var update = function ()
+            {
+                $('tbody input').each(function() {
                     if ($(this).val())
                         $(this).parent().parent().addClass('w3-theme-l2');
                     else
                         $(this).parent().parent().removeClass('w3-theme-l2');
                 });
-                $("#search").on("keyup", function() {
-                    var value = $(this).val().toLowerCase();
-                    $("table tbody tr").filter(function() {
-                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                    });
+
+                var s = $('#manc').is(':checked');
+                $("table tbody tr").filter(function() {
+                    if (!$(this).hasClass('w3-theme-l2'))
+                        $(this).toggle(s);
                 });
-                $('#ins').on("change", function() {
-                    var s = $(this).is(':checked');
-                    $("table tbody tr").filter(function() {
-                        if ($(this).hasClass('w3-theme-l2'))
-                            $(this).toggle(s);
-                    });
+
+                var s = $('#ins').is(':checked');
+                $("table tbody tr").filter(function() {
+                    if ($(this).hasClass('w3-theme-l2'))
+                        $(this).toggle(s);
                 });
-                $('#manc').on("change", function() {
-                    var s = $(this).is(':checked');
-                    $("table tbody tr").filter(function() {
-                        if (!$(this).hasClass('w3-theme-l2'))
-                            $(this).toggle(s);
-                    });
+
+                var value = $("#search").val().toLowerCase();
+                $("table tbody tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
+
+                
+            }
+
+            $(document).ready(function() {
+                $('tbody input').on('keyup', update);
+                $("#search").on('keyup', update);
+                $('#ins').on("change", update);
+                $('#manc').on("change", update);
             });
         </script>
 

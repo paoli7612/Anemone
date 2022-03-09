@@ -9,6 +9,7 @@
     Router::get('settings', 'settings');
     Router::get('inventory', 'inventory');
     Router::get('delivery', 'delivery');
+    Router::get('money', 'money');
 
     Router::post('login', 'login');
     Router::post('logout', 'logout');

@@ -67,7 +67,11 @@ VALUES
 INSERT INTO
   `utenti` (`username`, `password`)
 VALUES
-  ('Tommaso', SHA('tommaso'));
+  ('Tommaso', SHA('tommaso')),
+  ('root', SHA('root')),
+  ('root2', SHA('root')),
+  ('root3', SHA('root')),
+  ('asd', SHA('asd'));
 
 INSERT INTO
   `prodotti` (`nome`, `tipo`)
@@ -101,9 +105,9 @@ VALUES
   ('Bresaola', 'Salumi');
 
 INSERT INTO
-  `inventario` (`idProdotto`, `idUtente`)
+  `inventario` (`idProdotto`, `idUtente`, `numero`)
 VALUES
-  (1, 1),
-  (2, 3),
-  (3, 4),
-  (2, 2);
+  (1, 1, 10),
+  (2, 3, 12),
+  (3, 4, 2),
+  (2, 2, 34);
