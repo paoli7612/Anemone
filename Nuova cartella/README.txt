@@ -1,1 +1,0 @@
-Prenda il file "Codice SQL per creare le tabelle.txt" copi il contenuto (una tabella alla volta) su elephant SQL (https://www.elephantsql.com/). Dopodiché apra il file "Inserimento dei dati.txt" e copi un inserimento alla volta per riempire il database. Infine utilizzi "Operazioni previste dalla base si dati.txt", copi e verifici un interrogazione alla volta.
