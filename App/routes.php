@@ -17,3 +17,4 @@
     Router::post('reset', 'reset');
     Router::post('settings', 'settings');
     Router::post('delivery', 'delivery');
+    Router::post('inventory', 'inventory');

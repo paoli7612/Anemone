@@ -1,28 +1,18 @@
 <div class="w3-panel w3-theme w3-card-4 w3-round-large">
-    <form action="inventory">
-        <?php use App\Models\Product; ?>
+    <form action="inventory" method="POST">
+        <?php
+
+        use App\Models\Product; ?>
         <div class="w3-panel w3-center">
-            <div class="w3-third">
-                <div class="w3-row">
-                    <div class="w3-col" style="width:50px">
-                        <button class="w3-button w3-white" style="border-radius: 10px 0px 0px 10px">
-                            <i class="fa-solid fa-magnifying-glass-minus"></i>
-                        </button>
-                    </div>
-                    <div class="w3-rest">
-                        <input style="border-radius: 0 10px 10px 0" id="search" type="text" class=" w3-input w3-round-large w3-card w3-right" placeholder="cerca tipo...">
-                    </div>
+            <div class="w3-row">
+                <div class="w3-col" style="width:50px">
+                    <button type="button" class="w3-button w3-white" style="border-radius: 10px 0px 0px 10px" onclick="$('#search').val(''); update()">
+                        <i class="fa-solid fa-magnifying-glass-minus"></i>
+                    </button>
                 </div>
-            </div>
-            <div class="w3-third w3-padding">
-                <label>
-                    Inseriti <input type="checkbox" class="w3-check" id="ins" checked="checked">
-                </label>
-            </div>
-            <div class="w3-third w3-padding">
-                <label>
-                    Mancanti <input type="checkbox" class="w3-check" id="manc" checked="checked">
-                </label>
+                <div class="w3-rest">
+                    <input style="border-radius: 0 10px 10px 0" id="search" type="text" class=" w3-input w3-round-large w3-card w3-right" placeholder="cerca...">
+                </div>
             </div>
         </div>
 
@@ -30,17 +20,25 @@
 
             <table class="w3-table-all w3-card-4 w3-white">
                 <thead>
-                    <td>Tipo</td>
-                    <td>Prodotto</td>
-                    <td>Quantità</td>
+                    <th>Prodotto</th>
+                    <th>Quantità</th>
+                    <th>Stock</th>
                 </thead>
                 <tbody>
                     <?php foreach (Product::all() as $prodotto) : ?>
                         <tr>
-                            <td><?= $prodotto->tipo ?></td>
-                            <td value="<?= $prodotto->id ?>"><?= $prodotto->nome ?></td>
-                            <td width="200px">
-                                <input type="number" name="" id="" class="w3-input w3-card w3-round-large">
+                            <td class="w3-hide"><?= $prodotto->tipo ?></td>
+                            <td><?= $prodotto->nome ?></td>
+                            <td>
+                                <input type="number" name="<?= $prodotto->id ?>_quantita" class="w3-input w3-card w3-round-large" placeholder="x1">
+                            </td>
+                            <?php if ($prodotto->tipo == 'Impasto') : ?>
+                                <td>
+                                    <input type="number" name="<?= $prodotto->id ?>_<?= $prodotto->stock/2 ?>" class="w3-input w3-card w3-round-large" placeholder="x<?= $prodotto->stock / 2 ?>">
+                                </td>
+                            <?php endif ?>
+                            <td colspan="2">
+                                <input type="number" name="<?= $prodotto->id ?>_<?= $prodotto->stock ?>" class="w3-input w3-card w3-round-large" placeholder="x<?= $prodotto->stock ?>">
                             </td>
                         </tr>
                     <?php endforeach ?>
@@ -49,34 +47,23 @@
 
         </div>
         <script>
+            var update = function() {
+                $('tbody tr').each(function(i, e) {
 
-            var update = function ()
-            {
-                $('tbody input').each(function() {
-                    if ($(this).val())
-                        $(this).parent().parent().addClass('w3-theme-l2');
-                    else
-                        $(this).parent().parent().removeClass('w3-theme-l2');
+                    var empty = true;
+                    $(this).find('input').each((i, e) => {
+                        if (e.value) {
+                            $(this).addClass('w3-theme-l2');
+                            empty = false;
+                        }
+                    });
+                    if (empty)
+                        $(this).removeClass('w3-theme-l2');
                 });
-
-                var s = $('#manc').is(':checked');
-                $("table tbody tr").filter(function() {
-                    if (!$(this).hasClass('w3-theme-l2'))
-                        $(this).toggle(s);
-                });
-
-                var s = $('#ins').is(':checked');
-                $("table tbody tr").filter(function() {
-                    if ($(this).hasClass('w3-theme-l2'))
-                        $(this).toggle(s);
-                });
-
                 var value = $("#search").val().toLowerCase();
                 $("table tbody tr").filter(function() {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
-
-                
             }
 
             $(document).ready(function() {
@@ -88,7 +75,11 @@
         </script>
 
 
-
+        <div class="w3-center w3-panel">
+            <button type="submit" class="w3-button w3-xxlarge w3-card-4 w3-white w3-round-large">
+                Salva
+                <i class="fa-solid fa-floppy-disk"></i>
+            </button>
     </form>
 
 </div>

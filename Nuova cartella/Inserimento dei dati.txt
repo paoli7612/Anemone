@@ -1,0 +1,51 @@
+Inserimento Impresa agricola.
+INSERT INTO Impresa_agricola VALUES ('Cremonini agricoltura', 'Vignola')
+
+Inserimento imprenditore.
+INSERT INTO Imprenditore VALUES ('MATCRM98HD85OLE9', 'IT12403900360', 'Matteo', 'Cremonini')
+
+Inserimento del personale.
+INSERT INTO Personale VALUES ('BRNSMN98VF92TYU7', 'Simone', 'Baroni', '19980113', 'IT99V0031100000000000008991', 'Castelfranco Emilia')
+INSERT INTO Personale VALUES ('PRNFLP98GF94TRF3', 'Filippo', 'Principato', '19981224', 'IT00V0042210000000000008991', 'Vignola')
+INSERT INTO Personale VALUES ('FTNJHD98FG92KHG9', 'Jihed', 'Fatnassi', '19980616', 'IT00V0061600000000000008991', 'Formica')
+
+Inserimento dei magazzini.
+INSERT INTO Magazzino VALUES ('1', '100', '20150101')
+INSERT INTO Magazzino VALUES ('2', '100', '20170202')
+INSERT INTO Magazzino VALUES ('2', '500', '20200202')
+
+Inserimento delle fatture.
+INSERT INTO Fatture VALUES ('12', '1', '20160713', 'FRUM.TS.BELLINI R2 TR.C3 KG.30, '144')
+INSERT INTO Fatture VALUES ('4', '2', '20170915', 'EPIK SL SIPCAM LT.1 CLP', '70')
+INSERT INTO Fatture VALUES ('39', '3', '20180417', 'ARATOVANGATO, '350')
+
+Inserisco i campi.
+INSERT INTO Campi VALUES ('414', '910', 'Duroni ferrovia', '10000', '20020321')
+INSERT INTO Campi VALUES ('360', '93', 'Grasparossa', '10000', '20030412')
+INSERT INTO Campi VALUES ('388', '792', 'Grano', '30000', '20211015')
+
+Inserisco gli attrezzi meccanici.
+INSERT INTO Meccanici VALUES ('1', 'Landini', 'Testa calda', '19750404')
+INSERT INTO Meccanici VALUES ('2', 'Same', 'Delfino 35', '19930505')
+INSERT INTO Meccanici VALUES ('3', 'Ferri', 'P150', '19930606')
+INSERT INTO Meccanici VALUES ('4', 'Florida', 'W90', '19990707')
+
+Inserisco la revisione.
+INSERT INTO Revisione VALUES ('001', '2', '20210103', 'Prandini')
+INSERT INTO Revisione VALUES ('002', '3', '20210103', 'Cotti')
+INSERT INTO Revisone VALUES ('003', '4', '20210109', 'Nasi')
+
+Inserisco gli attrezzi non meccanici.
+INSERT INTO Non_meccanici VALUES ('001', 'Forbici', '1', 'Forbici per potatura')
+INSERT INTO Non_meccanici VALUES ('002', 'Forbici', '2', 'Forbici per potatura')
+INSERT INTO Non_meccanici VALUES ('003', 'Forbici', '3', 'Forbici per potatura')
+INSERT INTO Non_meccanici VALUES ('004', 'Badile', '4', 'Badile per l orto')
+INSERT INTO Non_meccanici VALUES ('005', 'Zappa', '5', 'Zappa per l orto')
+
+Inserisco i prodotti firosanitari.
+INSERT INTO Prodotto_fitosanitario VALUES ('123', 'Epic', '20350916', 'Fogliare')
+INSERT INTO Prodotto_fitosanitario VALUES ('124', 'Basta50', '20350916', 'Erbe infestanti')
+INSERT INTO Prodotto_fitosanitario VALUES ('125', 'Tiovit', '20350916', 'Fogliare')
+
+Inserisco un intervento
+INSERT INTO Intervento VALUES ('123', '001', '1', '414', '20200219', 'BRNSMN98VF92TYU7')

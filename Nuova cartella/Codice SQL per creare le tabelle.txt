@@ -1,0 +1,95 @@
+CREATE TABLE Impresa_agricola (
+	Nome VARCHAR(50) NOT NULL,
+	Indirizzo VARCHAR(50) NOT NULL,
+	PRIMARY KEY (Nome)
+)
+
+CREATE TABLE Imprenditore (
+	Codice_fiscale VARCHAR(16) NOT NULL,
+	Partita_IVA VARCHAR(50) NOT NULL,
+	Nome VARCHAR(50),
+	Cognome VARCHAR(50),
+	PRIMARY KEY (Codice_fiscale, Partita_IVA)
+)
+
+CREATE TABLE Personale (
+	Codice_fiscale VARCHAR(16) NOT NULL,
+	Nome VARCHAR(50),
+	Cognome VARCHAR(50),
+	Anno_di_nascita DATE,
+	IBAN VARCHAR(50),
+	Indirizzo VARCHAR(50),
+	PRIMARY KEY (Codice_fiscale)
+)
+
+CREATE TABLE Campi (
+	C_foglio INT NOT NULL,
+	C_particella INT ,
+	Coltura VARCHAR(50),
+	Superficie INT,
+	Anno_di_piantagione DATE,
+	PRIMARY KEY (C_foglio)
+)
+
+CREATE TABLE Fatture (
+	Numero_fattura INT NOT NULL,
+	Partita_IVA_esterno VARCHAR(50),
+	Data_emissione DATE,
+	Descrizione VARCHAR(50),
+	Valuta INT,
+	PRIMARY KEY (Numero_fattura)
+)
+
+CREATE TABLE Magazzino (
+	Numero_magazzino INT NOT NULL,
+	Metri_quadrati INT,
+	Anno_di_costruzione DATE,
+	PRIMARY KEY (Numero_magazzino)
+)
+
+CREATE TABLE Meccanici (
+	Codice_meccanico INT NOT NULL,
+	Produttore VARCHAR(50),
+	Modello VARCHAR(50),
+	Anno_di_acquisto DATE,
+	PRIMARY KEY (Codice_meccanico)
+)
+
+CREATE TABLE Revisione (
+	Codice_revisione INT NOT NULL,
+	Codice_meccanico INT NOT NULL,
+	Data DATE,
+	Azienda VARCHAR(50),
+	PRIMARY KEY (Codice_revisione, Codice_meccanico),
+	FOREIGN KEY (Codice_meccanico) REFERENCES Meccanici (Codice_meccanico)
+)
+
+CREATE TABLE Non_meccanici (
+	Codice_attrezzo INT NOT NULL,
+	Nome VARCHAR(50),
+	Numero INT,
+	Descrizione VARCHAR(50),
+	PRIMARY KEY (Codice_attrezzo)
+)
+
+CREATE TABLE Prodotto_fitosanitario (
+	Codice_prodotto INT NOT NULL,
+	Nome_commerciale VARCHAR(50),
+	Data_di_scadenza DATE,
+	Modalità_uso VARCHAR(50),
+	PRIMARY KEY (Codice_prodotto)
+)
+
+CREATE TABLE Intervento (
+	Codice_prodotto INT NOT NULL,
+	Codice_attrezzo INT NOT NULL,
+	Codice_meccanico INT NOT NULL,
+	C_foglio INT NOT NULL,
+	Data DATE,
+	Codice_fiscale VARCHAR(16) NOT NULL,
+	FOREIGN KEY (Codice_prodotto) REFERENCES Prodotto_fitosanitario (Codice_prodotto),
+	FOREIGN KEY (Codice_attrezzo) REFERENCES Non_meccanici (Codice_attrezzo),
+	FOREIGN KEY (Codice_meccanico) REFERENCES Meccanici (Codice_meccanico),
+	FOREIGN KEY (C_foglio) REFERENCES Campi (C_foglio),
+	FOREIGN KEY (Codice_fiscale) REFERENCES Personale (Codice_fiscale)
+)
