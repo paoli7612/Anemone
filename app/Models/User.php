@@ -15,5 +15,17 @@ class User {
         Database::query("UPDATE utenti SET $field=$value WHERE id=$id");
     }
 
+    public function isAdmin()
+    {
+        return $this->id == 1;
+    }
+    public function areas() 
+    {
+        return Area::all();
+    }
 
+    public function name()
+    {
+        return $this->nome . " " . $this->cognome;
+    }
 };

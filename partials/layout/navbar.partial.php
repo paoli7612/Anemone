@@ -11,9 +11,13 @@ use App\core\Request; ?>
             </a>
             <a href="/delivery" class="w3-bar-item w3-button <?= (Request::name() == 'Delivery') ? 'w3-white' : 'w3-theme' ?> ">
                 <span class="w3-hide-small w3-hide-medium">
-                    
                 </span>
                 <i class="fa-solid fa-person-biking"></i>
+            </a>
+            <a href="/calendar" class="w3-bar-item w3-button <?= (Request::name() == 'Calendar') ? 'w3-white' : 'w3-theme' ?> ">
+                <span class="w3-hide-small w3-hide-medium">
+                </span>
+                <i class="fa-solid fa-calendar"></i>
             </a>
             <a href="/money" class="w3-bar-item w3-button <?= (Request::name() == 'Money') ? 'w3-white' : 'w3-theme' ?> ">
                 <span class="w3-hide-small w3-hide-medium">
@@ -24,6 +28,11 @@ use App\core\Request; ?>
                 <span class="w3-hide-small w3-hide-medium">
                 </span>
                 <i class="fa-solid fa-cog"></i>
+            </a>
+            <a href="/company" class="w3-bar-item w3-button <?= (Request::name() == 'Company') ? 'w3-white' : 'w3-theme' ?> ">
+                <span class="w3-hide-small w3-hide-medium">
+                </span>
+                <i class="fa-solid fa-sitemap"></i>
             </a>
         <?php else : ?>
             <a href="/" class="w3-bar-item w3-button <?= (Request::name() == 'Home') ? 'w3-white' : 'w3-theme' ?> ">

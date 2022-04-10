@@ -10,6 +10,8 @@
     Router::get('inventory', 'inventory');
     Router::get('delivery', 'delivery');
     Router::get('money', 'money');
+    Router::get('calendar', 'calendar');
+    Router::get('company', 'company');
 
     Router::post('login', 'login');
     Router::post('logout', 'logout');
@@ -18,3 +20,4 @@
     Router::post('settings', 'settings');
     Router::post('delivery', 'delivery');
     Router::post('inventory', 'inventory');
+    Router::post('money', 'money');

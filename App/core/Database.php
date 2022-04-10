@@ -48,6 +48,7 @@ class Database
 
     public static function query($query, $model='')
     {
+       // echo $query;
         $s = self::$pdo->prepare($query);
         $s->execute();
         if ($model == '') {

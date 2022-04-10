@@ -80,6 +80,7 @@
                 Salva
                 <i class="fa-solid fa-floppy-disk"></i>
             </button>
+        </div>
     </form>
 
 </div>

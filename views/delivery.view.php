@@ -1,13 +1,26 @@
     <form action="delivery" method="post">
+    
+        <div class="w3-row w3-center">
+            <div class="w3-panel w3-theme w3-card-4 w3-round-large">
+                <div class="w3-panel">
+                    <select name="fascia" class="w3-select w3-round-large w3-half">
+                        <option value="1">Apertura-15:00</option>
+                        <option value="1">15:00-18:00</option>
+                        <option value="1">18:00-Chiusura</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
         <?php foreach (array('Deliveroo' => 'blue', 'Glovo' => 'yellow', 'JustEat' => 'orange', 'UberEats' => 'green') as $name => $color) : ?>
             <div class="w3-panel w3-<?= $color ?> w3-card-4 w3-round-large">
                 <h3><?= $name ?></h3>
                 <table class="w3-table">
                     <tr>
-                        <th class="w3-center" >App
+                        <th class="w3-center">App
                             <button type="button" id="<?= $name ?>App" class="w3-btn w3-card w3-white w3-round-large w3-left"><i class="fa fa-xmark"></i></button>
                         </th>
-                        <th class="w3-center" >Contante
+                        <th class="w3-center">Contante
                             <button type="button" id="<?= $name ?>Contante" class="w3-btn w3-card w3-white w3-round-large w3-right"><i class="fa fa-xmark"></i></button>
                         </th>
                     </tr>
@@ -68,7 +81,7 @@
             </script>
         <?php endforeach; ?>
         <div class="w3-center">
-            <button type="submit" class="w3-button w3-xxlarge w3-card-4 w3-green">
+            <button type="submit" class="w3-button w3-xxlarge w3-card-4 w3-theme">
                 Salva
                 <i class="fa-solid fa-floppy-disk"></i>
         </button>

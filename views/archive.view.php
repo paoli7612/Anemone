@@ -37,7 +37,7 @@ if (!isset(array_keys($_GET)[0])) {
             <?php foreach ($deliverys as $delivery) : ?>
                 <tr>
                     <td><?= $delivery->nome ?></td>
-                    <td>€ <?= $delivery->prezzo ?></td>
+                    <td>€ <?= $delivery->valore ?></td>
                     <td><?= $delivery->quanti ?></td>
                 </tr>
             <?php endforeach ?>

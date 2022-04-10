@@ -1,64 +1,15 @@
-DROP DATABASE IF EXISTS anemone;
-
-CREATE DATABASE anemone;
-
-USE anemone;
+drop database anemone;
+create database anemone;
+use anemone;
 
 CREATE TABLE `persone`(
     `id` int(8) PRIMARY KEY AUTO_INCREMENT,
     `nome` varchar(16) NOT NULL,
     `cognome` varchar(16) NOT NULL,
-    `nascita` date
+    `telefono` char(10) NOT NULL,
+    `nascita` date,
+    `email` varchar(32)
 );
-
-INSERT INTO
-    `persone` (`nome`, `cognome`)
-VALUES
-    ('Tommaso', 'Paoli'),
-    ('Maria', 'Nosiglia'),
-    ('Stefania', 'Bixio'),
-    ('Fabrizio', 'Tutino'),
-    ('Venancio', 'Papafava'),
-    ('Massimiliano', 'Lussu');
-
-CREATE TABLE `categorieProdotti`(
-    `id` int(8) PRIMARY KEY AUTO_INCREMENT,
-    `titolo` varchar(16) NOT NULL
-);
-
-INSERT INTO
-    `categorieProdotti` (`titolo`)
-VALUES
-    ('Bevande'),    -- 1
-    ('Alcolici'),   -- 2
-    ('Salumi'),     -- 3
-    ('Formaggi'),   -- 4
-    ('Scatolame'),  -- 5
-    ('Salse'),      -- 6
-    ('DPI'),        -- 7
-    ('Pulizie'),    -- 8
-    ('Indumenti');  -- 9
-
-CREATE TABLE `prodotti`(
-    `id` int(8) PRIMARY KEY AUTO_INCREMENT,
-    `nome` varchar(32) NOT NULL,
-    `stock` int(16) NOT NULL,
-    `idCategoria` int(8) NOT NULL,
-    FOREIGN KEY (`idCategoria`)
-        REFERENCES `categorieProdotti` (`id`)
-        ON DELETE CASCADE
-);
-
-INSERT INTO
-    `prodotti` (`nome`, `stock`, `idCategoria`)
-VALUES
-    ('Cocacola', 24, 1),
-    ('Cocacola zero', 24, 1),
-    ('Maionese', 6, 6),
-    ('Salsa cocktail', 6, 6),
-    ('Maglietta bianca logo S', 3, 9),
-    ('Maglietta bianca logo M', 3, 9),
-    ('Maglietta bianca logo L', 3, 9);
 
 CREATE TABLE `aree`(
     `id` int(8) PRIMARY KEY AUTO_INCREMENT,
@@ -68,14 +19,6 @@ CREATE TABLE `aree`(
         REFERENCES `persone` (`id`)
         ON DELETE SET NULL
 );
-
-INSERT INTO
-    `aree` (`idResponsabile`, `nominativo`)
-VALUES
-    (1, 'Alpha'),
-    (1, 'Beta'),
-    (2, 'Gamma'),
-    (NULL, 'Delta');
 
 CREATE TABLE `locali`(
     `id` int(8) PRIMARY KEY AUTO_INCREMENT,
@@ -92,16 +35,8 @@ CREATE TABLE `locali`(
         ON DELETE SET NULL
 );
 
-INSERT INTO
-    `locali` (`nominativo`, `idArea`, `idResponsabile`)
-VALUES
-    ('Piadineria Modena', '1', 1),
-    ('Piadineria Lucca', '1', 2),
-    ('Piadineria Varese', '2', 3),
-    ('Alice Pizza Varese', '4', 2),
-    ('Alice Pizza Milano', '2', 1);
-
-CREATE TABLE `personaLocale` (
+-- relazione persone lavora locali
+CREATE TABLE `personaLocale` ( 
     `id` int(8) PRIMARY KEY AUTO_INCREMENT,
     `idPersona` int(8),
     `idLocale` int(8),
@@ -113,45 +48,10 @@ CREATE TABLE `personaLocale` (
         ON DELETE CASCADE
 );
 
-CREATE TABLE `temi` (
-  `id` INT(16) NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(32) UNIQUE NOT NULL,
-  PRIMARY KEY (`id`)
-);
-
-INSERT INTO
-  `temi` (`nome`)
-VALUES
-  ('yellow'),
-  ('orange'),
-  ('red'),
-  ('blue'),
-  ('green');
-
-CREATE TABLE `utenti`(
+CREATE TABLE `turni`(
     `id` int(8) PRIMARY KEY AUTO_INCREMENT,
-    `username` varchar(16) UNIQUE NOT NULL,
-    `password` char(64) NOT NULL,
-    `email` varchar(32) UNIQUE,
-    `idPersona` int(8),
-    `idTema` int(16) NOT NULL DEFAULT 1,
-    FOREIGN KEY (`idTema`)
-        REFERENCES `temi` (`id`),
-    FOREIGN KEY (`idPersona`)
-        REFERENCES `persone` (`id`)
-        ON DELETE SET NULL
-);
-
-INSERT INTO
-    `utenti` (`username`, `password`, `email`, `idPersona`)
-VALUES
-    ('tomaoli', SHA("asdasd"), 1, 1);
-
-CREATE TABLE `lavora`(
-    `id` int(8) PRIMARY KEY AUTO_INCREMENT,
-    `data` date NOT NULL,
-    `dalle` time NOT NULL,
-    `alle` time NOT NULL,
+    `da` datetime NOT NULL,
+    `a` datetime NOT NULL,
     `pausa` time,
     `straordinari` time,
     `idPersona` int(8),
@@ -164,21 +64,245 @@ CREATE TABLE `lavora`(
         ON DELETE SET NULL
 );
 
-INSERT INTO
-    `lavora` (`data`, `dalle`, `alle`, `pausa`, `straordinari`, `idPersona`, `idLocale`)
-VALUES
-    ('2012-06-18', '10:30', '14:00', '00:00', '01:30', 1, 1);
-
-CREATE TABLE `ordini`(
+CREATE TABLE `permessi`(
     `id` int(8) PRIMARY KEY AUTO_INCREMENT,
-    `data` date NOT NULL,
+    `da` datetime NOT NULL,
+    `a` datetime NOT NULL,
+    `isApprovato` BIT(1),
+    `idPersona` int(8),
+    FOREIGN KEY (`idPersona`)
+        REFERENCES `persone` (`id`)
+        ON DELETE SET NULL
+);
+
+CREATE TABLE `temi`(
+    `id` int(8) PRIMARY KEY AUTO_INCREMENT,
+    `nome` varchar(16) UNIQUE NOT NULL
+);
+
+INSERT INTO
+    `temi` (`nome`)
+VALUES
+    ('red'),
+    ('green');
+
+CREATE TABLE `utenti`(
+    `id` int(8) PRIMARY KEY AUTO_INCREMENT,
+    `username` varchar(16) UNIQUE NOT NULL,
+    `password` char(64) NOT NULL,
+    `idPersona` int(8) NOT NULL,
+    `idTema` int(8) NOT NULL DEFAULT 1,
+    FOREIGN KEY (`idTema`)
+        REFERENCES `temi` (`id`)
+);
+
+CREATE TABLE `messaggi`(
+    `id` int(8) PRIMARY KEY AUTO_INCREMENT,
+    `titolo` varchar(32),
+    `testo` varchar(256),
+    `idUtente` int(8),
+    `quando` datetime(4) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (`idUtente`)
+        REFERENCES `utenti` (`id`)
+        ON DELETE SET NULL
+);
+
+CREATE TABLE `riceve`(
+    `id` int(8) PRIMARY KEY AUTO_INCREMENT,
+    `idMessaggio` int(8) NOT NULL,
+    `idUtente` int(8) NOT NULL,
+    FOREIGN KEY (`idMessaggio`)
+        REFERENCES `messaggi` (`id`)
+        ON DELETE CASCADE,
+    FOREIGN KEY (`idUtente`)
+        REFERENCES `utenti` (`id`)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE `casse` (
+    `id` int(8) PRIMARY KEY AUTO_INCREMENT,
     `idLocale` int(8) NOT NULL,
     FOREIGN KEY (`idLocale`)
         REFERENCES `locali` (`id`)
         ON DELETE CASCADE
 );
 
+CREATE TABLE `prodotti`(
+    `id` int(8) PRIMARY KEY AUTO_INCREMENT,
+    `costo` float(15, 2) NOT NULL DEFAULT 0
+);
+
+CREATE TABLE `merce`(
+    `id` int(8) PRIMARY KEY AUTO_INCREMENT,
+    `nome` varchar(16) NOT NULL,
+    `stock` int(16) NOT NULL,
+    `categoria` enum('Formaggi', 'Salumi', 'Impasti', 'Caffetteria') NOT NULL
+);
+
+CREATE TABLE `prodottiScontrino`(
+    `id` int(8) PRIMARY KEY AUTO_INCREMENT,
+    `idProdotto` int(8) NOT NULL,
+    `idMerce` int(8) NOT NULL,
+    `quantita` int(16) NOT NULL DEFAULT 0,
+    FOREIGN KEY (`idProdotto`)
+        REFERENCES `prodotti` (`id`)
+        ON DELETE CASCADE,
+    FOREIGN KEY (`idMerce`)
+        REFERENCES `merce` (`id`)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE `scontrini`(
+    `id` int(8) PRIMARY KEY AUTO_INCREMENT,
+    `quando` datetime(4) NOT NULL,
+    `prezzo` decimal(15,2) NOT NULL,
+    `sconto` decimal(15,2),
+    `idPersona` int(8),
+    `idCassa` int(8) NOT NULL,
+    FOREIGN KEY (`idPersona`)
+        REFERENCES `persone` (`id`)
+        ON DELETE SET NULL,
+    FOREIGN KEY (`idCassa`)
+        REFERENCES `casse` (`id`)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE `scontriniProdotti`(
+    `id` int(8) PRIMARY KEY AUTO_INCREMENT,
+    `idScontrino` int(8) NOT NULL,
+    `idProdotto` int(8) NOT NULL,
+    `quanti` int(16),
+    FOREIGN KEY (`idScontrino`)
+        REFERENCES `scontrini` (`id`)
+        ON DELETE CASCADE,
+    FOREIGN KEY (`idProdotto`)
+        REFERENCES `prodotti` (`id`)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE `conteggi`(
+    `id` int(8) PRIMARY KEY AUTO_INCREMENT,
+    `idPersona` int(8),
+    `idCassa` int(8) NOT NULL,
+    `differenza` int(8) NOT NULL,
+    FOREIGN KEY (`idPersona`)
+        REFERENCES `persone` (`id`)
+        ON DELETE SET NULL,
+    FOREIGN KEY (`idCassa`)
+        REFERENCES `casse` (`id`)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE `versamenti`(
+    `id` int(8) PRIMARY KEY AUTO_INCREMENT,
+    `idPersona` int(8),
+    `idCassa` int(8) NOT NULL,
+    `totale` decimal(15,2) NOT NULL,
+    FOREIGN KEY (`idPersona`)
+        REFERENCES `persone` (`id`)
+        ON DELETE SET NULL,
+    FOREIGN KEY (`idCassa`)
+        REFERENCES `casse` (`id`)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE `fornitori`(
+    `id` int(8) PRIMARY KEY AUTO_INCREMENT,
+    `nominativo` varchar(16) NOT NULL,
+    `indirizzo` varchar(32) NOT NULL,
+    `telefono` char(10)
+);
+
+CREATE TABLE `ordini`(
+    `id` int(8) PRIMARY KEY AUTO_INCREMENT,
+    `data` date NOT NULL,
+    `idLocale` int(8) NOT NULL,
+    `idMerce` int(8) NOT NULL,
+    `idFornitore` int(8), 
+    `stock` int(16) NOT NULL,
+    `confermato` bit(1) NOT NULL DEFAULT 0,
+    `costo` decimal(15,2) NOT NULL DEFAULT 0,
+    FOREIGN KEY (`idLocale`)
+        REFERENCES `locali` (`id`)
+        ON DELETE CASCADE,
+    FOREIGN KEY (`idMerce`)
+        REFERENCES `merce` (`id`)
+        ON DELETE CASCADE,
+    FOREIGN KEY (`idFornitore`)
+        REFERENCES `fornitori` (`id`)
+        ON DELETE SET NULL
+);
+
+CREATE TABLE `inventari`(
+    `id` int(8) PRIMARY KEY AUTO_INCREMENT,
+    `idPersona` int(8),
+    `idMerce` int(8) NOT NULL,
+    `quantita` int(16) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `quando` datetime(4),
+    FOREIGN KEY (`idPersona`)
+        REFERENCES `persone` (`id`)
+        ON DELETE SET NULL,
+    FOREIGN KEY (`idMerce`)
+        REFERENCES `merce` (`id`)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE `delivery`(
+    `id` int(8) PRIMARY KEY AUTO_INCREMENT,
+    `valore` decimal(15, 2) NOT NULL,
+    `fascia` int(2),
+    `nome` varchar(32) NOT NULL,
+    `giorno` date DEFAULT CURRENT_TIMESTAMP
+);
+
 INSERT INTO
-    `ordini` (`data`, `idLocale`)
+    `persone` (`nome`, `cognome`)
 VALUES
-    ('2018-02-03', 1);
+    --area manager
+    ('Mario', 'Forti'), 
+    ('Chiara', 'Libardoni'),
+    ('Noemi', 'Bruschetta'),
+
+    --shop manager
+    ('Luca', 'Floreacing'),
+    ('Giovanni', 'Rippa'),
+    ('Monica', 'Livornese'),
+    ('Angela', 'Minati'),
+    ('Antonio', 'Bondioli'),
+    ('Paolo', 'Politano'),
+    ('Lorenzo', 'Rossi'),
+    ('Daniela', 'Della Casa'),
+    ('Silvano', 'Esposito'),
+    ('Francesca', 'Degli Espositi'),
+    ('Riccardo', 'Bosi');    
+
+INSERT INTO
+    `utenti` (`idPersona`, `username`, `password`)
+VALUES
+    (1, 'mario', SHA('mario')),
+    (2, 'luigi', SHA('luigi')),
+    (3, 'chiara', SHA('libardoni'));
+
+INSERT INTO
+    `aree` (`idResponsabile`, `nominativo`)
+VALUES
+    (1, 'Romagna'),
+    (1, 'Emilia'),
+    (2, 'Lombardo-Veneto'),
+    (3, 'Trentino'),
+    (4, 'Alto-Adige');
+
+INSERT INTO
+    `locali` (`nominativo`, `apertura`, `idArea`, `idResponsabile`)
+VALUES
+    ('Tigelleria Modena', '01-01-2010', 2, 4),
+    ('Piadineria Cesena', '01-01-2010', 1, 5),
+    ('Trattoria Trento', '01-01-2010', 3, 6);
+
+
+INSERT INTO
+    `personalocale` (`idPersona`, `idLocale`)
+VALUES
+    (1, 1),
+    (2, 1),
+    (3, 1);

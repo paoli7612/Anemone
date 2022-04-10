@@ -13,18 +13,18 @@ class Delivery
         return Database::query("SELECT * FROM inventario", Delivery::class);
     }
 
-    public static function create($nome, $prezzo)
+    public static function create($nome, $valore)
     {
-        Database::create('delivery', ['nome', 'prezzo', 'idUtente'], [$nome, $prezzo, Auth::id()]);
+        Database::create('delivery', ['nome', 'valore'], [$nome, $valore]);
     }
 
     public static function day($date)
     {
         return Database::query(
             "
-        SELECT nome, ROUND(SUM(prezzo), 2) as prezzo, COUNT(nome) as quanti
+        SELECT nome, ROUND(SUM(valore), 2) as valore, COUNT(nome) as quanti
         FROM delivery
-        WHERE Date(quando)=Date('$date')
+        WHERE Date(giorno)=Date('$date')
         GROUP BY nome
         ORDER BY nome",
             Inventory::class
