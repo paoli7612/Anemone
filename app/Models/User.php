@@ -5,6 +5,12 @@ use App\core\Database;
 
 class User {
 
+    public Person $person;
+
+    public function __construct() {
+        $this->person = Person::get($this->idPersona);
+    }   
+
     public static function get($id)
     {
         return Database::get($id, self::class, 'utenti');
@@ -21,11 +27,22 @@ class User {
     }
     public function areas() 
     {
-        return Area::all();
+        return $this->person->areas();
     }
 
     public function name()
     {
-        return $this->nome . " " . $this->cognome;
+        return $this->person->name();
     }
+
+    public static function all()
+    {
+        return Database::all(self::class, 'utenti');
+    }
+
+    public static function getByName($name)
+    {
+        Database::select('utenti', self::class, 'slug='.$name);
+    }
+
 };

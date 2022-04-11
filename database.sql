@@ -7,6 +7,7 @@ CREATE TABLE `persone`(
     `nome` varchar(16) NOT NULL,
     `cognome` varchar(16) NOT NULL,
     `telefono` char(10) NOT NULL,
+    `slug` varchar(32) UNIQUE NOT NULL DEFAULT  REPLACE(CONCAT((`nome`),(`cognome`)), ' ', ''),
     `nascita` date,
     `email` varchar(32)
 );
@@ -83,8 +84,12 @@ CREATE TABLE `temi`(
 INSERT INTO
     `temi` (`nome`)
 VALUES
+    ('green'),
+    ('blue'),
+    ('yellow'),
     ('red'),
-    ('green');
+    ('orange'),
+    ('black');
 
 CREATE TABLE `utenti`(
     `id` int(8) PRIMARY KEY AUTO_INCREMENT,
@@ -258,12 +263,10 @@ CREATE TABLE `delivery`(
 INSERT INTO
     `persone` (`nome`, `cognome`)
 VALUES
-    --area manager
     ('Mario', 'Forti'), 
     ('Chiara', 'Libardoni'),
     ('Noemi', 'Bruschetta'),
 
-    --shop manager
     ('Luca', 'Floreacing'),
     ('Giovanni', 'Rippa'),
     ('Monica', 'Livornese'),
@@ -281,7 +284,7 @@ INSERT INTO
 VALUES
     (1, 'mario', SHA('mario')),
     (2, 'luigi', SHA('luigi')),
-    (3, 'chiara', SHA('libardoni'));
+    (3, 'chiara', SHA('chiara'));
 
 INSERT INTO
     `aree` (`idResponsabile`, `nominativo`)

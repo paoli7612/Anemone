@@ -12,12 +12,14 @@
     Router::get('money', 'money');
     Router::get('calendar', 'calendar');
     Router::get('company', 'company');
+    Router::get('person', 'person');
 
     Router::post('login', 'login');
     Router::post('logout', 'logout');
     Router::post('archive', 'archive');
     Router::post('reset', 'reset');
     Router::post('settings', 'settings');
+    Router::post('slug', 'slug');
     Router::post('delivery', 'delivery');
     Router::post('inventory', 'inventory');
     Router::post('money', 'money');

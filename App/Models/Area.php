@@ -13,8 +13,8 @@ class Area {
     {
         return Person::get($this->idResponsabile);
     }
-    public function locals()
+    public function restaurants()
     {
-        return Database::select('locali', Local::class, 'idArea='.$this->id);
+        return Database::select('locali', Restaurant::class, 'idArea='.$this->id);
     }
 }

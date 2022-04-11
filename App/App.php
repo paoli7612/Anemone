@@ -20,9 +20,9 @@ class App
         if (App::$config['name'] == 'altervista')
             array_shift($_GET);
         if (Request::method() == 'GET') {
-            include partial('layout/page_start');
+            require partial('layout/page_start');
             include Router::direct();
-            include partial('layout/page_end');
+            require partial('layout/page_end');
         } else {
             include Router::direct();
         }

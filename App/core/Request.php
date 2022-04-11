@@ -23,4 +23,14 @@ namespace App\core;
             }
             return ucfirst($name);
         }
+        
+        public static function getExist($key)
+        {
+            return array_key_exists($key, $_GET);
+        }
+
+        public static function getValue($key)
+        {
+            return $_GET[$key];
+        }
     }

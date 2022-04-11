@@ -3,7 +3,7 @@ namespace App\Models;
 use App\core\Database;
 use Locale;
 
-class Local {
+class Restaurant {
 
     public static function all()
     {
