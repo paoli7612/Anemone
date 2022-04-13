@@ -4,7 +4,7 @@
     class Auth
     {
         private static $login_id;
-        public static $user;
+        public static User $user;
         
         public static function init()
         {

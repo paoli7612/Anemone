@@ -3,7 +3,7 @@
     return [
         'name' => 'php',
         'database' => [
-            'dbname' => 'anemone',
+            'dbname' => 'my_anemone',
             'host' => 'localhost',
             'username' => 'root',
             'password' => ''

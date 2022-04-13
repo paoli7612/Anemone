@@ -1,6 +1,6 @@
 <?php
 
-use App\core\Auth;
+    use App\core\Auth;
     use function App\core\partial;
 ?>
 <?php foreach (Auth::$user->areas() as $area) : ?>

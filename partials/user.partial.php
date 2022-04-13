@@ -3,8 +3,8 @@
         <i class="fa-solid fa-user"></i>
     </h5>
     <h5>
-        <a href="/person?slug=<?= $person->slug ?>">
-            <?= $person->name() ?>
+        <a href="/user?slug=<?= $user->slug ?>">
+            <?= $user->name() ?>
         </a>
     </h5>
 </div>

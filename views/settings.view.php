@@ -10,10 +10,7 @@ use App\core\Auth; ?>
         </legend>
         <div class="w3-panel">
             <form action="/reset" method="post">
-                <input type="submit" value="Reset" class="w3-button w3-card-4 w3-white">
-            </form>
-            <form action="/clear-today" method="post">
-                <input type="submit" value="Clear today" class="w3-button w3-card-4 w3-white">
+                <input type="submit" value="Reset" class="w3-button w3-card-4 w3-white w3-round-large">
             </form>
         </div>
         

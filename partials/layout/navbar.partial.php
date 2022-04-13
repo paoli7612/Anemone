@@ -19,10 +19,10 @@ use App\core\Request; ?>
                 </span>
                 <i class="fa-solid fa-calendar"></i>
             </a>
-            <a href="/money" class="w3-bar-item w3-button <?= (Request::name() == 'Money') ? 'w3-white' : 'w3-theme' ?> ">
+            <a href="/archive" class="w3-bar-item w3-button <?= (Request::name() == 'Archive') ? 'w3-white' : 'w3-theme' ?> ">
                 <span class="w3-hide-small w3-hide-medium">
                 </span>
-                <i class="fa-solid fa-money-bill"></i>
+                <i class="fa-solid fa-box"></i>
             </a>
             <a href="/settings" class="w3-bar-item w3-button <?= (Request::name() == 'Settings') ? 'w3-white' : 'w3-theme' ?> ">
                 <span class="w3-hide-small w3-hide-medium">
@@ -48,11 +48,11 @@ use App\core\Request; ?>
             </a>
         <?php endif ?>
     </div>
-    <a style="border-radius: 0px 0px 10px 0px;" href="/archive" class="w3-left w3-card-4 w3-button <?= (Request::name() == 'Archive') ? 'w3-white' : 'w3-theme' ?> ">
+    <a style="border-radius: 0px 0px 10px 0px;" href="/money" class="w3-left w3-card-4 w3-button <?= (Request::name() == 'Money') ? 'w3-white' : 'w3-theme' ?> ">
         <span class="w3-hide-small w3-hide-medium">
-            Archivio
+            Conteggio
         </span>
-        <i class="fa-solid fa-box"></i>
+        <i class="fa-solid fa-money-bill"></i>
     </a>
     <?php if (Auth::check()) : ?>
         <a href="/logout" style="border-radius: 0px 0px 0px 10px;" class="w3-right w3-card-4 w3-button <?= (Request::name() == 'Entry') ? 'w3-white' : 'w3-theme' ?> ">

@@ -13,9 +13,9 @@ class Delivery
         return Database::query("SELECT * FROM inventario", Delivery::class);
     }
 
-    public static function create($nome, $valore)
+    public static function create($nome, $valore, $fascia)
     {
-        Database::create('delivery', ['nome', 'valore'], [$nome, $valore]);
+        Database::create('delivery', ['nome', 'valore', 'fascia'], [$nome, $valore, $fascia]);
     }
 
     public static function day($date)

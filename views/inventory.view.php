@@ -1,8 +1,6 @@
 <div class="w3-panel w3-theme w3-card-4 w3-round-large">
     <form action="inventory" method="POST">
-        <?php
-
-        use App\Models\Product; ?>
+        <?php use App\Models\Goods; ?>
         <div class="w3-panel w3-center">
             <div class="w3-row">
                 <div class="w3-col" style="width:50px">
@@ -25,7 +23,7 @@
                     <th>Stock</th>
                 </thead>
                 <tbody>
-                    <?php foreach (Product::all() as $prodotto) : ?>
+                    <?php foreach (Goods::all() as $prodotto) : ?>
                         <tr>
                             <td class="w3-hide"><?= $prodotto->tipo ?></td>
                             <td><?= $prodotto->nome ?></td>

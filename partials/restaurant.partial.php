@@ -7,11 +7,11 @@
         </h3>
         <h3>
             <span style="text-decoration: underline"><?= $restaurant->nominativo ?></span>
-            <span class="w3-small"><?= $restaurant->person()->name() ?></span>
+            <span class="w3-small"><?= $restaurant->user()->name() ?></span>
         </h3>
         <div class="w3-panel">
-            <?php foreach ($restaurant->persons() as $person) : ?>
-                <?php require partial('person') ?>
+            <?php foreach ($restaurant->users() as $user) : ?>
+                <?php require partial('user') ?>
             <?php endforeach ?>
         </div>
     </div>

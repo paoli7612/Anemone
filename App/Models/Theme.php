@@ -2,11 +2,8 @@
 namespace App\Models;
 use App\core\Database;
 
-class Theme {
+class Theme extends Model{
 
-    public static function all()
-    {
-        return Database::query("SELECT * FROM temi", Theme::class);
-    }
+    public static $table = 'temi';
 
 }

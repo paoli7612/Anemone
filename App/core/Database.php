@@ -20,6 +20,7 @@ class Database
 
     public static function get($id, $model, $table)
     {
+        echo '<h1>'.$model.'</h1>';
         return Database::select($table, $model, "id=$id")[0];
     }
 
@@ -48,7 +49,7 @@ class Database
 
     public static function query($query, $model='')
     {
-        //echo $query;
+        //echo $query . '<br>';
         $s = self::$pdo->prepare($query);
         $s->execute();
         if ($model == '') {

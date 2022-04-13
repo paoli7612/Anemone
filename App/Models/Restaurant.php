@@ -1,7 +1,6 @@
 <?php
 namespace App\Models;
 use App\core\Database;
-use Locale;
 
 class Restaurant {
 
@@ -10,14 +9,14 @@ class Restaurant {
         return Database::query("SELECT * FROM locali", Inventory::class);
     }
 
-    public function person()
+    public function user()
     {
-        return Person::get($this->idResponsabile);
+        return User::get($this->idResponsabile, User::class, 'utenti');
     }
 
-    public function persons()
+    public function users()
     {
-        return Database::query('SELECT persone.* from persone, personalocale WHERE personalocale.idPersona=persone.id and personalocale.idLocale=' . $this->id, Person::class);
+        return Database::query('SELECT utenti.* FROM utenti, utenteLocale WHERE utentelocale.idutente=utenti.id and utentelocale.idLocale=' . $this->id, User::class);
     }
 
 

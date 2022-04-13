@@ -12,7 +12,7 @@
     Router::get('money', 'money');
     Router::get('calendar', 'calendar');
     Router::get('company', 'company');
-    Router::get('person', 'person');
+    Router::get('user', 'user');
 
     Router::post('login', 'login');
     Router::post('logout', 'logout');
