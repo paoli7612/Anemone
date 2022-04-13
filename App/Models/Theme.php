@@ -1,9 +1,10 @@
 <?php
 namespace App\Models;
 use App\core\Database;
+use Model;
 
-class Theme extends Model{
+class Theme extends Model {
 
-    public static $table = 'temi';
+    protected static $table = 'temi';
 
 }

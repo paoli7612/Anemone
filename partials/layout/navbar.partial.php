@@ -34,7 +34,7 @@ use App\core\Request; ?>
                 </span>
                 <i class="fa-solid fa-sitemap"></i>
             </a>
-            <a href="/person" class="w3-bar-item w3-button <?= (Request::name() == 'User') ? 'w3-white' : 'w3-theme' ?> ">
+            <a href="/user" class="w3-bar-item w3-button <?= (Request::name() == 'User') ? 'w3-white' : 'w3-theme' ?> ">
                 <span class="w3-hide-small w3-hide-medium">
                 </span>
                 <i class="fa-solid fa-user"></i>

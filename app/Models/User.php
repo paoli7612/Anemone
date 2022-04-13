@@ -6,8 +6,7 @@ use Model;
 
 class User extends Model {
 
-    protected static $table = 'utenti';
-    protected static $model = 'User';
+    public static $table = 'utenti';
 
     public function isAdmin()
     {

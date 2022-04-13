@@ -10,11 +10,12 @@
         {
             Auth::$login_id = 0;
             if (isset($_SESSION['login_id']))
-            {
+            {+
                 Auth::$login_id = $_SESSION['login_id'];
                 Auth::$user = Database::query("SELECT utenti.*, temi.nome as tema
-                                                FROM utenti, temi
-                                                WHERE temi.id=utenti.idTema AND utenti.id=" . Auth::$login_id, User::class)[0];
+                                                FROM utenti
+                                                LEFT JOIN temi ON temi.id=utenti.idTema
+                                                WHERE utenti.id=" . Auth::$login_id, User::class)[0];
             }
         }
 

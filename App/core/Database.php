@@ -49,7 +49,7 @@ class Database
 
     public static function query($query, $model='')
     {
-        //echo $query . '<br>';
+        echo $query . '<br>';
         $s = self::$pdo->prepare($query);
         $s->execute();
         if ($model == '') {

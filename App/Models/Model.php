@@ -5,7 +5,6 @@ use App\core\Database;
     class Model {
             
         protected static $table;
-        protected static $model;
 
         public function update($field, $value)
         {
@@ -20,6 +19,7 @@ use App\core\Database;
 
         public static function all()
         {
+            die(self::$table);
             return Database::query("SELECT * FROM " . self::$table, Theme::class);
         }
 

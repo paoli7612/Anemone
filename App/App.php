@@ -30,7 +30,7 @@ class App
 
     public static function theme()
     {
-        if (Auth::check())
+        if (Auth::check() && Auth::$user->tema)
         {
             return Auth::$user->tema;
         }
