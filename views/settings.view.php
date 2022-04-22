@@ -37,9 +37,8 @@ use App\core\Auth; ?>
             <div class="w3-margin-left w3-margin-right">Slug</div>
         </legend>
         <form action="slug" method="post" class="w3-center w3-panel">
-            <input type="text" name="slug" class="w3-card-4 w3-input w3-twothird w3-round-large" value="<?= Auth::$user->person->slug ?>">
+            <input type="text" name="slug" class="w3-card-4 w3-input w3-twothird w3-round-large" value="<?= Auth::$user->slug ?>">
             <button type="submit" class="w3-button w3-card-4 w3-round-large w3-white">
-
                 <i class="fa-solid fa-floppy-disk"></i>
             </button>
         </form>

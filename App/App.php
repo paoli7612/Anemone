@@ -40,4 +40,9 @@ class App
         }
     }
 
+    public static function today()
+    {
+        return date("Y-m-d");
+    }
+
 }

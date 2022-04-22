@@ -291,19 +291,24 @@ VALUES
     ('Chiara', 'Libardoni', 'chiara', SHA('chiara')),
     ('Noemi', 'Bruschetta', 'noemi', SHA('noemi')),
 
-    ('Luca', 'Floreacing', 'luca', SHA('luca')),
+    ('Luca', 'Floreacing', 'luca', SHA('luca')), 
     ('Giovanni', 'Rippa', 'giovanni', SHA('giovanni')),
     ('Monica', 'Livornese', 'monica', SHA('monica')),
     ('Angela', 'Minati', 'angela', SHA('angela')),
     ('Antonio', 'Bondioli', 'antonio', SHA('antonio')),
     ('Paolo', 'Politano', 'paolo', SHA('paolo')),
-    ('Lorenzo', 'Rossi', 'lorenzo', SHA('lorenzo')),
+    ('Lorenzo', 'Rossi', 'lorenzo', SHA('lorenzo')), 
     ('Daniela', 'Della Casa', 'daniela', SHA('daniela')),
     ('Silvano', 'Esposito', 'silvano', SHA('silvano')),
     ('Francesca', 'Degli Espositi', 'francesca', SHA('francesca')),
-    ('Riccardo', 'Bosi', 'riccardo', SHA('riccardo'));    
+    ('Riccardo', 'Bosi', 'riccardo', SHA('riccardo')), 
 
+    ('Luca', 'Bonolis', 'luca2', SHA('luca2')), 
+    ('Luigi', 'Stella', 'luigi', SHA('luigi')),    
+    ('Noemi', 'Bana', 'noemi2', SHA('noemi2')),
 
+    ('Claudia', 'Cleo', 'claudia', SHA('claudia')), 
+    ('Anna', 'Turi', 'anna', SHA('turi'));
 
 INSERT INTO
     `aree` (`idResponsabile`, `nominativo`)
@@ -318,18 +323,18 @@ INSERT INTO
     `locali` (`nominativo`, `apertura`, `idArea`, `idResponsabile`)
 VALUES
     ('Tigelleria Modena', '2010-01-01', 2, 4),
+    ('Piadineria Modena', '2018-05-01', 2, 1),
     ('Piadineria Cesena', '2010-01-01', 1, 5),
     ('Trattoria Trento', '2010-01-01', 3, 6);
-
 
 INSERT INTO
     `utenteLocale` (`idUtente`, `idLocale`)
 VALUES
     (1, 1),
     (2, 1),
-    (3, 1);
-
-
+    (15, 2),
+    (16, 2),
+    (17, 2);
 
 INSERT INTO
     `temi` (`nome`)
@@ -352,9 +357,9 @@ VALUES
 INSERT INTO
     `merce` (`nome`, `stock`, `categoria`)
 VALUES
-    ('Impasto Normale', 4, 'Impasto'),
-    ('Impasto Integrale', 4, 'Impasto'),
-    ('Impasto Kamut', 4, 'Impasto'),
+    ('Impasto Normale', 40, 'Impasto'),
+    ('Impasto Integrale', 32, 'Impasto'),
+    ('Impasto Kamut', 32, 'Impasto'),
 
     ('Squacquerone', 4, 'Formaggi'),
     ('Mozzarella', 4, 'Formaggi'),

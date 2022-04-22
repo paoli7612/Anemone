@@ -3,7 +3,7 @@
 namespace App\core;
 
 use App\App;
-use App\Models\Inventory;
+use App\Models\Theme;
 use PDO;
 
 class Database
@@ -20,7 +20,6 @@ class Database
 
     public static function get($id, $model, $table)
     {
-        echo '<h1>'.$model.'</h1>';
         return Database::select($table, $model, "id=$id")[0];
     }
 
@@ -49,7 +48,7 @@ class Database
 
     public static function query($query, $model='')
     {
-        echo $query . '<br>';
+        //echo $query;
         $s = self::$pdo->prepare($query);
         $s->execute();
         if ($model == '') {

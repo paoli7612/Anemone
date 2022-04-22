@@ -35,7 +35,7 @@ class User extends Model {
 
     public function url()
     {
-        return '/person?slug='.$this->slug;
+        return '/user?slug='.$this->slug;
     }
 
 };

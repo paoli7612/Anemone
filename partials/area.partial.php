@@ -1,6 +1,7 @@
 <?php
 
-use function App\core\partial; ?>
+use function App\core\partial;
+?>
 
 
 <div class="w3-panel w3-theme w3-card-4 w3-round-large">
@@ -9,12 +10,13 @@ use function App\core\partial; ?>
             <i class="fa-solid fa-layer-group"></i>
         </h1>
         <h1>
-            <span style="text-decoration: underline"><?= $area->nominativo ?></span>
-            <span class="w3-small"><?= $area->user()->name() ?>
+            <span><?= $area->nominativo ?></span>
+            <a href="<?= $user->url() ?>" class="w3-small"><?= $user->name() ?></a>
         <h1>
     </div>
     <div class="w3-panel">
         <?php foreach ($area->restaurants() as $restaurant) : ?>
+            <?php $user = $restaurant->user() ?>
             <?php require partial('restaurant') ?>
         <?php endforeach ?>
     </div>

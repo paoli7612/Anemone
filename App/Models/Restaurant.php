@@ -19,6 +19,11 @@ class Restaurant {
         return Database::query('SELECT utenti.* FROM utenti, utenteLocale WHERE utentelocale.idutente=utenti.id and utentelocale.idLocale=' . $this->id, User::class);
     }
 
+    public function isClosed()
+    {
+        return $this->chiusura;
+    }
+
 
 
 }

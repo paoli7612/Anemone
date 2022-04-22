@@ -22,10 +22,10 @@ class Delivery
     {
         return Database::query(
             "
-        SELECT nome, ROUND(SUM(valore), 2) as valore, COUNT(nome) as quanti
+        SELECT nome, ROUND(SUM(valore), 2) as valore, COUNT(nome) as quanti, fascia
         FROM delivery
         WHERE Date(giorno)=Date('$date')
-        GROUP BY nome
+        GROUP BY nome, fascia
         ORDER BY nome",
             Inventory::class
         );

@@ -34,12 +34,16 @@ if (!isset(array_keys($_GET)[0])) {
                 <th>Prezzo</th>
                 <th>Quanti</th>
             </tr>
-            <?php foreach ($deliverys as $delivery) : ?>
-                <tr>
-                    <td><?= $delivery->nome ?></td>
-                    <td>€ <?= $delivery->valore ?></td>
-                    <td><?= $delivery->quanti ?></td>
-                </tr>
+            <?php foreach ([1, 2, 3] as $n) : ?>
+                <?php foreach ($deliverys as $delivery) : ?>
+                    <tr class="w3-theme-l<?= 5-$delivery->fascia ?>">
+                        <?php if ($delivery->fascia == $n) : ?>
+                            <td><?= $delivery->nome ?></td>
+                            <td>€ <?= $delivery->valore ?></td>
+                            <td><?= $delivery->quanti ?></td>
+                        <?php endif ?>
+                    </tr>
+                <?php endforeach ?>
             <?php endforeach ?>
         </table>
     <?php endif ?>

@@ -1,14 +1,17 @@
 <?php
 
 use App\core\Database;
+use App\Models\Theme;
 
     class Model {
             
         protected static $table;
 
-        public function update($field, $value)
+        public function update($vv)
         {
-            Database::query("UPDATE " . $this->table . " SET $field='$value' WHERE id=".$this->id);
+            foreach ($vv as $field => $value) {
+                Database::query("UPDATE " . static::$table . " SET $field='$value' WHERE id=".$this->id);
+            }
             return $value;
         }
 
@@ -19,13 +22,12 @@ use App\core\Database;
 
         public static function all()
         {
-            die(self::$table);
-            return Database::query("SELECT * FROM " . self::$table, Theme::class);
+            return Database::query("SELECT * FROM " . static::$table, static::class);
         }
 
-        public static function get($id, $model, $table)
+        public static function get($id)
         {
-            return Database::get($id, $model, $table);
+            return Database::get($id, static::class, static::$table);
         }
     }
 ?>

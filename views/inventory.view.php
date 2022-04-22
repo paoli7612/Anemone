@@ -1,3 +1,15 @@
+<?php
+
+use App\App;
+?>
+<div class="w3-row w3-center">
+    <div class="w3-panel w3-theme w3-card-4 w3-round-large">
+        <div class="w3-panel w3-half">
+            <input type="date" class="w3-input w3-round-large w3-theme-l2" value="<?= App::today() ?>" readonly="readonly">
+        </div>
+    </div>
+</div>
+
 <div class="w3-panel w3-theme w3-card-4 w3-round-large">
     <form action="inventory" method="POST">
         <?php use App\Models\Goods; ?>
@@ -30,7 +42,7 @@
                             <td>
                                 <input type="number" name="<?= $prodotto->id ?>_quantita" class="w3-input w3-card w3-round-large" placeholder="x1">
                             </td>
-                            <?php if ($prodotto->tipo == 'Impasto') : ?>
+                            <?php if ($prodotto->categoria == 'Impasto') : ?>
                                 <td>
                                     <input type="number" name="<?= $prodotto->id ?>_<?= $prodotto->stock/2 ?>" class="w3-input w3-card w3-round-large" placeholder="x<?= $prodotto->stock / 2 ?>">
                                 </td>

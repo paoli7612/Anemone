@@ -1,6 +1,6 @@
 <?php
 
-use function App\core\partial;
+    use function App\core\partial;
 ?>
 
 <div class="w3-panel w3-center">
