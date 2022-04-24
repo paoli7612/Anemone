@@ -1,4 +1,7 @@
-<?php 
+<?php
+
+use App\Models\Inventory;
+
     $tot = array();
 
     foreach ($_POST as $key => $value)
@@ -12,9 +15,11 @@
         } else {
             $tot[$id] = intval($value);
         }
-    
     }
 
-    print_r($tot);
+    foreach ($tot as $id => $quanto)
+    {
+        Inventory::create($id, $quanto, '1999-01-01');
+    }
 
 ?>

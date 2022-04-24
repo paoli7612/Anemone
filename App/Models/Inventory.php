@@ -1,5 +1,7 @@
 <?php
 namespace App\Models;
+
+use App\core\Auth;
 use App\core\Database;
 
 class Inventory {
@@ -12,17 +14,22 @@ class Inventory {
     public static function day($date)
     {
         return Database::query("
-                    SELECT SUM(inventario.numero) as numero, prodotti.nome, prodotti.tipo
-                    FROM inventario, prodotti
-                    WHERE Date(inventario.quando)=Date('$date')
-                        AND inventario.idProdotto=prodotti.id
-                    GROUP BY prodotti.nome
-                    ORDER BY prodotti.tipo",
+                    SELECT SUM(inventari.quantita) as quantita, merce.nome as merce
+                    FROM inventari, merce
+                    WHERE inventari.idMerce=merce.id
+                    GROUP BY merce.nome
+                    ORDER BY merce.categoria",
                     Inventory::class);
     }
 
-    public static function create()
+    public static function create($idMerce, $quantita, $quando)
     {
-        Database::create('inventario', ['idProdotto', 'idUtente', 'numero'], ['1', '1', '1']);        
+        if ($quantita > 0)
+            Database::create('inventari', ['idMerce', 'idUtente', 'quantita', 'quando'], [$idMerce, Auth::$user->id, $quantita, $quando]);        
+    }
+
+    public function prodotto()
+    {
+        return Goods::get($this->idMerce);
     }
 }

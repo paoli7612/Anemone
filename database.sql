@@ -39,7 +39,7 @@ CREATE TABLE `merce`(
     `id` int(8) PRIMARY KEY AUTO_INCREMENT,
     `nome` varchar(32) NOT NULL,
     `stock` int(16) NOT NULL,
-    `categoria` enum('Formaggi', 'Salumi', 'Impasti', 'Caffetteria', 'Bibite') NOT NULL,
+    `categoria` enum('Bibite', 'Impasto', 'Alimenti') NOT NULL,
     UNIQUE (`nome`, `stock`)
 );
 
@@ -361,14 +361,19 @@ VALUES
     ('Impasto Integrale', 32, 'Impasto'),
     ('Impasto Kamut', 32, 'Impasto'),
 
-    ('Squacquerone', 4, 'Formaggi'),
-    ('Mozzarella', 4, 'Formaggi'),
-    ('Brie', 1, 'Formaggi'),
-    ('Bufala', 4, 'Formaggi'),
+    ('Cocacola pet', 24, 'Bibite'),
+    ('Cocacola zero pet', 12, 'Bibite'),
+    ('Cocacola vap', 32, 'Bibite'),
+    ('Cocacola zero vap', 32, 'Bibite'),
 
-    ('Prosciutto Crudo', 2, 'Salumi'),
-    ('Prosciutto Cotto', 4, 'Salumi'),
-    ('Bresaola', 4, 'Salumi'),
-    ('Spianata Calabra', 1, 'Salumi'),
-    ('Salame Milano', 1, 'Salumi'),
-    ('Culatta', 2, 'Salumi');
+    ('Squacquerone', 4, 'Alimenti'),
+    ('Mozzarella', 4, 'Alimenti'),
+    ('Brie', 1, 'Alimenti'),
+    ('Bufala', 4, 'Alimenti'),
+
+    ('Prosciutto Crudo', 2, 'Alimenti'),
+    ('Prosciutto Cotto', 4, 'Alimenti'),
+    ('Bresaola', 4, 'Alimenti'),
+    ('Spianata Calabra', 1, 'Alimenti'),
+    ('Salame Milano', 1, 'Alimenti'),
+    ('Culatta', 2, 'Alimenti');

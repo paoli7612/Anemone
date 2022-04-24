@@ -1,13 +1,17 @@
 <?php
 
-use App\Models\Delivery;
-use App\Models\Inventory;
+    use App\Models\Delivery;
+    use App\Models\Inventory;
 
-if (!isset(array_keys($_GET)[0])) {
-    header('Location: /archive?' . date('Y-m-d'));
-} ?>
+    if (!isset(array_keys($_GET)[0])) {
+        header('Location: /archive?' . date('Y-m-d'));
+    }
+
+?>
 
 <?php $_DAY = array_keys($_GET)[0] ?>
+
+<!-- HEADER -->
 <div class="w3-panel w3-theme w3-center w3-card-4 w3-round-large w3-display-container w3-padding">
     <a href="/archive?<?= date('y-m-d', strtotime('-1 day', strtotime($_DAY))); ?>" class="w3-button w3-margin-right w3-card w3-left w3-circle w3-white">
         <i class="fa-solid fa-left-long"></i>
@@ -20,7 +24,8 @@ if (!isset(array_keys($_GET)[0])) {
     </a>
 </div>
 
-<div class="w3-panel w3-theme w3-card-4 w3-round-large">
+<!-- DELIVERY -->
+<div class="w3-panel w3-theme-l2 w3-card-4 w3-round-large">
     <h1 class="w3-center">Delivery</h1>
     <?php $deliverys = Delivery::day($_DAY) ?>
     <?php if (count($deliverys) == 0) : ?>
@@ -36,7 +41,7 @@ if (!isset(array_keys($_GET)[0])) {
             </tr>
             <?php foreach ([1, 2, 3] as $n) : ?>
                 <?php foreach ($deliverys as $delivery) : ?>
-                    <tr class="w3-theme-l<?= 5-$delivery->fascia ?>">
+                    <tr class="w3-theme-l<?= 5 - $delivery->fascia ?>">
                         <?php if ($delivery->fascia == $n) : ?>
                             <td><?= $delivery->nome ?></td>
                             <td>€ <?= $delivery->valore ?></td>
@@ -49,7 +54,8 @@ if (!isset(array_keys($_GET)[0])) {
     <?php endif ?>
 </div>
 
-<div class="w3-panel w3-theme w3-card-4 w3-round-large">
+<!-- INVENTORY -->
+<div class="w3-panel w3-theme-l4 w3-card-4 w3-round-large">
     <h1 class="w3-center">Inventario</h1>
     <?php $inventorys = Inventory::day($_DAY) ?>
     <?php if (count($inventorys) == 0) : ?>
@@ -61,8 +67,8 @@ if (!isset(array_keys($_GET)[0])) {
             <?php foreach ($inventorys as $inventory) : ?>
                 <tr>
                     <td>
-                    <td>x<?= $inventory->numero ?></td>
-                    <td><?= $inventory->nome ?></td>
+                    <td>x<?= $inventory->quantita ?></td>
+                    <td><?= $inventory->merce ?></td>
                     </td>
                 </tr>
             <?php endforeach ?>

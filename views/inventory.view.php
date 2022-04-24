@@ -1,7 +1,5 @@
-<?php
+<?php use App\App; ?>
 
-use App\App;
-?>
 <div class="w3-row w3-center">
     <div class="w3-panel w3-theme w3-card-4 w3-round-large">
         <div class="w3-panel w3-half">
@@ -35,7 +33,7 @@ use App\App;
                     <th>Stock</th>
                 </thead>
                 <tbody>
-                    <?php foreach (Goods::all() as $prodotto) : ?>
+                    <?php foreach (Goods::dailyCount() as $prodotto) : ?>
                         <tr>
                             <td class="w3-hide"><?= $prodotto->tipo ?></td>
                             <td><?= $prodotto->nome ?></td>
@@ -62,7 +60,7 @@ use App\App;
 
                     var empty = true;
                     $(this).find('input').each((i, e) => {
-                        if (e.value) {
+                        if (e.value > 0) {
                             $(this).addClass('w3-theme-l2');
                             empty = false;
                         }
@@ -79,8 +77,7 @@ use App\App;
             $(document).ready(function() {
                 $('tbody input').on('keyup', update);
                 $("#search").on('keyup', update);
-                $('#ins').on("change", update);
-                $('#manc').on("change", update);
+                $('input').on("change", update);
             });
         </script>
 
