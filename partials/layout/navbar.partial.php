@@ -3,40 +3,19 @@
 use App\core\Auth;
 use App\core\Request; ?>
 
-<div class="w3-bar w3-xlarge w3-center">
-    <div class="w3-bar" style="border-radius: 0px 0px 10px 10px;">
+<div class="w3-bar w3-xlarge w3-center ">
+    <div class="w3-bar w3-card-2" style="border-radius: 0px 0px 10px 10px;">
         <?php if (Auth::check()) : ?>
-            <a href="/inventory" class="w3-bar-item w3-button <?= (Request::name() == 'Inventory') ? 'w3-white' : 'w3-theme' ?> ">
+            <a href="/inventory" class="w3-bar-item w3-button <?= (Request::name() == 'Inventory') ? 'w3-grey' : 'w3-theme' ?> ">
                 <i class="fa-solid fa-list-ol"></i>
             </a>
-            <a href="/delivery" class="w3-bar-item w3-button <?= (Request::name() == 'Delivery') ? 'w3-white' : 'w3-theme' ?> ">
+            <a href="/delivery" class="w3-bar-item w3-button <?= (Request::name() == 'Delivery') ? 'w3-grey' : 'w3-theme' ?> ">
                 <span class="w3-hide-small w3-hide-medium">
                 </span>
                 <i class="fa-solid fa-person-biking"></i>
             </a>
-            <a href="/calendar" class="w3-bar-item w3-button <?= (Request::name() == 'Calendar') ? 'w3-white' : 'w3-theme' ?> ">
-                <span class="w3-hide-small w3-hide-medium">
-                </span>
-                <i class="fa-solid fa-calendar"></i>
-            </a>
-
-            <a href="/settings" class="w3-bar-item w3-button <?= (Request::name() == 'Settings') ? 'w3-white' : 'w3-theme' ?> ">
-                <span class="w3-hide-small w3-hide-medium">
-                </span>
-                <i class="fa-solid fa-cog"></i>
-            </a>
-            <a href="/company" class="w3-bar-item w3-button <?= (Request::name() == 'Company') ? 'w3-white' : 'w3-theme' ?> ">
-                <span class="w3-hide-small w3-hide-medium">
-                </span>
-                <i class="fa-solid fa-sitemap"></i>
-            </a>
-            <a href="/user" class="w3-bar-item w3-button <?= (Request::name() == 'User') ? 'w3-white' : 'w3-theme' ?> ">
-                <span class="w3-hide-small w3-hide-medium">
-                </span>
-                <i class="fa-solid fa-user"></i>
-            </a>
         <?php else : ?>
-            <a href="/" class="w3-bar-item w3-button <?= (Request::name() == 'Home') ? 'w3-white' : 'w3-theme' ?> ">
+            <a href="/" class="w3-bar-item w3-button <?= (Request::name() == 'Home') ? 'w3-grey' : 'w3-theme' ?> ">
                 <span class="w3-hide-small w3-hide-medium">
                     Home
                 </span>
@@ -44,30 +23,25 @@ use App\core\Request; ?>
             </a>
         <?php endif ?>
     </div>
-    <a href="/archive" class="w3-bar-item w3-button <?= (Request::name() == 'Archive') ? 'w3-white' : 'w3-theme' ?> ">
-        <span class="w3-hide-small w3-hide-medium">
-        </span>
-        <i class="fa-solid fa-box"></i>
-    </a>
-    <a style="border-radius: 0px 0px 10px 0px;" href="/money" class="w3-left w3-button <?= (Request::name() == 'Money') ? 'w3-white' : 'w3-theme' ?> ">
-        <span class="w3-hide-small w3-hide-medium">
-            Conteggio
-        </span>
-        <i class="fa-solid fa-money-bill"></i>
-    </a>
-    <?php if (Auth::check()) : ?>
-        <a href="/logout" style="border-radius: 0px 0px 0px 10px;" class="w3-right w3-button <?= (Request::name() == 'Entry') ? 'w3-white' : 'w3-theme' ?> ">
-            <span class="w3-hide-small w3-hide-medium">
-                Esci
-            </span>
-            <i class="fa-solid fa-right-from-bracket"></i>
+    <div class="w3-bar w3-left w3-card" style="border-radius: 0px 0px 10px 0px;">
+        <a href="/archive" class="w3-bar-item w3-button <?= (Request::name() == 'Archive') ? 'w3-grey' : 'w3-theme' ?> ">
+            <i class="fa-solid fa-box"></i>
         </a>
-    <?php else : ?>
-        <a href="/entry" style="border-radius: 0px 0px 0px 10px;" class="w3-right w3-button <?= (Request::name() == 'Entry') ? 'w3-white' : 'w3-theme' ?> ">
-            <span class="w3-hide-small w3-hide-medium">
-                Entry
-            </span>
-            <i class="fa-solid fa-right-to-bracket"></i>
+        <a href="/money" class="w3-left w3-button <?= (Request::name() == 'Money') ? 'w3-grey' : 'w3-theme' ?> ">
+            <i class="fa-solid fa-money-bill"></i>
         </a>
-    <?php endif; ?>
+    </div>
+    <div class="w3-card w3-right" style="border-radius: 0px 0px 0px 10px;">
+        <?php if (Auth::check()) : ?>
+            <a href="/user" class="w3-right w3-button <?= (Request::name() == 'User') ? 'w3-grey' : 'w3-theme' ?>  ">
+                <span class="w3-hide-small w3-hide-medium">
+                </span>
+                <i class="fa-solid fa-user"></i>
+            </a>
+        <?php else : ?>
+            <a href="/entry" class="w3-right w3-button <?= (Request::name() == 'Entry') ? 'w3-grey' : 'w3-theme' ?> ">
+                <i class="fa-solid fa-right-to-bracket"></i>
+            </a>
+        <?php endif; ?>
+    </div>
 </div>

@@ -23,9 +23,7 @@
                 </div>
             </div>
         </div>
-
         <div class="w3-panel">
-
             <table class="w3-table-all w3-card-4 w3-white">
                 <thead>
                     <th>Prodotto</th>
@@ -52,12 +50,10 @@
                     <?php endforeach ?>
                 </tbody>
             </table>
-
         </div>
         <script>
             var update = function() {
                 $('tbody tr').each(function(i, e) {
-
                     var empty = true;
                     $(this).find('input').each((i, e) => {
                         if (e.value > 0) {
@@ -89,5 +85,4 @@
             </button>
         </div>
     </form>
-
 </div>

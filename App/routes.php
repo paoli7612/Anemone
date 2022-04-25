@@ -4,15 +4,16 @@
 
     Router::get('', 'home');
     Router::get('entry', 'entry');
-    Router::get('logout', 'logout');
     Router::get('archive', 'archive');
-    Router::get('settings', 'settings');
     Router::get('inventory', 'inventory');
     Router::get('delivery', 'delivery');
     Router::get('money', 'money');
     Router::get('calendar', 'calendar');
-    Router::get('company', 'company');
+    
     Router::get('user', 'user');
+    Router::get('user/settings', 'settings');
+    Router::get('user/logout', 'logout');
+    Router::get('user/company', 'company');
 
     Router::post('login', 'login');
     Router::post('logout', 'logout');

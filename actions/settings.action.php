@@ -1,7 +1,7 @@
 <?php
 
-use App\core\Auth;
+    use App\core\Auth;
 
     Auth::$user->update(['idTema' => $_POST['theme']]);
 
-    header('Location: /settings');
+    header('Location: /user');

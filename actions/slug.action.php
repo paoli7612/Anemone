@@ -1,13 +1,11 @@
 <?php
 
-use App\core\Auth;
-use App\Models\Person;
-
+    use App\core\Auth;
     if (Auth::check() && isset($_POST['slug']))
     {
-        $person = Auth::$user->person;
-        $person->update('slug', $_POST['slug']);
-        header("Location: /person");
+        $user = Auth::$user;
+        $user->update(['slug' => $_POST['slug']]);
     }
+    header("Location: /user");
 
 ?>

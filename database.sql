@@ -339,8 +339,8 @@ VALUES
 INSERT INTO
     `temi` (`nome`)
 VALUES
-    ('green'),
     ('blue'),
+    ('green'),
     ('yellow'),
     ('red'),
     ('orange'),
@@ -361,10 +361,16 @@ VALUES
     ('Impasto Integrale', 32, 'Impasto'),
     ('Impasto Kamut', 32, 'Impasto'),
 
+    ('Acqua naturale', 24, 'Bibite'),
+    ('Acqua frizzante', 24, 'Bibite'),
     ('Cocacola pet', 24, 'Bibite'),
     ('Cocacola zero pet', 12, 'Bibite'),
     ('Cocacola vap', 32, 'Bibite'),
     ('Cocacola zero vap', 32, 'Bibite'),
+    ('Estathe pesca ', 12, 'Bibite'),
+    ('Estathe limone', 12, 'Bibite'),
+    ('Fuze pesca', 12, 'Bibite'),
+    ('Fuze limone', 12, 'Bibite'),
 
     ('Squacquerone', 4, 'Alimenti'),
     ('Mozzarella', 4, 'Alimenti'),
