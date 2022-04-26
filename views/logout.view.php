@@ -1,3 +1,5 @@
+<?php use function App\core\partial; ?>
+
 <div class="w3-panel w3-card-4 w3-theme  w3-round-large">
     <form action="/logout" method="post">
         <div class="w3-panel">
@@ -9,6 +11,7 @@
             </button>
             <a href="/" class="w3-button w3-card-4 w3-round-large">Annulla</a>
         </div>
-
     </form>
 </div>
+
+<?php include partial('layout/fbar') ?>

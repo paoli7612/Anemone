@@ -1,6 +1,10 @@
 <?php
 
-use App\core\Auth; ?>
+use App\core\Auth;
+
+use function App\core\partial;
+
+ ?>
 <div class="w3-panel w3-theme w3-card-4">
     <h1>Home</h1>
 
@@ -45,3 +49,5 @@ use App\core\Auth; ?>
     </fieldset>
 
 </div>
+
+<?php require partial('layout/fbar') ?>

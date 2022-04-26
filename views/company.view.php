@@ -9,3 +9,4 @@ use App\Models\User;
     <?php $user = $area->user() ?>
     <?php require partial('area'); ?>
 <?php endforeach ?>
+<?php include partial('layout/fbar') ?>

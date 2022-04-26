@@ -33,13 +33,13 @@ use App\core\Request; ?>
     </div>
     <div class="w3-card w3-right" style="border-radius: 0px 0px 0px 10px;">
         <?php if (Auth::check()) : ?>
-            <a href="/user" class="w3-right w3-button <?= (Request::name() == 'User') ? 'w3-grey' : 'w3-theme' ?>  ">
+            <a style="border-radius: 0px 0px 0px 10px;" href="/user" class="w3-right w3-button <?= (Request::uri_starts_with('user')) ? 'w3-grey' : 'w3-theme' ?>  ">
                 <span class="w3-hide-small w3-hide-medium">
                 </span>
                 <i class="fa-solid fa-user"></i>
             </a>
         <?php else : ?>
-            <a href="/entry" class="w3-right w3-button <?= (Request::name() == 'Entry') ? 'w3-grey' : 'w3-theme' ?> ">
+            <a style="border-radius: 0px 0px 0px 10px;" href="/entry" class="w3-right w3-button <?= (Request::name() == 'Entry') ? 'w3-grey' : 'w3-theme' ?> ">
                 <i class="fa-solid fa-right-to-bracket"></i>
             </a>
         <?php endif; ?>

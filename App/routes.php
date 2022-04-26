@@ -8,12 +8,12 @@
     Router::get('inventory', 'inventory');
     Router::get('delivery', 'delivery');
     Router::get('money', 'money');
-    Router::get('calendar', 'calendar');
     
     Router::get('user', 'user');
     Router::get('user/settings', 'settings');
     Router::get('user/logout', 'logout');
     Router::get('user/company', 'company');
+    Router::get('user/calendar', 'calendar');
 
     Router::post('login', 'login');
     Router::post('logout', 'logout');

@@ -33,4 +33,14 @@ namespace App\core;
         {
             return $_GET[$key];
         }
+
+        public static function uri_starts_with($str)
+        {
+            return str_starts_with(self::uri(), $str);
+        }
+
+        public static function uri_ends_with($str)
+        {
+            return str_ends_with(self::uri(), $str);
+        }
     }
