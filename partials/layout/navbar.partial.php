@@ -10,9 +10,10 @@ use App\core\Request; ?>
                 <i class="fa-solid fa-list-ol"></i>
             </a>
             <a href="/delivery" class="w3-bar-item w3-button <?= (Request::name() == 'Delivery') ? 'w3-grey' : 'w3-theme' ?> ">
-                <span class="w3-hide-small w3-hide-medium">
-                </span>
                 <i class="fa-solid fa-person-biking"></i>
+            </a>
+            <a href="/calculator" class="w3-bar-item w3-button <?= (Request::name() == 'Calculator') ? 'w3-grey' : 'w3-theme' ?> ">
+            <i class="fa-solid fa-calculator"></i>
             </a>
         <?php else : ?>
             <a href="/" class="w3-bar-item w3-button <?= (Request::name() == 'Home') ? 'w3-grey' : 'w3-theme' ?> ">
