@@ -30,6 +30,8 @@
     </script>
 
     <div id="app">
+        <a href="/">back...</a>
+
         <Order :style="{visibility: order ? 'visible' : 'hidden'}">
             <Order-list>
 

@@ -1,6 +1,8 @@
 <?php
-
     use App\Models\Delivery;
+
+    Delivery::deleteDay();
+
     $fascia = $_POST['fascia'];
     foreach (array('Deliveroo', 'Glovo', 'JustEat', 'UberEats') as $name) {
         foreach (array('App', 'Contante') as $pagamento) {
@@ -11,5 +13,5 @@
             }
         }
     }
-    header('Location: /archive');
+    header('Location: /delivery');
 ?>

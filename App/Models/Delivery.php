@@ -30,4 +30,20 @@ class Delivery
             Inventory::class
         );
     }
+
+    public static function allDay($date)
+    {
+        return Database::query(
+            "
+        SELECT nome, valore, fascia
+        FROM delivery
+        WHERE Date(giorno)=Date('$date')",
+            Inventory::class
+        );
+    }
+
+    public static function deleteDay()
+    {
+        Database::query("DELETE FROM delivery WHERE giorno=CURRENT_DATE;");
+    }
 }
