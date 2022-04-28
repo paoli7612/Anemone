@@ -18,15 +18,18 @@
                         <div class="w3-col w3-center" style="width: 90px; margin-right:16px">
                             <img src="/img/<?= $value / 100 ?>.png" height="50px">
                         </div>
-                        <div class="w3-col w3-right w3-center w3-small" style="width: 40%">
-                            <button type="button" class="w3-button w3-card w3-circle w3-theme-l2" onclick="var i=$(this).parent().parent().find('input').first(); i.val(+i.val()+1); i.keyup()">
+                        <div class="w3-right w3-small">
+                            <button type="button" class="w3-button w3-card w3-circle w3-theme-l2 w3-right w3-margin-left" onclick="var i=$(this).parent().parent().find('input').first(); i.val(0); i.keyup()">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                            <button type="button" class="w3-button w3-card w3-circle w3-theme-l2 w3-right w3-margin-left" onclick="var i=$(this).parent().parent().find('input').first(); i.val(+i.val()+10); i.keyup()">
+                                +10
+                            </button>
+                            <button type="button" class="w3-button w3-card w3-circle w3-theme-l2 w3-right w3-margin-left" onclick="var i=$(this).parent().parent().find('input').first(); i.val(+i.val()+1); i.keyup()">
                                 <i class="fa fa-plus"></i>
                             </button>
-                            <button type="button" class="w3-button w3-card w3-circle w3-theme-l2" onclick="var i=$(this).parent().parent().find('input').first(); i.val(+i.val()-1); i.keyup()">
+                            <button type="button" class="w3-button w3-card w3-circle w3-theme-l2 w3-right w3-margin-left" onclick="var i=$(this).parent().parent().find('input').first(); i.val(+i.val()-1); i.keyup()">
                                 <i class="fa fa-minus"></i>
-                            </button>
-                            <button type="button" class="w3-button w3-card w3-circle w3-theme-l2" onclick="var i=$(this).parent().parent().find('input').first(); i.val(0); i.keyup()">
-                                <i class="fa fa-trash"></i>
                             </button>
                         </div>
                         <div class="w3-rest">
