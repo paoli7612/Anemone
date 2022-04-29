@@ -12,6 +12,8 @@
     Router::get('delivery', 'delivery');
     Router::get('calculator', 'calculator');
 
+    Router::get('reset', 'reset');
+
     Router::get('user', 'user');
     Router::get('user/settings', 'settings');
     Router::get('user/logout', 'logout');

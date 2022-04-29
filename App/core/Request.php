@@ -36,11 +36,13 @@ namespace App\core;
 
         public static function uri_starts_with($str)
         {
-            return str_starts_with(self::uri(), $str);
+            return substr( self::uri(), 0, strlen($str) ) == $str;
+            //return str_contains(self::uri(), $str);
         }
 
         public static function uri_ends_with($str)
         {
-            return str_ends_with(self::uri(), $str);
+            return substr( self::uri(), strlen(self::uri()).strlen($str), strlen(self::uri()) ) == $str;
+            //return str_contains(self::uri(), $str);
         }
     }
