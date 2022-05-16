@@ -9,7 +9,7 @@ use App\core\Request; ?>
             <a href="/inventory" class="w3-bar-item w3-button <?= (Request::name() == 'Inventory') ? 'w3-grey' : 'w3-theme' ?> ">
                 <i class="fa-solid fa-list-ol"></i>
             </a>
-            <a href="/delivery" class="w3-bar-item w3-button <?= (Request::name() == 'Delivery') ? 'w3-grey' : 'w3-theme' ?> ">
+            <a href="/delivery" class="w3-bar-item w3-button <?= (Request::uri_starts_with('delivery')) ? 'w3-grey' : 'w3-theme' ?> ">
                 <i class="fa-solid fa-person-biking"></i>
             </a>
             <a href="/calculator" class="w3-bar-item w3-button <?= (Request::name() == 'Calculator') ? 'w3-grey' : 'w3-theme' ?> ">

@@ -8,11 +8,15 @@
     Router::get('archive', 'archive');
     Router::get('money', 'money');
 
-    Router::get('inventory', 'inventory');
-    Router::get('delivery', 'delivery');
-    Router::get('calculator', 'calculator');
-
     Router::get('reset', 'reset');
+    Router::get('inventory', 'inventory');
+    Router::get('calculator', 'calculator');
+    
+    Router::get('delivery', 'delivery2');
+    Router::get('delivery/deliveroo', 'delivery/deliveroo');
+    Router::get('delivery/glovo', 'delivery/glovo');
+    Router::get('delivery/justeat', 'delivery/justeat');
+    Router::get('delivery/ubereats', 'delivery/ubereats');
 
     Router::get('user', 'user');
     Router::get('user/settings', 'settings');
