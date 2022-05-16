@@ -4,7 +4,7 @@ use App\Models\Delivery;
 use App\Models\Inventory;
 
 if (!isset(array_keys($_GET)[0])) {
-    header('Location: /archive?' . date('Y-m-d'));
+    header('Location: /archive?' . date('y-m-d'));
 }
 
 ?>
@@ -23,6 +23,7 @@ if (!isset(array_keys($_GET)[0])) {
         <i class="fa-solid fa-right-long"></i>
     </a>
 </div>
+
 <!-- DELIVERY -->
 <?php if (date_diff(date_create($_DAY), date_create())->invert) : ?>
     <h1>Ancora non successo</h1>
@@ -93,7 +94,7 @@ if (!isset(array_keys($_GET)[0])) {
     <h2>Cerca</h2>
     <div class="w3-panel">
         <form action="archive" method="post">
-            <input type="date" name="date" class="w3-input w3-card-4 w3-round-large w3-large" onchange="this.form.submit()">
+            <input value="<?= date_format(date_create($_DAY), 'Y-m-d') ?>" type="date" name="date" class="w3-input w3-card-4 w3-round-large w3-large" onchange="this.form.submit()">
         </form>
     </div>
 </div>
