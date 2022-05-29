@@ -9,7 +9,7 @@ class Area extends Model {
 
     public function user()
     {
-        return User::get($this->idResponsabile, User::class, "utenti");
+        return Dipendente::get($this->idResponsabile, Dipendente::class, "utenti");
     }
     
     public function restaurants()

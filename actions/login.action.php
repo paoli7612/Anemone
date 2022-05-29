@@ -1,7 +1,7 @@
 <?php
 
     use App\core\Auth;
-    if (Auth::login($_POST['username'], $_POST['password']))
+    if (Auth::login($_POST['email'], $_POST['password']))
         header('Location: /');
     else 
-        header('Location: /login');
+        echo 'ciao'; //header('Location: /login');

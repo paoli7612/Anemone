@@ -2,7 +2,7 @@
 
 use App\core\Auth;
 use App\core\Request;
-use App\Models\User;
+use App\Models\Dipendente;
 
 use function App\core\partial;
 
@@ -10,7 +10,7 @@ use function App\core\partial;
 
 
 <?php if (Request::getExist('slug') == 1) : ?>
-    <?php $user = User::getBySlug(Request::getValue('slug')); ?>
+    <?php $user = Dipendente::getBySlug(Request::getValue('slug')); ?>
 <?php else : ?>
     <?php $user = Auth::$user ?>
 <?php endif ?>

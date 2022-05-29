@@ -4,9 +4,13 @@ namespace App\Models;
 use App\core\Database;
 use Model;
 
-class User extends Model {
+class Dipendente extends Model {
 
-    public static $table = 'utenti';
+    public static $table = 'dipendenti';
+
+    public function __construct() {
+        $this->id_tema = 1;
+    }
 
     public function isAdmin()
     {

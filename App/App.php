@@ -36,7 +36,7 @@ class App
         }
         else
         {
-            return "green";
+            return 'green';
         }
     }
 

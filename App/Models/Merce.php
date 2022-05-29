@@ -5,9 +5,9 @@ namespace App\Models;
 use App\core\Database;
 use Model;
 
-class Goods extends Model
+class Merce extends Model
 {
-    protected static $table = 'merce';
+    protected static $table = 'merci';
 
     public static function dailyCount()
     {

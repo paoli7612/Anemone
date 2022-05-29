@@ -30,6 +30,6 @@ class Inventory {
 
     public function prodotto()
     {
-        return Goods::get($this->idMerce);
+        return Merce::get($this->idMerce);
     }
 }

@@ -18,11 +18,11 @@
     Router::get('delivery/justeat', 'delivery/justeat');
     Router::get('delivery/ubereats', 'delivery/ubereats');
 
-    Router::get('user', 'user');
-    Router::get('user/settings', 'settings');
-    Router::get('user/logout', 'logout');
-    Router::get('user/company', 'company');
-    Router::get('user/calendar', 'calendar');
+    Router::get('dipendente', 'dipendente');
+    Router::get('dipendente/settings', 'settings');
+    Router::get('dipendente/logout', 'logout');
+    Router::get('dipendente/company', 'company');
+    Router::get('dipendente/calendar', 'calendar');
 
     Router::post('login', 'login');
     Router::post('logout', 'logout');
