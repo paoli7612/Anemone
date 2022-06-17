@@ -23,9 +23,13 @@ class Database
         return Database::select($table, $model, "id=$id")[0];
     }
 
-    public static function all($model, $table)
+    public static function all($model, $table, $max=null)
     {
-        return Database::select($table, $model);
+        if ($max) {
+            return array_slice(Database::select($table, $model), 0, $max);
+        } else {
+            return Database::select($table, $model);
+        }
     }
 
     public static function init()
@@ -41,14 +45,15 @@ class Database
             if ($exception->getCode() == 1049) { // database non creato
                 self::reset();
             } else {
-                die($exception->getMessage());
+                include view('errors/before/2002');
+                die();
             }
         }
     }
 
     public static function query($query, $model='')
     {
-        echo $query . '<br>';
+        //echo $query . '<br>';
         $s = self::$pdo->prepare($query);
         $s->execute();
         if ($model == '') {
@@ -84,6 +89,11 @@ class Database
     public static function delete($table, $where)
     {
         self::query("DELETE FROM $table WHERE $where;");
+    }
+
+    public static function deleteAll($table)
+    {
+        self::query("DELETE FROM `$table` where 1<2");
     }
 
     public static function p_print()

@@ -24,15 +24,17 @@ class App
             include Router::direct();
             require partial('layout/page_end');
         } else {
+            require partial('layout/page_start');
             include Router::direct();
+            require partial('layout/page_end');
         }
     }
 
     public static function theme()
     {
-        if (Auth::check() && Auth::$user->tema)
+        if (Auth::check() && Auth::$dipendente->tema)
         {
-            return Auth::$user->tema;
+            return Auth::$dipendente->tema;
         }
         else
         {

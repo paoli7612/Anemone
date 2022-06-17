@@ -1,13 +1,11 @@
 <?php
 
-use App\Models\Dipendenti;
-use App\Models\User; ?>
+use App\Models\Dipendente;
+use App\Models\Dipendenti; ?>
 <div class="w3-panel w3-theme w3-card-4 w3-round-large">
     <form action="/login" method="post">
         <div class="w3-panel">
-            <label>
-                <input type="email" name="email" placeholder="Username" class="w3-input w3-card-2 w3-round-large" required value="tomaoli7612@gmail.com">
-            </label>
+            <input type="email" name="email" placeholder="Username" class="w3-input w3-card-2 w3-round-large" required value="paoli7612@gmail.com">
         </div>
         <div class="w3-panel">
             <input type="password" name="password" placeholder="Password" class="w3-input w3-card-2 w3-round-large" value="qwerty">
@@ -19,7 +17,7 @@ use App\Models\User; ?>
 </div>
 
 <table class="w3-table-all">
-    <?php foreach (Dipendenti::all() as $dipendente) : ?>
+    <?php foreach (Dipendente::all() as $dipendente) : ?>
         <tr>
             <td>
                 <?= $dipendente->name(); ?>

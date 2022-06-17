@@ -3,6 +3,8 @@
 use App\Models\Delivery;
 use App\Models\Inventory;
 
+use function App\core\partial;
+
 if (!isset(array_keys($_GET)[0])) {
     header('Location: /archive?' . date('y-m-d'));
 }
@@ -25,70 +27,20 @@ if (!isset(array_keys($_GET)[0])) {
 </div>
 
 <!-- DELIVERY -->
+<?php print_r((date_diff(date_create($_DAY), date_create())->invert)) ?>
 <?php if (date_diff(date_create($_DAY), date_create())->invert) : ?>
-    <h1>Ancora non successo</h1>
+    <div class="w3-panel">
+        <div class="w3-quarter"><br></div>
+        <div class="w3-theme w3-half w3-display-container w3-center w3-card-4 w3-round-large">
+            <h1 class="w3-display-topmiddle">Ancora non successo</h1>
+            <br><br><br><br><br><br>
+        </div>
+        <div class="w3-quarter"><br></div><br>
+    </div>
 <?php else : ?>
-    <div class="w3-panel w3-theme-l2 w3-card-4 w3-round-large">
-        <h1 class="w3-center">Delivery</h1>
-        <?php $deliverys = Delivery::day($_DAY) ?>
-        <?php if (count($deliverys) == 0) : ?>
-            <div class="w3-panel w3-red w3-card w3-round-large">
-                <h4>Ancora nessun delivery inserito</h4>
-            </div>
-        <?php else : ?>
-            <table class="w3-table-all w3-margin-bottom w3-card w3-white">
-                <tr>
-                    <th>Nome</th>
-                    <th>Prezzo</th>
-                    <th>Quanti</th>
-                    <th>Fascia</th>
-                </tr>
-                <?php foreach ([1, 2, 3] as $n) : ?>
-                    <?php foreach ($deliverys as $delivery) : ?>
-                        <tr class="w3-theme-l<?= 5 - $delivery->fascia ?>">
-                            <?php if ($delivery->fascia == $n) : ?>
-                                <td><?= $delivery->nome ?></td>
-                                <td>€ <?= $delivery->valore ?></td>
-                                <td><?= $delivery->quanti ?></td>
-                                <?php if ($delivery->fascia == 1) : ?>
-                                    <td>Pranzo (apertura-15)</td>
-                                <?php elseif ($delivery->fascia == 2) : ?>
-                                    <td>Pomeriggio (15-18)</td>
-                                <?php else : ?>
-                                    <td>Sera (18-chiusura)</td>
-                                <?php endif ?>
-                            <?php endif ?>
-                        </tr>
-                    <?php endforeach ?>
-                <?php endforeach ?>
-            </table>
-        <?php endif ?>
-    </div>
-
-    <!-- INVENTORY -->
-    <div class="w3-panel w3-theme-l4 w3-card-4 w3-round-large">
-        <h1 class="w3-center">Inventario</h1>
-        <?php $inventorys = Inventory::day($_DAY) ?>
-        <?php if (count($inventorys) == 0) : ?>
-            <div class="w3-panel w3-red w3-card w3-round-large">
-                <h4>Ancora nessun prodotto registrato</h4>
-            </div>
-        <?php else : ?>
-            <table class="w3-table-all w3-margin-bottom w3-card w3-white">
-                <?php foreach ($inventorys as $inventory) : ?>
-                    <tr>
-                        <td>
-                        <td>x<?= $inventory->quantita ?></td>
-                        <td><?= $inventory->merce ?></td>
-                        </td>
-                    </tr>
-                <?php endforeach ?>
-            </table>
-        <?php endif ?>
-    </div>
+    <?php include partial('archive/delivery') ?>
+    <?php include partial('archive/inventory') ?>
 <?php endif ?>
-
-
 
 <div class="w3-panel w3-theme w3-card-4 w3-round-large">
     <h2>Cerca</h2>

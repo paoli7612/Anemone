@@ -3,33 +3,44 @@
     use App\core\Router;
 
     Router::get('', 'home');
+    Router::get('dipendente/logout', 'logout');
     Router::get('entry', 'entry');
-
     Router::get('archive', 'archive');
     Router::get('money', 'money');
+    Router::get('settings/reset', 'reset');
+    Router::post('login', 'login');
+    Router::post('logout', 'logout');
 
-    Router::get('reset', 'reset');
     Router::get('inventory', 'inventory');
     Router::get('calculator', 'calculator');
-    
     Router::get('delivery', 'delivery2');
-    Router::get('delivery/deliveroo', 'delivery/deliveroo');
-    Router::get('delivery/glovo', 'delivery/glovo');
-    Router::get('delivery/justeat', 'delivery/justeat');
-    Router::get('delivery/ubereats', 'delivery/ubereats');
+
+    Router::get('delivery/DLV', 'delivery/DLV');
+    Router::get('delivery/JE', 'delivery/JE');
+    Router::get('delivery/UB', 'delivery/UB');
+    Router::get('delivery/GLV', 'delivery/GLV');
 
     Router::get('dipendente', 'dipendente');
     Router::get('dipendente/settings', 'settings');
-    Router::get('dipendente/logout', 'logout');
     Router::get('dipendente/company', 'company');
     Router::get('dipendente/calendar', 'calendar');
-
-    Router::post('login', 'login');
-    Router::post('logout', 'logout');
+    
     Router::post('archive', 'archive');
     Router::post('reset', 'reset');
-    Router::post('settings', 'settings');
     Router::post('slug', 'slug');
     Router::post('delivery', 'delivery');
-    Router::post('inventory', 'inventory');
-    Router::post('money', 'money');
+    Router::post('inventory/dailyCount', 'dailyCount');
+    
+    Router::post('merce/add', 'merce/add');
+    Router::post('prodotto/add', 'prodotto/add');
+    
+    Router::get('prodotto/edit', 'prodotto/edit');
+    Router::post('dipendente/edit', 'dipendente/edit');
+
+    Router::post('inventory/delete', 'delete/merce');
+    
+    Router::get('prodotto/delete', 'prodotto/delete');
+    Router::post('prodotto/delete', 'prodotto/delete');
+
+    Router::get('prodotto/deleteAll', 'prodotto/deleteAll');
+    Router::post('prodotto/deleteAll', 'prodotto/deleteAll');

@@ -1,27 +1,18 @@
+<?php
 
-<div class="w3-panel">
-    <div class="w3-container w3-half">
+use App\Models\Delivery;
 
-        <a style="text-decoration: none;" href="/delivery/deliveroo" class="w3-panel w3-block w3-card-4 w3-blue w3-round-large w3-center w3-hover-white">
-            <h1>Deliveroo</h1>
-        </a>
-    </div>    
-        <div class="w3-container w3-half">
-            <a style="text-decoration: none;" href="/delivery/deliveroo" class="w3-panel w3-block w3-card-4 w3-yellow w3-round-large w3-center w3-hover-white">
-                <h1>Glovo</h1>
-            </a>
+use function App\core\partial;
+
+ ?>
+<div class="w3-panel w3-row w3-center">
+    <?php foreach (Delivery::all() as $delivery) : ?>
+        <div class="w3-col m6 w3-padding">
+            <div style="width: 400px; padding: 0px; background-color: <?= $delivery->colore ?>" class="w3-btn w3-card-4 w3-round-large">
+                <a style="text-decoration: none" href="/delivery/<?= $delivery->sigla ?>">
+                    <img src="/img/delivery/<?= $delivery->sigla ?>.png" alt="<?= $delivery->nominativo ?>" style="width: 100%; height: 280px">
+                </a>
+            </div>
         </div>
-        <div class="w3-container w3-half">
-            <a style="text-decoration: none;" href="/delivery/deliveroo" class="w3-panel w3-block w3-card-4 w3-amber w3-round-large w3-center w3-hover-white">
-                <h1>JustEat</h1>
-            </a>
-        </div>
-        <div class="w3-container w3-half">
-
-            <a style="text-decoration: none;" href="/delivery/deliveroo" class="w3-panel w3-block w3-card-4 w3-teal w3-round-large w3-center w3-hover-white">
-                <h1>UberEats</h1>
-            </a>
-        </div>
-
+    <?php endforeach ?>
 </div>
-

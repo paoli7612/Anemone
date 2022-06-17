@@ -1,16 +1,12 @@
 <?php use App\App; ?>
 
-<div class="w3-row w3-center">
-    <div class="w3-panel w3-theme w3-card-4 w3-round-large">
-        <div class="w3-panel w3-half">
-            <input type="date" class="w3-input w3-round-large w3-theme-l2" value="<?= App::today() ?>" readonly="readonly">
-        </div>
-    </div>
+<div class="w3-panel w3-theme w3-card-4 w3-round-large w3-padding">
+    <input type="date" class="w3-input w3-round-large w3-theme-l2 w3-col m10" value="<?= App::today() ?>" readonly="readonly">
 </div>
 
 <div class="w3-panel w3-theme w3-card-4 w3-round-large">
-    <form action="inventory" method="POST">
-        <?php use App\Models\Goods; ?>
+    <form action="inventory/dailyCount" method="POST">
+        <?php use App\Models\Merce; ?>
         <div class="w3-panel w3-center">
             <div class="w3-row">
                 <div class="w3-col" style="width:50px">
@@ -23,37 +19,38 @@
                 </div>
             </div>
         </div>
-        <div class="w3-panel">
-            <table class="w3-table-all w3-card-4 w3-white">
-                <thead>
-                    <th>Prodotto</th>
-                    <th>Quantità</th>
-                    <th>Stock</th>
-                </thead>
-                <tbody>
-                    <?php foreach (Goods::dailyCount() as $prodotto) : ?>
-                        <tr>
-                            <td class="w3-hide"><?= $prodotto->tipo ?></td>
-                            <td><?= $prodotto->nome ?></td>
-                            <td>
-                                <input type="number" name="<?= $prodotto->id ?>_quantita" class="w3-input w3-card w3-round-large" placeholder="x1">
-                            </td>
-                            <?php if ($prodotto->categoria == 'Impasto') : ?>
-                                <td>
-                                    <input type="number" name="<?= $prodotto->id ?>_<?= $prodotto->stock/2 ?>" class="w3-input w3-card w3-round-large" placeholder="x<?= $prodotto->stock / 2 ?>">
-                                </td>
-                            <?php endif ?>
-                            <td colspan="2">
-                                <input type="number" name="<?= $prodotto->id ?>_<?= $prodotto->stock ?>" class="w3-input w3-card w3-round-large" placeholder="x<?= $prodotto->stock ?>">
-                            </td>
-                        </tr>
-                    <?php endforeach ?>
-                </tbody>
+        <div class="w3-panel w3-white w3-topbar w3-bottombar">
+            <?php foreach (Merce::dailyCount() as $merce) : ?>
+                <div class="w3-row w3-container">
+                    <div class="w3-col m4 s4">
+                        <div class="w3-right w3-hide-small">
+                            <img src="/img/merce/<?= $merce->img ?>" alt="<?= $merce->nominativo ?>" height="70px">
+                        </div>
+                        <div class="w3-center">
+                            <?= $merce->nominativo ?>
+                        </div>
+                        <div class="w3-center">
+                            <b>0</b>
+                        </div>
+                    </div>
+                    <div class="w3-col m4 s4">
+                        <div class="w3-panel">
+                            <input type="number" name="<?= $merce->id ?>_quantita" class="w3-input w3-card w3-round-large" placeholder="x1" onkeyup="update()">
+                        </div>
+                    </div>
+                    <div class="w3-col m4 s4">
+                        <div class="w3-panel">
+                            <input type="number" name="<?= $merce->id ?>_<?= $merce->stock ?>" class="w3-input w3-card w3-round-large" placeholder="x<?= $merce->stock ?>" onkeyup="update()">
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach ?>
             </table>
         </div>
         <script>
             var update = function() {
-                $('tbody tr').each(function(i, e) {
+                $('div.w3-row').each(function(i, e) {
+                    console.log('asd');
                     var empty = true;
                     $(this).find('input').each((i, e) => {
                         if (e.value > 0) {

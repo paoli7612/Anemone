@@ -1,25 +1,26 @@
 <?php
-
+    print_r($_POST);
 use App\Models\Inventory;
 
     $tot = array();
 
     foreach ($_POST as $key => $value)
     {
-        $id = explode("_", $key)[0];
+        $id_merce = explode("_", $key)[0];
         $prod = explode("_", $key)[1];
         if ($prod != "quantita")
             $value = $prod*intval($value);
-        if (array_key_exists($id, $tot)) {
-            $tot[$id] += intval($value);
+        if (array_key_exists($id_merce, $tot)) {
+            $tot[$id_merce] += intval($value);
         } else {
-            $tot[$id] = intval($value);
+            $tot[$id_merce] = intval($value);
         }
     }
 
-    foreach ($tot as $id => $quanto)
+    foreach ($tot as $id_merce => $qta)
     {
-        Inventory::create($id, $quanto, '1999-01-01');
+        if ($qta != 0)
+            Inventory::create(['id_merce', 'qta'], [$id_merce, $qta]);
     }
 
 ?>

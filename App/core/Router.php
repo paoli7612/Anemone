@@ -32,7 +32,12 @@
                     return action(self::$routes[Request::method()][Request::uri()]);
                 }
             } else {
-                return view('404');
+                return error(404);
             }
+        }
+
+        public static function redirect($uri)
+        {
+            header("Location: $uri");
         }
     }
