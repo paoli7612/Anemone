@@ -4,6 +4,7 @@
 use App\core\Auth;
 use App\core\Request;
 use App\core\Router;
+use App\Models\Delivery;
 
 use function App\core\partial;
 
@@ -17,6 +18,11 @@ class App
         session_start();
         self::$config = require('config'.$webserver.'.php');
         Auth::init();
+
+        foreach (Delivery::all() as $delivery) {
+            Router::get("delivery/{$delivery->sigla}", "delivery/$delivery->sigla");
+        }
+
         if (App::$config['name'] == 'altervista')
             array_shift($_GET);
         if (Request::method() == 'GET') {

@@ -5,7 +5,7 @@ use App\Models\Dipendente;
     class Auth
     {
         private static $login_id;
-        public static Dipendente $dipendente;
+        public static $dipendente;
         
         public static function init()
         {

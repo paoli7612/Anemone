@@ -1,6 +1,7 @@
 <?php
 
     use App\core\Router;
+use App\Models\Delivery;
 
     Router::get('', 'home');
     Router::get('dipendente/logout', 'logout');
@@ -44,3 +45,6 @@
 
     Router::get('prodotto/deleteAll', 'prodotto/deleteAll');
     Router::post('prodotto/deleteAll', 'prodotto/deleteAll');
+
+    Router::post('delivery/add', 'delivery/add');
+    Router::post('delivery/remove', 'delivery/remove');

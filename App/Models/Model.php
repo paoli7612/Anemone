@@ -59,6 +59,11 @@ use App\core\Database;
             Database::deleteAll(static::$table);
         }
 
+        public function remove()
+        {
+            Database::delete(static::$table, "id={$this->id}");
+        }
+    
         public static function orderBy($col)
         {
             return Database::query("SELECT * FROM prodotti ORDER BY $col");

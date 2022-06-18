@@ -20,10 +20,9 @@ class Delivery extends Model
                 SUM(scontrini.totale) as totale
             FROM delivery
                 LEFT JOIN (
-                    SELECT scontrini.id, scontrini.id_delivery, SUM(prodotti.prezzo) as totale
+                    SELECT scontrini.id, scontrini.id_delivery, scontrini.totale
                     FROM
-                        scontrini, prodottoScontrino
-                        LEFT JOIN prodotti ON prodotti.id=prodottoScontrino.id_prodotto
+                        scontrini
                     WHERE DATE(scontrini.tempo)=DATE('$date')
                 ) AS scontrini ON scontrini.id_delivery=delivery.id
             GROUP BY

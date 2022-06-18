@@ -193,6 +193,7 @@ CREATE TABLE `scontrini`(
     `id_dipendente` int(16),
     `id_cassa` int(16),
     `id_utente` int(16),
+    `totale` float(15, 2),
     FOREIGN KEY (`id_delivery`)
         REFERENCES `delivery` (`id`)
         ON DELETE SET NULL,
@@ -447,5 +448,9 @@ INSERT INTO `merci` (`nominativo`, `stock`, `img`) VALUES
     ('Gassosa', 4, 'gassosa.png'),
     ('Chinotto', 4, 'chinotto.png'),
 
-    ('Mozzarella', 4, 'mozzarella.png');
+INSERT INTO `merci` (`nominativo`, `stock`, `categoria`) VALUES
+    ('Mozzarella', 4, 'formaggi');
+
+INSERT INTO `prodotti` (`nominativo`, `categoria`) VALUES
+    ('Emilia', 'piadine');
 
