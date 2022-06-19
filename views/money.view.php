@@ -1,7 +1,7 @@
 <div class="w3-display-container" style="position: relative">
-<br>
-<br>
-<br>
+    <br>
+    <br>
+    <br>
     <div class="w3-display-topmiddle w3-padding" style="position: fixed; top: 40px">
         <div class="w3-panel w3-padding w3-theme w3-card-4 w3-round-large">
             <input id="tot" name="tot" type="number" class="w3-input w3-card-4 w3-round-large" readonly>
@@ -16,7 +16,7 @@
                     <?php $value *= pow(10, $i) ?>
                     <div class="w3-panel w3-row">
                         <div class="w3-col w3-center" style="width: 70px; margin-right:16px">
-                            <img src="/img/<?= $value / 100 ?>.png" height="40px">
+                            <img src="/img/money/<?= $value / 100 ?>.png" height="40px">
                         </div>
                         <div class="w3-right w3-small">
                             <button type="button" class="w3-button w3-card w3-circle w3-theme-l2 w3-right w3-margin-left" onclick="var i=$(this).parent().parent().find('input').first(); i.val(+i.val()+10); i.keyup()">
@@ -38,15 +38,15 @@
             <?php endfor ?>
             <?php foreach ([1, 2, 3, 4, 5, 6] as $i) : ?>
                 <div class="w3-panel w3-row">
-                        <div class="w3-col w3-center" style="width: 70px; margin-right:16px">
-                            <img src="/img/moneta.jpg" height="40px">
-                        </div>
+                    <div class="w3-col w3-center" style="width: 70px; margin-right:16px">
+                        <img src="/img/money/moneta.jpg" height="40px">
+                    </div>
 
-                        <div class="w3-rest">
+                    <div class="w3-rest">
                         <input min="0" type="number" class="w3-input w3-round-large" placeholder="€" onkeyup="$('#cMoneta<?= $i ?>').val($(this).val()); update()">
                     </div>
                     <input type="number" id="cMoneta<?= $i ?>" class="w3-hide" placeholder="" readonly>
-                    </div>
+                </div>
 
             <?php endforeach ?>
         </div>
@@ -83,4 +83,3 @@
         </script>
     </form>
 </div>
-<script>!function(d,l,e,s,c){e=d.createElement("script");e.src="//ad.altervista.org/js.ad/size=2X2/?ref="+encodeURIComponent(l.hostname+l.pathname)+"&r="+Date.now();s=d.scripts;c=d.currentScript||s[s.length-1];c.parentNode.insertBefore(e,c)}(document,location)</script>

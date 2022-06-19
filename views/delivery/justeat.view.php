@@ -1,9 +1,0 @@
-<div class="w3-panel w3-card-4 w3-amber w3-round-large">
-    <h1>JustEat</h1>
-</div>
-
-<?php
-
-use function App\core\partial;
-
- require partial('layout/dbar') ?>

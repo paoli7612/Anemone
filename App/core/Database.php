@@ -53,7 +53,7 @@ class Database
 
     public static function query($query, $model='')
     {
-        //echo $query . '<br>';
+        // echo $query . '<br>';
         $s = self::$pdo->prepare($query);
         $s->execute();
         if ($model == '') {
@@ -101,6 +101,17 @@ class Database
         print_r(self::query("SELECT * FROM users"));
         print_r(self::query("SELECT * FROM drinks"));
         print_r(self::query("SELECT * FROM ingredients"));
+    }
+
+    public static function update($table, $changes, $id)
+    {
+        $sql = "UPDATE $table SET ";
+        foreach ($changes as $key => $value) {
+            $sql = "$sql $key='$value', "; 
+        }
+        $sql = substr($sql, 0, -2);
+        $sql = "$sql WHERE id='$id'";
+        Database::query($sql);
     }
 }
 

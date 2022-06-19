@@ -10,6 +10,6 @@ class Merce extends Model
 
     public static function dailyCount()
     {
-        return Merce::where("categoria='bibite'");
+        return Merce::where("categoria='bibite' ORDER BY id");
     }
 }

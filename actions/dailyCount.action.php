@@ -1,5 +1,5 @@
 <?php
-
+    print_r($_POST);
     use App\Models\Inventory;
 
     $tot = array();

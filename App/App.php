@@ -19,20 +19,15 @@ class App
         self::$config = require('config'.$webserver.'.php');
         Auth::init();
 
-        foreach (Delivery::all() as $delivery) {
-            Router::get("delivery/{$delivery->sigla}", "delivery/$delivery->sigla");
-        }
-
         if (App::$config['name'] == 'altervista')
             array_shift($_GET);
+        
         if (Request::method() == 'GET') {
             require partial('layout/page_start');
             include Router::direct();
             require partial('layout/page_end');
         } else {
-            require partial('layout/page_start');
             include Router::direct();
-            require partial('layout/page_end');
         }
     }
 

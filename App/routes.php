@@ -1,50 +1,40 @@
 <?php
 
     use App\core\Router;
-use App\Models\Delivery;
 
     Router::get('', 'home');
-    Router::get('dipendente/logout', 'logout');
-    Router::get('entry', 'entry');
-    Router::get('archive', 'archive');
-    Router::get('money', 'money');
-    Router::get('settings/reset', 'reset');
+    Router::get('login');
+    Router::get('logout');
+    Router::get('archive');
+    Router::get('money');
+    Router::get('delivery');
+    Router::get('dailyCount');
+    
     Router::post('login', 'login');
     Router::post('logout', 'logout');
 
-    Router::get('inventory', 'inventory');
+    Router::post('inventory/dailyCount', 'dailyCount');
     Router::get('calculator', 'calculator');
-    Router::get('delivery', 'delivery2');
+    Router::get('delivery', 'delivery/all');
+    Router::get('delivery/edit', 'delivery/edit');
 
-    Router::get('delivery/DLV', 'delivery/DLV');
-    Router::get('delivery/JE', 'delivery/JE');
-    Router::get('delivery/UB', 'delivery/UB');
-    Router::get('delivery/GLV', 'delivery/GLV');
-
-    Router::get('dipendente', 'dipendente');
+    Router::get('dipendente');
     Router::get('dipendente/settings', 'settings');
     Router::get('dipendente/company', 'company');
     Router::get('dipendente/calendar', 'calendar');
     
-    Router::post('archive', 'archive');
-    Router::post('reset', 'reset');
-    Router::post('slug', 'slug');
-    Router::post('delivery', 'delivery');
-    Router::post('inventory/dailyCount', 'dailyCount');
-    
-    Router::post('merce/add', 'merce/add');
-    Router::post('prodotto/add', 'prodotto/add');
-    
-    Router::get('prodotto/edit', 'prodotto/edit');
-    Router::post('dipendente/edit', 'dipendente/edit');
+    Router::post('db/reset');
+    Router::post('merce/add');
+    Router::post('dipendente/edit');
 
-    Router::post('inventory/delete', 'delete/merce');
-    
-    Router::get('prodotto/delete', 'prodotto/delete');
-    Router::post('prodotto/delete', 'prodotto/delete');
-
-    Router::get('prodotto/deleteAll', 'prodotto/deleteAll');
-    Router::post('prodotto/deleteAll', 'prodotto/deleteAll');
+    /* ### PRODOTTO ### */
+        Router::post('prodotto/add');
+        Router::post('prodotto/edit');
+        Router::get('prodotto/edit');
+        Router::get('prodotto/remove');
+        Router::post('prodotto/remove');
+    /* ### ######## ### */
 
     Router::post('delivery/add', 'delivery/add');
     Router::post('delivery/remove', 'delivery/remove');
+

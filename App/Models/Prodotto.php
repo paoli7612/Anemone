@@ -34,6 +34,11 @@ class Prodotto extends Model {
         return "/prodotto/$action?id=$id";
     }
 
+    public static function categorie()
+    {
+        return Database::all(null, 'categorieProdotto');
+    }
+
     public static function perCategoria()
     {
         return self::orderBy('categoria');

@@ -6,14 +6,6 @@ use App\core\Database;
             
         protected static $table;
 
-        public function update($vv)
-        {
-            foreach ($vv as $field => $value) {
-                Database::query("UPDATE " . static::$table . " SET $field='$value' WHERE id=".$this->id);
-            }
-            return $value;
-        }
-
         public static function edit($id, $vv)
         {
             self::get($id)->update($vv);
@@ -67,6 +59,11 @@ use App\core\Database;
         public static function orderBy($col)
         {
             return Database::query("SELECT * FROM prodotti ORDER BY $col");
+        }
+
+        public function update($changes) 
+        {
+            Database::update(static::$table, $changes, $this->id);
         }
 
     }

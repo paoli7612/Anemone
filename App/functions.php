@@ -37,8 +37,7 @@
     {
         return number_format($value, 2, ',', ' ');    
     }
-
     
     function error($code) {
-        return view("errors/$code");
+        return partial("errors/$code");
     }

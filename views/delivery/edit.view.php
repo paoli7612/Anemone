@@ -1,18 +1,19 @@
-<?php
-
-use App\App;
-use App\Models\Delivery;
-?>
-<?php $delivery = Delivery::getBy('nominativo', $nominativo) ?>
+<?php $sigla = array_keys($_GET)[0] ?>
+<?php use App\App; use App\Models\Delivery; ?>
+<?php $delivery = Delivery::getBy('sigla', $sigla) ?>
 
 <div class="w3-panel w3-card-4 w3-round-large" style="background-color: <?= $delivery->colore ?>">
-    <h1><?= $delivery->nominativo ?></h1>
+    <h1 class="w3-left"><?= $delivery->nominativo ?></h1>
+    <div class="w3-panel w3-third w3-right">
+        <input class="w3-input w3-card-4 w3-round-large" type="date" name="" value="<?= App::today() ?>" readonly>
+    </div>
+    
 </div>
 
 <script>
     var id = 1;
     var elimina = function(id) {
-        var totale = parseInt($('#'+id+' .totale').text());
+        var totale = parseFloat($('#'+id+' .totale').text());
         var fascia = parseInt($('#'+id+' .fascia').text());
         console.log(id, totale, fascia);
         $.ajax({
@@ -23,7 +24,7 @@ use App\Models\Delivery;
                 "fascia": fascia
             }
         }).done(function() {
-            console.log(id + " eliminato");
+            $('#' + id).remove()
         });
     }
 
@@ -56,8 +57,8 @@ use App\Models\Delivery;
                 "tempo": $('#tempo').val()
             }
         }).done(function() {
-            console.log(id);
-            mostra(totale, fascia)
+            mostra(totale, fascia);
+            $('#totale').val('');
         });
     }
 </script>
@@ -102,3 +103,5 @@ use App\Models\Delivery;
 <?php endforeach ?>
 </script>
 
+
+<?php use function App\core\partial; ?>

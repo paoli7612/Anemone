@@ -32,6 +32,7 @@ DROP TABLE `messaggioDipendente`;
 DROP TABLE `messaggi`;
 DROP TABLE `dipendenti`;
 DROP TABLE `temi`;
+DROP TABLE `categorieProdotto`;
 
 CREATE TABLE `temi`(
     `id` int(16) PRIMARY KEY AUTO_INCREMENT,
@@ -154,11 +155,19 @@ CREATE TABLE `conteggi`(
         REFERENCES  `casse` (`id`)
 );
 
+CREATE TABLE `categorieProdotto`(
+    `id` int(16) PRIMARY KEY AUTO_INCREMENT,
+    `nominativo` varchar(32) NOT NULL
+);
+
 CREATE TABLE `prodotti`(
     `id` int(16) PRIMARY KEY AUTO_INCREMENT,
     `prezzo` float(15, 2) NOT NULL DEFAULT 0,
     `nominativo` varchar(32) NOT NULL,
-    `categoria` enum('bibite', 'piadine', 'caffetteria') DEFAULT 'bibite'
+    `colore` varchar(16) DEFAULT 'white',
+    `id_categoria` int(16),
+    FOREIGN KEY (`id_categoria`)
+        REFERENCES `categorieProdotto`(`id`)
 );
 
 CREATE TABLE `delivery`(
@@ -194,6 +203,7 @@ CREATE TABLE `scontrini`(
     `id_cassa` int(16),
     `id_utente` int(16),
     `totale` float(15, 2),
+    `pager` int(4),
     FOREIGN KEY (`id_delivery`)
         REFERENCES `delivery` (`id`)
         ON DELETE SET NULL,
@@ -291,6 +301,7 @@ CREATE TABLE `pagamenti`(
 CREATE TABLE `merci`(
     `id` int(16) PRIMARY KEY AUTO_INCREMENT,
     `nominativo` varchar(32) UNIQUE NOT NULL,
+    `sigla` varchar(16) NOT NULL DEFAULT (`nominativo`),
     `stock` int(16) NOT NULL,
     `prezzo` float(15, 2) NOT NULL DEFAULT 0,
     `daily` bit(1) NOT NULL DEFAULT 0,
@@ -403,6 +414,9 @@ CREATE TABLE `scarti`(
         REFERENCES `locali` (`id`)
 );
 
+INSERT INTO `categorieProdotto` (`nominativo`) VALUES
+    ('piadine'), ('bibite');
+
 INSERT INTO `dipendenti` (`nome`, `cognome`, `email`, `cf`, `password`, `isAmministratore`) VALUES
     ('Noemi', 'Ferrari', 'noerrari@gmail.com', 'ASJHKDASDAS', SHA('qwerty'), 0),
     ('Tommaso', 'Paoli', 'paoli7612@gmail.com', 'PLATMS00E21L378W', SHA('qwerty'), 1);
@@ -435,22 +449,22 @@ INSERT INTO `locali` (`nominativo`, `indirizzo`, `apertura`, `id_area`, `id_resp
 
 INSERT INTO `casse` (`id_locale`) VALUES (1);
 
-INSERT INTO `merci` (`nominativo`, `stock`, `img`) VALUES
-    ('Cocacola pet', 24, 'cocaPet.png'),
-    ('Fanta orange ', 12, 'fanta.png'),
-    ('Fanta lemon pet', 12, 'fantaLemon.png'),
-    ('Sprite', 12, 'fantaLemon.png'),
-    ('Estathe pesca', 12, 'estathePesca.png'),
-    ('Estathe limone', 12, 'estatheLimone.png'),
-    ('Fuze limone', 12, 'fuzeLimone.png'),
-    ('Fuze pesca', 12, 'fuzePesca.png'),
-    ('Limonata', 4, 'limonata.png'),
-    ('Gassosa', 4, 'gassosa.png'),
-    ('Chinotto', 4, 'chinotto.png'),
+INSERT INTO `merci` (`nominativo`, `sigla`, `stock`, `img`) VALUES
+    ('Cocacola pet', 'cocaPet', 24, 'cocaPet.png'),
+    ('Fanta orange ', 'fantaO', 12, 'fanta.png'),
+    ('Fanta lemon pet', 'fantaL', 12, 'fantaLemon.png'),
+    ('Sprite', 'sprite', 12, 'fantaLemon.png'),
+    ('Estathe pesca', 'estatheP', 12, 'estathePesca.png'),
+    ('Estathe limone', 'estatheL', 12, 'estatheLimone.png'),
+    ('Fuze pesca', 'fuzeP', 12, 'fuzePesca.png'),
+    ('Fuze limone', 'fuzeL', 12, 'fuzeLimone.png'),
+    ('Limonata', 'limonata', 4, 'limonata.png'),
+    ('Gassosa', 'gassosa', 4, 'gassosa.png'),
+    ('Chinotto', 'chinotto', 4, 'chinotto.png');
 
 INSERT INTO `merci` (`nominativo`, `stock`, `categoria`) VALUES
     ('Mozzarella', 4, 'formaggi');
 
-INSERT INTO `prodotti` (`nominativo`, `categoria`) VALUES
-    ('Emilia', 'piadine');
+INSERT INTO `prodotti` (`nominativo`, `id_categoria`) VALUES
+    ('Emilia', 1);
 

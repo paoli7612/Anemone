@@ -1,14 +1,7 @@
-<?php
-
-use App\Models\Delivery;
-use App\Models\Inventory;
-
-use function App\core\partial;
-
-if (!isset(array_keys($_GET)[0])) {
-    header('Location: /archive?' . date('y-m-d'));
-}
-
+<?php use function App\core\partial;
+    if (!isset(array_keys($_GET)[0])) {
+        header('Location: /archive?' . date('y-m-d'));
+    }
 ?>
 
 <?php $_DAY = array_keys($_GET)[0] ?>
