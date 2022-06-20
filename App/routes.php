@@ -13,10 +13,14 @@
     Router::post('login', 'login');
     Router::post('logout', 'logout');
 
-    Router::post('inventory/dailyCount', 'dailyCount');
     Router::get('calculator', 'calculator');
     Router::get('delivery', 'delivery/all');
+    
+    Router::post('dailyCount', 'inventario/dailyCount');
+
     Router::get('delivery/edit', 'delivery/edit');
+    Router::post('delivery/add', 'delivery/add');
+    Router::post('delivery/remove', 'delivery/remove');
 
     Router::get('dipendente');
     Router::get('dipendente/settings', 'settings');
@@ -27,14 +31,4 @@
     Router::post('merce/add');
     Router::post('dipendente/edit');
 
-    /* ### PRODOTTO ### */
-        Router::post('prodotto/add');
-        Router::post('prodotto/edit');
-        Router::get('prodotto/edit');
-        Router::get('prodotto/remove');
-        Router::post('prodotto/remove');
-    /* ### ######## ### */
-
-    Router::post('delivery/add', 'delivery/add');
-    Router::post('delivery/remove', 'delivery/remove');
 

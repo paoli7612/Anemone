@@ -45,7 +45,7 @@ class Database
             if ($exception->getCode() == 1049) { // database non creato
                 self::reset();
             } else {
-                include view('errors/before/2002');
+                include view('errors/2002');
                 die();
             }
         }

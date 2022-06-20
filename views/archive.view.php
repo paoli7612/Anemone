@@ -32,7 +32,7 @@
     </div>
 <?php else : ?>
     <?php include partial('archive/delivery') ?>
-    <?php include partial('archive/inventory') ?>
+    <?php include partial('archive/dailyCount') ?>
 <?php endif ?>
 
 <div class="w3-panel w3-theme w3-card-4 w3-round-large">
