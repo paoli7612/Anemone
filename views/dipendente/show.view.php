@@ -8,12 +8,14 @@ use function App\core\partial;
 
 ?>
 
+<?php 
 
-<?php if (Request::getExist('slug') == 1) : ?>
-    <?php $dipendente = Dipendente::getBySlug(Request::getValue('slug')); ?>
-<?php else : ?>
-    <?php $dipendente = Auth::$dipendente ?>
-<?php endif ?>
+    if (Request::uri(1) == 'dipendente') {
+        $dipendente = Auth::$dipendente;
+    } else {
+        $dipendente = Dipendente::getBy('slug', Request::uri(1));
+    }
+?>
 
 <div class="w3-theme w3-panel w3-round-large w3-card-4">
     <div class="w3-panel">

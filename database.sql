@@ -47,12 +47,13 @@ CREATE TABLE `dipendenti`(
     `email` varchar(32) UNIQUE NOT NULL,
     `slug` varchar(32) NOT NULL DEFAULT (REPLACE(CONCAT((`nome`),(`cognome`)), ' ', '')),
     `password` char(64),
-    `isAmministratore` bit(1) NOT NULL DEFAULT 0,
     `id_tema` int(16),
     FOREIGN KEY (`id_tema`)
         REFERENCES `temi` (`id`)
         ON DELETE SET NULL
 ); 
+
+ALTER TABLE `dipendenti` ADD `isAmministratore` bit(1) NOT NULL DEFAULT 0;
 
 CREATE TABLE `messaggi`(
     `id` int(16) PRIMARY KEY AUTO_INCREMENT,
@@ -202,8 +203,6 @@ CREATE TABLE `scontrini`(
     `id_dipendente` int(16),
     `id_cassa` int(16),
     `id_utente` int(16),
-    `totale` float(15, 2),
-    `pager` int(4),
     FOREIGN KEY (`id_delivery`)
         REFERENCES `delivery` (`id`)
         ON DELETE SET NULL,
@@ -220,6 +219,10 @@ CREATE TABLE `scontrini`(
         REFERENCES `utenti` (`id`)
         ON DELETE SET NULL
 );
+
+ALTER TABLE `scontrini`
+    ADD `totale` float(15, 2),
+    ADD `pager` int(4);
 
 CREATE TABLE `dipendenteCassa`(
     `id` int(16) PRIMARY KEY AUTO_INCREMENT,
@@ -303,12 +306,9 @@ CREATE TABLE `merci`(
     `nominativo` varchar(32) UNIQUE NOT NULL,
     `sigla` varchar(16) NOT NULL DEFAULT (`nominativo`),
     `stock` int(16) NOT NULL,
-    `prezzo` float(15, 2) NOT NULL DEFAULT 0,
-    `daily` bit(1) NOT NULL DEFAULT 0,
-    `img` varchar(32) DEFAULT 'none.png',
-    `categoria` enum('bibite', 'impasti', 'salumi', 'formaggi', 'scatolame') DEFAULT 'bibite'
+    `prezzo` float(15, 2) NOT NULL DEFAULT 0
 );
-
+    
 CREATE TABLE `merceProdotto`(
     `id` int(16) PRIMARY KEY AUTO_INCREMENT,
     `id_prodotto` int(16) NOT NULL,
@@ -414,40 +414,44 @@ CREATE TABLE `scarti`(
         REFERENCES `locali` (`id`)
 );
 
-INSERT INTO `categorieProdotto` (`nominativo`) VALUES
-    ('piadine'), ('bibite');
 
-INSERT INTO `dipendenti` (`nome`, `cognome`, `email`, `cf`, `password`, `isAmministratore`) VALUES
-    ('Noemi', 'Ferrari', 'noerrari@gmail.com', 'ASJHKDASDAS', SHA('qwerty'), 0),
-    ('Tommaso', 'Paoli', 'paoli7612@gmail.com', 'PLATMS00E21L378W', SHA('qwerty'), 1);
-    
+ALTER TABLE `merci`
+    ADD `categoria` enum('impasto', 'bibite', 'formaggi', 'salumi', 'scatolame', 'divise', 'pulizie', 'caffetteria', 'altro') DEFAULT 'altro',
+    ADD `daily` bit(1) NOT NULL DEFAULT 0,
+    ADD `img` varchar(32) DEFAULT 'none.png';
+
 INSERT INTO `temi` (`colore`) VALUES ('red'), ('green'), ('blue');
 INSERT INTO `delivery` (`nominativo`, `sigla`, `colore`) VALUES 
     ('Deliveroo', 'DLV', '#00ccbc'),
     ('JustEat', 'JE', '#ff8000'),
     ('UberEats', 'UB', '#5fb709'),
     ('Glovo', 'GLV', '#f7c719');
+INSERT INTO `categorieProdotto` (`nominativo`) VALUES
+    ('piadine'), ('pizze'), ('bibite'), ('caffetteria'), ('birre');
 
-INSERT INTO `autoconsumi` (`id_dipendente`) VALUES ((SELECT `id` FROM `dipendenti` WHERE `email`='paoli7612@gmail.com'));
-INSERT INTO `aree` (`nominativo`, `id_responsabile`) VALUES ('Piadineria Modena', 1);
+INSERT INTO `dipendenti` (`nome`, `cognome`, `email`, `cf`, `password`, `isAmministratore`) VALUES
+    ('Tommaso', 'Paoli', 'paoli7612@gmail.com', 'PLATMS00E21L378W', SHA('qwerty'), 1),
+    ('Paola', 'Tenti', 'panti@gmail.com', 'PMDYZB54B51A799J', SHA('qwerty'), 0),
+    ('Giorgia', 'Pressi', 'giessi@gmail.com', 'ZHNFDZ86M03A014S', SHA('qwerty'), 0),
+    ('Olivia', 'Selmi', 'olmi@gmail.com', 'PNLNRP38R45A546Y', SHA('qwerty'), 0),
+    ('Francesca', 'Forti', 'friorti@gmail.com', 'BPSZBT38A27B791D', SHA('qwerty'), 0),
+    ('Mohammed', 'Rossi', 'mohssi@gmail.com', 'PSHPPR53P65L312F', SHA('qwerty'), 0);
+
+INSERT INTO `aree` (`nominativo`, `id_responsabile`) VALUES
+    ('Modenese', 4),
+    ('LombardoVeneto', 6);
+
 INSERT INTO `locali` (`nominativo`, `indirizzo`, `apertura`, `id_area`, `id_responsabile`) VALUES
-    (
-        'Piadineria ReggioEmilia',
-        'ASD HOGS AFT, Via Mogadiscio, 2, 42124 Reggio Emilia RE',
-        '20020101',
-        (
-            SELECT  `id`
-            FROM `aree`
-            WHERE `nominativo`='Emilia'
-        ),
-        (
-            SELECT  `id`
-            FROM `dipendenti`
-            WHERE `email`='paoli7612@gmail.com'
-        )
-    );
+    ('Piadineria Modena', 'Via Luca Enzo Farini, 12, 41121 Modena MO', '20020101', 1, 2),
+    ('Pizzeria Modena', 'Centro Commerciale Le Valli, Viale Traiano, 50, 41122 Modena MO', '20050101', 1, 5),
+    ('Birreria Verona', 'Piazzale XXV Aprile, 37138 Verona VR', '20030101', 2, 6);
+INSERT INTO `dipendenteLocale` (`id_dipendente`, `id_locale`) VALUES
+    (1, 1),
+    (2, 1),
+    (3, 2);
 
-INSERT INTO `casse` (`id_locale`) VALUES (1);
+
+INSERT INTO `casse` (`id_locale`) VALUES (1), (1), (2);
 
 INSERT INTO `merci` (`nominativo`, `sigla`, `stock`, `img`) VALUES
     ('Cocacola pet', 'cocaPet', 24, 'cocaPet.png'),
@@ -463,8 +467,14 @@ INSERT INTO `merci` (`nominativo`, `sigla`, `stock`, `img`) VALUES
     ('Chinotto', 'chinotto', 4, 'chinotto.png');
 
 INSERT INTO `merci` (`nominativo`, `stock`, `categoria`) VALUES
-    ('Mozzarella', 4, 'formaggi');
+    ('Mozzarella', 4, 'formaggi'),
+    ('Provola', 1, 'formaggi'),
+    ('Caciotta', 1, 'formaggi');
 
 INSERT INTO `prodotti` (`nominativo`, `id_categoria`) VALUES
-    ('Emilia', 1);
+    ('Emilia', 1),
+    ('Belpaese', 1),
+    ('Margherita', 2),
+    ('Capricciosa', 2),
+    ('Pioggia', 2);
 

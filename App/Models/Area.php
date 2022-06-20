@@ -8,7 +8,7 @@ class Area extends Model {
 
     public function locali()
     {
-        return Locale::getBy('id_area', $this->id);
+        return Locale::where('id_area='.$this->id);
     }
 
     public function responsabile()

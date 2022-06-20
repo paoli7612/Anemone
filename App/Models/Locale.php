@@ -12,6 +12,13 @@ class Locale extends Model {
         return Dipendente::get($this->idResponsabile);
     }
 
+    public function dipendenti()
+    {
+        return Database::query("SELECT dipendenti.* FROM dipendenti, dipendenteLocale
+                WHERE dipendenti.id=dipendenteLocale.id_dipendente
+                    AND dipendenteLocale.id_locale={$this->id}", Dipendente::class);
+    }
+
     public function users()
     {
         // no
@@ -26,5 +33,10 @@ class Locale extends Model {
     public function responsabile()
     {
         return Dipendente::get($this->id_responsabile);
+    }
+
+    public function path() 
+    {
+        return "/locale/{$this->id}";
     }
 }

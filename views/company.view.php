@@ -2,7 +2,6 @@
     use App\core\Auth;
     use function App\core\partial;
     $aree = Auth::$dipendente->areas();
-    include App\core\error('501');
 ?>
 <?php if(count($aree) == 0): ?>
     <h1>Non ce stanno</h1>

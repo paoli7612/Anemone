@@ -63,7 +63,7 @@ class Database
         }
     }
 
-    public static function select($table, $model, $where = '')
+    public static function select($table, $model, $where='')
     {
         if ($where == '') {
             return self::query("SELECT * FROM $table", $model);

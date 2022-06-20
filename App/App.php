@@ -1,27 +1,37 @@
 <?php
-    namespace App;
+
+namespace App;
 
 use App\core\Auth;
 use App\core\Request;
 use App\core\Router;
-use App\Models\Delivery;
+use App\Models\Dipendente;
+use App\Models\Locale;
 
 use function App\core\partial;
+
 
 class App
 {
     public static $config;
     public static $navbar;
-        
+
     public static function main($webserver)
     {
         session_start();
-        self::$config = require('config'.$webserver.'.php');
+        self::$config = require('config' . $webserver . '.php');
         Auth::init();
 
         if (App::$config['name'] == 'altervista')
             array_shift($_GET);
-        
+
+        foreach (Locale::all() as $locale) {
+            Router::get("locale/{$locale->id}", 'locale/show');
+        }
+        foreach (Dipendente::all() as $dipendente) {
+            Router::get("dipendente/{$dipendente->slug}", 'dipendente/show');
+        }
+
         if (Request::method() == 'GET') {
             require partial('layout/page_start');
             include Router::direct();
@@ -33,12 +43,9 @@ class App
 
     public static function theme()
     {
-        if (Auth::check() && Auth::$dipendente->tema)
-        {
+        if (Auth::check() && Auth::$dipendente->tema) {
             return Auth::$dipendente->tema;
-        }
-        else
-        {
+        } else {
             return 'green';
         }
     }
@@ -47,5 +54,4 @@ class App
     {
         return date("Y-m-d");
     }
-
 }

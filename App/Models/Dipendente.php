@@ -17,7 +17,7 @@ class Dipendente extends Model {
 
     public static function getBySlug($slug)
     {
-        return Dipendente::getBy('slug', $slug)[0];
+        return Dipendente::getBy('slug', $slug);
     }
 
     public function areas() 
@@ -32,7 +32,7 @@ class Dipendente extends Model {
 
     public function url()
     {
-        return '/dipendente?slug='.$this->slug;
+        return '/dipendente/'.$this->slug;
     }
 
 };

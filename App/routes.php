@@ -22,7 +22,7 @@
     Router::post('delivery/add', 'delivery/add');
     Router::post('delivery/remove', 'delivery/remove');
 
-    Router::get('dipendente');
+    Router::get('dipendente', 'dipendente/show');
     Router::get('dipendente/settings', 'settings');
     Router::get('dipendente/company', 'company');
     Router::get('dipendente/calendar', 'calendar');
@@ -30,5 +30,7 @@
     Router::post('db/reset');
     Router::post('merce/add');
     Router::post('dipendente/edit');
+
+    Router::get('locale', 'locale/all');
 
 
