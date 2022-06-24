@@ -5,7 +5,7 @@ use Model;
 
 class Prodotto extends Model {
 
-    protected static $table = 'prodotti';
+    public static $table = 'prodotti';
 
     public static function get($id)
     {
@@ -42,6 +42,14 @@ class Prodotto extends Model {
     public static function perCategoria()
     {
         return self::orderBy('categoria');
+    }
+
+    public static function all($max=null)
+    {
+        return Database::query("SELECT p.*, cp.nominativo as categoria
+                                FROM prodotti p, categorieProdotto cp
+                                WHERE p.id_categoria=cp.id
+                                GROUP BY p.id", static::class);
     }
 
 }

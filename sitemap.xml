@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<url>
+		<loc>https://anemone.altervista.org/</loc>
+		<lastmod>2022-06-01</lastmod>
+		<changefreq>yearly</changefreq>
+		<priority>1</priority>
+	</url>
+	<url>
+		<loc>https://anemone.altervista.org/money</loc>
+		<lastmod>2022-06-01</lastmod>
+		<changefreq>never</changefreq>
+		<priority>1</priority>
+	</url>
+	<url>
+		<loc>https://anemone.altervista.org/login</loc>
+		<lastmod>2022-06-01</lastmod>
+		<changefreq>never</changefreq>
+		<priority>0.8</priority>
+	</url>
+</urlset> 

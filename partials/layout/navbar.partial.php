@@ -12,16 +12,18 @@ use App\core\Request; ?>
             <a href="/delivery" class="w3-bar-item w3-button <?= (Request::uri_starts_with('delivery')) ? 'w3-grey' : 'w3-theme' ?> ">
                 <i class="fa-solid fa-person-biking"></i>
             </a>
+            <a href="/prodotti" class="w3-bar-item w3-button <?= (Request::uri_starts_with('prodotti')) ? 'w3-grey' : 'w3-theme' ?> ">
+                <i class="fa-solid fa-cookie-bite"></i> </a>
             <a href="/dailyCount" class="w3-bar-item w3-button <?= (Request::uri_starts_with('dailyCount')) ? 'w3-grey' : 'w3-theme' ?> ">
                 <i class="fa-solid fa-list-ol"></i>
+            </a>
+            <a href="/archive" class="w3-bar-item w3-button <?= (Request::name() == 'Archive') ? 'w3-grey' : 'w3-theme' ?> ">
+                <i class="fa-solid fa-box"></i>
             </a>
         <?php endif ?>
 
     </div>
     <div class="w3-bar w3-left w3-card" style="border-radius: 0px 0px 10px 0px;">
-        <a href="/archive" class="w3-bar-item w3-button <?= (Request::name() == 'Archive') ? 'w3-grey' : 'w3-theme' ?> ">
-            <i class="fa-solid fa-box"></i>
-        </a>
         <a href="/money" class="w3-left w3-button <?= (Request::name() == 'Money') ? 'w3-grey' : 'w3-theme' ?> ">
             <i class="fa-solid fa-money-bill"></i>
         </a>

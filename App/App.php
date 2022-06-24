@@ -21,16 +21,12 @@ class App
         session_start();
         self::$config = require('config' . $webserver . '.php');
         Auth::init();
+        Router::init();
 
         if (App::$config['name'] == 'altervista')
             array_shift($_GET);
 
-        foreach (Locale::all() as $locale) {
-            Router::get("locale/{$locale->id}", 'locale/show');
-        }
-        foreach (Dipendente::all() as $dipendente) {
-            Router::get("dipendente/{$dipendente->slug}", 'dipendente/show');
-        }
+
 
         if (Request::method() == 'GET') {
             require partial('layout/page_start');

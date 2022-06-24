@@ -4,7 +4,7 @@ use Model;
 
 class Area extends Model {
 
-    protected static $table = 'aree';
+    public static $table = 'aree';
 
     public function locali()
     {

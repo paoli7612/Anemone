@@ -3,6 +3,8 @@ RewriteBase /
 
 RewriteCond %{REQUEST_FILENAME} !^.*\.png$
 
+RewriteCond %{REQUEST_FILENAME} !^.*\.html$
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ index.php?$1 [L,QSA]
 

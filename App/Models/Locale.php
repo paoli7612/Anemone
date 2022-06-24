@@ -5,7 +5,7 @@ use Model;
 
 class Locale extends Model {
 
-    protected static $table = 'locali';
+    public static $table = 'locali';
 
     public function dipendente()
     {
@@ -33,10 +33,5 @@ class Locale extends Model {
     public function responsabile()
     {
         return Dipendente::get($this->id_responsabile);
-    }
-
-    public function path() 
-    {
-        return "/locale/{$this->id}";
     }
 }

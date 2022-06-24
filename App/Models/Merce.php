@@ -6,10 +6,10 @@ use Model;
 
 class Merce extends Model
 {
-    protected static $table = 'merci';
+    public static $table = 'merci';
 
     public static function dailyCount()
     {
-        return Merce::where("categoria='bibite' ORDER BY id");
+        return Merce::where("daily='1' ORDER BY id");
     }
 }

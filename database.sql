@@ -82,6 +82,7 @@ CREATE TABLE `aree`(
     `id` int(16) PRIMARY KEY AUTO_INCREMENT,
     `nominativo` varchar(32) NOT NULL UNIQUE,
     `id_responsabile` int(16),
+    `slug` varchar(16) NOT NULL DEFAULT REPLACE((`nominativo`), ' ', '') UNIQUE,
     FOREIGN KEY (`id_responsabile`)
         REFERENCES `dipendenti` (`id`)
         ON DELETE SET NULL
@@ -95,6 +96,7 @@ CREATE TABLE `locali`(
     `chiusura` date, CHECK (`chiusura` > `apertura`),
     `id_area` int(16),
     `id_responsabile` int(16),
+    `slug` varchar(16) NOT NULL DEFAULT REPLACE((`nominativo`), ' ', '') UNIQUE,
     FOREIGN KEY (`id_area`)
         REFERENCES `aree` (`id`)
         ON DELETE SET NULL,
@@ -167,6 +169,7 @@ CREATE TABLE `prodotti`(
     `nominativo` varchar(32) NOT NULL,
     `colore` varchar(16) DEFAULT 'white',
     `id_categoria` int(16),
+    `slug` varchar(16) NOT NULL DEFAULT REPLACE((`nominativo`), ' ', '') UNIQUE,
     FOREIGN KEY (`id_categoria`)
         REFERENCES `categorieProdotto`(`id`)
 );
@@ -435,16 +438,21 @@ INSERT INTO `dipendenti` (`nome`, `cognome`, `email`, `cf`, `password`, `isAmmin
     ('Giorgia', 'Pressi', 'giessi@gmail.com', 'ZHNFDZ86M03A014S', SHA('qwerty'), 0),
     ('Olivia', 'Selmi', 'olmi@gmail.com', 'PNLNRP38R45A546Y', SHA('qwerty'), 0),
     ('Francesca', 'Forti', 'friorti@gmail.com', 'BPSZBT38A27B791D', SHA('qwerty'), 0),
-    ('Mohammed', 'Rossi', 'mohssi@gmail.com', 'PSHPPR53P65L312F', SHA('qwerty'), 0);
+    ('Mohammed', 'Rossi', 'mohssi@gmail.com', 'PSHPPR53P65L312F', SHA('qwerty'), 0),
+    ('Sofia', 'Bondioli', 'sbondioli@gmail.com', 'BNDPSFA3P45L312F', SHA('qwerty'), 0),
+    ('Noemi', 'Piave', 'piemi@gmail.com', 'VNFMXH76A52C735T', SHA('qwerty'), 0);
 
 INSERT INTO `aree` (`nominativo`, `id_responsabile`) VALUES
     ('Modenese', 4),
-    ('LombardoVeneto', 6);
+    ('LombardoVeneto', 6),
+    ('MilanoEst', 7);
 
 INSERT INTO `locali` (`nominativo`, `indirizzo`, `apertura`, `id_area`, `id_responsabile`) VALUES
     ('Piadineria Modena', 'Via Luca Enzo Farini, 12, 41121 Modena MO', '20020101', 1, 2),
     ('Pizzeria Modena', 'Centro Commerciale Le Valli, Viale Traiano, 50, 41122 Modena MO', '20050101', 1, 5),
-    ('Birreria Verona', 'Piazzale XXV Aprile, 37138 Verona VR', '20030101', 2, 6);
+    ('Birreria Verona', 'Piazzale XXV Aprile, 37138 Verona VR', '20030101', 2, 6),
+    ('Pizzeria Segrate', 'Via Rodolfo Morandi, 44, 20090 Segrate MI', '20090601', 3, 8);
+
 INSERT INTO `dipendenteLocale` (`id_dipendente`, `id_locale`) VALUES
     (1, 1),
     (2, 1),
@@ -453,18 +461,18 @@ INSERT INTO `dipendenteLocale` (`id_dipendente`, `id_locale`) VALUES
 
 INSERT INTO `casse` (`id_locale`) VALUES (1), (1), (2);
 
-INSERT INTO `merci` (`nominativo`, `sigla`, `stock`, `img`) VALUES
-    ('Cocacola pet', 'cocaPet', 24, 'cocaPet.png'),
-    ('Fanta orange ', 'fantaO', 12, 'fanta.png'),
-    ('Fanta lemon pet', 'fantaL', 12, 'fantaLemon.png'),
-    ('Sprite', 'sprite', 12, 'fantaLemon.png'),
-    ('Estathe pesca', 'estatheP', 12, 'estathePesca.png'),
-    ('Estathe limone', 'estatheL', 12, 'estatheLimone.png'),
-    ('Fuze pesca', 'fuzeP', 12, 'fuzePesca.png'),
-    ('Fuze limone', 'fuzeL', 12, 'fuzeLimone.png'),
-    ('Limonata', 'limonata', 4, 'limonata.png'),
-    ('Gassosa', 'gassosa', 4, 'gassosa.png'),
-    ('Chinotto', 'chinotto', 4, 'chinotto.png');
+INSERT INTO `merci` (`nominativo`, `sigla`, `stock`, `img`, `daily`) VALUES
+    ('Cocacola pet', 'cocaPet', 24, 'cocaPet.png', 1),
+    ('Fanta orange ', 'fantaO', 12, 'fanta.png', 1),
+    ('Fanta lemon pet', 'fantaL', 12, 'fantaLemon.png', 1),
+    ('Sprite', 'sprite', 12, 'sprite.png', 1),
+    ('Estathe pesca', 'estatheP', 12, 'estathePesca.png', 1),
+    ('Estathe limone', 'estatheL', 12, 'estatheLimone.png', 1),
+    ('Fuze pesca', 'fuzeP', 12, 'fuzePesca.png', 1),
+    ('Fuze limone', 'fuzeL', 12, 'fuzeLimone.png', 1),
+    ('Limonata', 'limonata', 4, 'limonata.png', 1),
+    ('Gassosa', 'gassosa', 4, 'gassosa.png', 1),
+    ('Chinotto', 'chinotto', 4, 'chinotto.png', 1);
 
 INSERT INTO `merci` (`nominativo`, `stock`, `categoria`) VALUES
     ('Mozzarella', 4, 'formaggi'),

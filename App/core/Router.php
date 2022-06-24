@@ -3,6 +3,12 @@
 
     class Router
     {
+        public static function init()
+        {
+            init_routes();
+            // print_r(Router::$routes);
+        }
+
         private static $routes = [
             'GET' => [],
             'POST' => []
@@ -39,7 +45,7 @@
                     return action(self::$routes[Request::method()][Request::uri()]);
                 }
             } else {
-                return error(404);
+                return view('errors/404');
             }
         }
 

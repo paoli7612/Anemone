@@ -4,7 +4,7 @@ use App\core\Database;
 
     class Model {
             
-        protected static $table;
+        public static $table;
 
         public static function edit($id, $vv)
         {
@@ -64,6 +64,11 @@ use App\core\Database;
         public function update($changes) 
         {
             Database::update(static::$table, $changes, $this->id);
+        }
+
+        public function url()
+        {
+            return static::$table . "/" . $this->slug;
         }
 
     }

@@ -11,7 +11,11 @@
         <div class="w3-theme w3-round-large" style="padding-top: 4px; padding-bottom: 4px">
             <div class="w3-panel w3-center w3-large">
             </div>
-            <?php for ($i = 0; $i < 4; $i++) : ?>
+            <?php
+
+use function App\core\bannerMedium;
+
+ for ($i = 0; $i < 4; $i++) : ?>
                 <?php foreach (array(1, 2, 5) as $value) : ?>
                     <?php $value *= pow(10, $i) ?>
                     <div class="w3-panel w3-row">

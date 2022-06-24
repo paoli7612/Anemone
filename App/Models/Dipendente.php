@@ -30,9 +30,4 @@ class Dipendente extends Model {
         return $this->nome . " " . $this->cognome;
     }
 
-    public function url()
-    {
-        return '/dipendente/'.$this->slug;
-    }
-
 };
