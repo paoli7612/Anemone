@@ -1,6 +1,13 @@
+<?php
+
+use App\App;
+?>
 <!DOCTYPE html>
-<html lang="it">
-    <?php include 'head.partial.php' ?>
+<html lang="en">
+<head>
+    <?php App::partial('layout/head') ?>
+</head>
 <body>
-    <?php include 'navbar.partial.php' ?>
-    <div class="w3-content w3-padding">
+    <?php App::partial('layout/navbar') ?>
+    <div class="w3-content">
+

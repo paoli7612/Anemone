@@ -1,10 +1,10 @@
 <?php
 
-    use App\App;
+use App\App;
 
     require_once 'vendor/autoload.php';
 
     if ($_SERVER['SERVER_NAME'] == 'anemone.altervista.org')
-        App::main('Altervista');
+        ; // anemone.altervista.org
     else
-        App::main('Php');
+        App::init();

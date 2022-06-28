@@ -18,7 +18,6 @@ DROP TABLE `deliveryScontrino`;
 DROP TABLE `prodottoScontrino`;
 DROP TABLE `dipendenteCassa`;
 DROP TABLE `scontrini`;
-DROP TABLE `utenti`;
 DROP TABLE `autoconsumi`;
 DROP TABLE `delivery`;
 DROP TABLE `prodotti`;
@@ -30,7 +29,7 @@ DROP TABLE `locali`;
 DROP TABLE `aree`;
 DROP TABLE `messaggioDipendente`;
 DROP TABLE `messaggi`;
-DROP TABLE `dipendenti`;
+DROP TABLE `utenti`;
 DROP TABLE `temi`;
 DROP TABLE `categorieProdotto`;
 
@@ -39,7 +38,7 @@ CREATE TABLE `temi`(
     `colore` varchar(16) UNIQUE NOT NULL
 );
 
-CREATE TABLE `dipendenti`(
+CREATE TABLE `utenti`(
     `id` int(16) PRIMARY KEY AUTO_INCREMENT,
     `nome` varchar(16) NOT NULL,
     `cognome` varchar(16) NOT NULL,
@@ -53,7 +52,7 @@ CREATE TABLE `dipendenti`(
         ON DELETE SET NULL
 ); 
 
-ALTER TABLE `dipendenti` ADD `isAmministratore` bit(1) NOT NULL DEFAULT 0;
+ALTER TABLE `utenti` ADD `isAmministratore` bit(1) NOT NULL DEFAULT 0;
 
 CREATE TABLE `messaggi`(
     `id` int(16) PRIMARY KEY AUTO_INCREMENT,
@@ -62,7 +61,7 @@ CREATE TABLE `messaggi`(
     `tempo` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `id_dipendente` int(16),
     FOREIGN KEY (`id_dipendente`)
-        REFERENCES `dipendenti` (`id`)
+        REFERENCES `utenti` (`id`)
         ON DELETE SET NULL
 );
 
@@ -71,7 +70,7 @@ CREATE TABLE `messaggioDipendente` (
     `id_messaggio` int(16) NOT NULL,
     `id_dipendente` int(16) NOT NULL,
     FOREIGN KEY (`id_dipendente`)
-        REFERENCES `dipendenti` (`id`)
+        REFERENCES `utenti` (`id`)
         ON DELETE CASCADE,
     FOREIGN KEY (`id_messaggio`)
         REFERENCES `messaggi` (`id`)
@@ -84,7 +83,7 @@ CREATE TABLE `aree`(
     `id_responsabile` int(16),
     `slug` varchar(16) NOT NULL DEFAULT REPLACE((`nominativo`), ' ', '') UNIQUE,
     FOREIGN KEY (`id_responsabile`)
-        REFERENCES `dipendenti` (`id`)
+        REFERENCES `utenti` (`id`)
         ON DELETE SET NULL
 );
 
@@ -101,7 +100,7 @@ CREATE TABLE `locali`(
         REFERENCES `aree` (`id`)
         ON DELETE SET NULL,
     FOREIGN KEY (`id_responsabile`)
-        REFERENCES `dipendenti` (`id`)
+        REFERENCES `utenti` (`id`)
         ON DELETE SET NULL
 );
 
@@ -110,7 +109,7 @@ CREATE TABLE `dipendenteLocale` (
     `id_dipendente` int(16),
     `id_locale` int(16),
     FOREIGN KEY (`id_dipendente`)
-        REFERENCES `dipendenti` (`id`)
+        REFERENCES `utenti` (`id`)
         ON DELETE CASCADE,
     FOREIGN KEY (`id_locale`)
         REFERENCES `locali` (`id`)
@@ -129,7 +128,7 @@ CREATE TABLE `turni`(
         REFERENCES `locali` (`id`)
         ON DELETE CASCADE,
     FOREIGN KEY (`id_dipendente`)
-        REFERENCES `dipendenti` (`id`)
+        REFERENCES `utenti` (`id`)
         ON DELETE SET NULL
 );
 
@@ -142,7 +141,7 @@ CREATE TABLE `casse` (
         REFERENCES `locali` (`id`)
         ON DELETE SET NULL,
     FOREIGN KEY (`id_dipendente`)
-        REFERENCES `dipendenti` (`id`)
+        REFERENCES `utenti` (`id`)
         ON DELETE SET NULL
 );
 
@@ -153,7 +152,7 @@ CREATE TABLE `conteggi`(
     `id_dipendente` int(16) NOT NULL,
     `id_cassa` int(16) NOT NULL,
     FOREIGN KEY (`id_dipendente`)
-        REFERENCES  `dipendenti` (`id`),
+        REFERENCES  `utenti` (`id`),
     FOREIGN KEY (`id_cassa`)
         REFERENCES  `casse` (`id`)
 );
@@ -186,15 +185,8 @@ CREATE TABLE `autoconsumi`(
     `id_dipendente` int(16) NOT NULL,
     `valore` float(15, 2) NOT NULL DEFAULT 7.00,
     FOREIGN KEY (`id_dipendente`)
-        REFERENCES `dipendenti` (`id`)
+        REFERENCES `utenti` (`id`)
         ON DELETE CASCADE
-);
-
-CREATE TABLE `utenti`(
-    `id` int(16) PRIMARY KEY AUTO_INCREMENT,
-    `codice_carta` int(16) UNIQUE,
-    `nickname` varchar(32) NOT NULL,
-    `sesso` enum('maschio', 'femmina')
 );
 
 CREATE TABLE `scontrini`(
@@ -213,13 +205,10 @@ CREATE TABLE `scontrini`(
         REFERENCES `autoconsumi` (`id`)
         ON DELETE SET NULL,
     FOREIGN KEY (`id_dipendente`)
-        REFERENCES `dipendenti` (`id`)
+        REFERENCES `utenti` (`id`)
         ON DELETE SET NULL,
     FOREIGN KEY (`id_cassa`)
         REFERENCES `casse` (`id`)
-        ON DELETE SET NULL,
-    FOREIGN KEY (`id_utente`)
-        REFERENCES `utenti` (`id`)
         ON DELETE SET NULL
 );
 
@@ -233,7 +222,7 @@ CREATE TABLE `dipendenteCassa`(
     `id_cassa` int(16) NOT NULL,
     `tempo` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (`id_dipendente`)
-        REFERENCES `dipendenti` (`id`),
+        REFERENCES `utenti` (`id`),
     FOREIGN KEY (`id_cassa`)
         REFERENCES `casse` (`id`)
 );
@@ -269,18 +258,6 @@ CREATE TABLE `autoconsumoScontrino`(
     `id_scontrino` int(16) NOT NULL,
     FOREIGN KEY (`id_autoconsumo`)
         REFERENCES `autoconsumi` (`id`)
-        ON DELETE CASCADE,
-    FOREIGN KEY (`id_scontrino`)
-        REFERENCES `scontrini` (`id`)
-        ON DELETE CASCADE
-);
-
-CREATE TABLE `utenteScontrino`(
-    `id` int(16) PRIMARY KEY AUTO_INCREMENT,
-    `id_dipendente` int(16) NOT NULL,
-    `id_scontrino` int(16) NOT NULL,
-    FOREIGN KEY (`id_dipendente`)
-        REFERENCES `utenti` (`id`)
         ON DELETE CASCADE,
     FOREIGN KEY (`id_scontrino`)
         REFERENCES `scontrini` (`id`)
@@ -344,7 +321,7 @@ CREATE TABLE `ordini`(
         REFERENCES `fornitori` (`id`)
         ON DELETE SET NULL,
     FOREIGN KEY (`id_dipendente`)
-        REFERENCES `dipendenti` (`id`)
+        REFERENCES `utenti` (`id`)
         ON DELETE CASCADE
 );
 
@@ -369,7 +346,7 @@ CREATE TABLE `inventari`(
     `qta` int(16) NOT NULL,
     `tempo` datetime DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (`id_dipendente`)
-        REFERENCES `dipendenti` (`id`)
+        REFERENCES `utenti` (`id`)
         ON DELETE SET NULL,
     FOREIGN KEY (`id_merce`)
         REFERENCES `merci` (`id`)
@@ -432,8 +409,8 @@ INSERT INTO `delivery` (`nominativo`, `sigla`, `colore`) VALUES
 INSERT INTO `categorieProdotto` (`nominativo`) VALUES
     ('piadine'), ('pizze'), ('bibite'), ('caffetteria'), ('birre');
 
-INSERT INTO `dipendenti` (`nome`, `cognome`, `email`, `cf`, `password`, `isAmministratore`) VALUES
-    ('Tommaso', 'Paoli', 'paoli7612@gmail.com', 'PLATMS00E21L378W', SHA('qwerty'), 1),
+INSERT INTO `utenti` (`nome`, `cognome`, `email`, `cf`, `password`, `isAmministratore`) VALUES
+    ('Tommaso', 'Paoli', 'paoli7612@gmail.com', 'PLATMS00E21L378W', SHA(''), 1),
     ('Paola', 'Tenti', 'panti@gmail.com', 'PMDYZB54B51A799J', SHA('qwerty'), 0),
     ('Giorgia', 'Pressi', 'giessi@gmail.com', 'ZHNFDZ86M03A014S', SHA('qwerty'), 0),
     ('Olivia', 'Selmi', 'olmi@gmail.com', 'PNLNRP38R45A546Y', SHA('qwerty'), 0),

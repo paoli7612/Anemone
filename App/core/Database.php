@@ -3,34 +3,12 @@
 namespace App\core;
 
 use App\App;
-use App\Models\Theme;
 use PDO;
 
 class Database
 {
     private static $pdo;
     private static $config;
-
-    public static function reset()
-    {
-        Database::$pdo = new \PDO("mysql:host=" . self::$config['host'], self::$config['username'], self::$config['password']);
-        $query = file_get_contents("database.sql");
-        Database::query($query);
-    }
-
-    public static function get($id, $model, $table)
-    {
-        return Database::select($table, $model, "id=$id")[0];
-    }
-
-    public static function all($model, $table, $max=null)
-    {
-        if ($max) {
-            return array_slice(Database::select($table, $model), 0, $max);
-        } else {
-            return Database::select($table, $model);
-        }
-    }
 
     public static function init()
     {
@@ -45,7 +23,7 @@ class Database
             if ($exception->getCode() == 1049) { // database non creato
                 self::reset();
             } else {
-                include view('errors/2002');
+                App::view('errors/2002');
                 die();
             }
         }
@@ -63,6 +41,13 @@ class Database
         }
     }
 
+    public static function reset()
+    {
+        Database::$pdo = new \PDO("mysql:host=" . self::$config['host'], self::$config['username'], self::$config['password']);
+        $query = file_get_contents("database.sql");
+        Database::query($query);
+    }
+  
     public static function select($table, $model, $where='')
     {
         if ($where == '') {
@@ -70,6 +55,29 @@ class Database
         } else {
             return self::query("SELECT * FROM $table WHERE $where", $model);
         }
+    }
+
+    public static function delete($table, $where='')
+    {
+        if ($where == ''){
+            self::query("DELETE FROM $table");
+        } else {
+            self::query("DELETE FROM $table WHERE $where;");
+        }
+    }
+
+    public static function all($model, $table, $max=null)
+    {
+        if ($max) {
+            return array_slice(Database::select($table, $model), 0, $max);
+        } else {
+            return Database::select($table, $model);
+        }
+    }
+
+    public static function get($id, $model, $table)
+    {
+        return Database::select($table, $model, "id=$id")[0];
     }
 
     public static function create($table, $columns, $values)
@@ -86,33 +94,6 @@ class Database
         self::query($query);
     }
 
-    public static function delete($table, $where)
-    {
-        self::query("DELETE FROM $table WHERE $where;");
-    }
 
-    public static function deleteAll($table)
-    {
-        self::query("DELETE FROM `$table` where 1<2");
-    }
-
-    public static function p_print()
-    {
-        print_r(self::query("SELECT * FROM users"));
-        print_r(self::query("SELECT * FROM drinks"));
-        print_r(self::query("SELECT * FROM ingredients"));
-    }
-
-    public static function update($table, $changes, $id)
-    {
-        $sql = "UPDATE $table SET ";
-        foreach ($changes as $key => $value) {
-            $sql = "$sql $key='$value', "; 
-        }
-        $sql = substr($sql, 0, -2);
-        $sql = "$sql WHERE id='$id'";
-        Database::query($sql);
-    }
 }
 
-Database::init();
