@@ -1,9 +1,8 @@
 <?php
 namespace App\Models;
-use App\core\Database;
 use Model;
+use Oggetto;
 
-class Tema extends Model {
-    protected static $table = 'temi';
-
+class Tema extends Oggetto {
+    public static $table = 'temi';
 }

@@ -1,9 +1,9 @@
 <?php
 namespace App\Models;
 use App\core\Database;
-use Model;
+use Oggetto;
 
-class Prodotto extends Model {
+class Prodotto extends Oggetto {
 
     public static $table = 'prodotti';
 

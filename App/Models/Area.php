@@ -1,8 +1,8 @@
 <?php
 namespace App\Models;
-use Model;
+use Oggetto;
 
-class Area extends Model {
+class Area extends Oggetto {
 
     public static $table = 'aree';
 

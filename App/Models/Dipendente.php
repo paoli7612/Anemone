@@ -1,8 +1,8 @@
 <?php 
 namespace App\Models;
-use Model;
+use Oggetto;
 
-class Dipendente extends Model {
+class Dipendente extends Oggetto {
 
     public static $table = 'dipendenti';
 

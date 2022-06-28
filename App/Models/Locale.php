@@ -1,9 +1,9 @@
 <?php
 namespace App\Models;
 use App\core\Database;
-use Model;
+use Oggetto;
 
-class Locale extends Model {
+class Locale extends Oggetto {
 
     public static $table = 'locali';
 
@@ -34,4 +34,6 @@ class Locale extends Model {
     {
         return Dipendente::get($this->id_responsabile);
     }
+
+
 }
