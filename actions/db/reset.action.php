@@ -1,10 +1,4 @@
 <?php
-
-use App\core\Auth;
-use App\core\Database;
-use App\core\Router;
-
+    use App\core\Database;
     Database::reset();
-    Auth::logout();
-    //Router::redirect();
-    
+    header('Location: /');

@@ -3,78 +3,132 @@
 namespace App;
 
 use App\core\Auth;
-use App\core\Database;
 use App\core\Request;
 use App\core\Router;
 
+require_once 'functions.php';
+
 class App
 {
-
     public static $config;
-    public static $title;
+    public static $navbar;
 
-    public static function init()
+    public static function main($webserver)
     {
         session_start();
-        self::$config = require('config.php');
-        Database::init();
+        self::$config = require('config' . $webserver . '.php');
         Auth::init();
-        self::routes();
+        Router::init();
 
         if (App::$config['name'] == 'altervista')
             array_shift($_GET);
 
         if (Request::method() == 'GET') {
-            if (array_key_exists(Request::uri(), Router::$titles)) {
-                App::$title =  Router::$titles[Request::uri()];
-            }
-            App::partial('layout/page_start');
-            Router::direct();
-            App::partial('layout/page_end');
+            require partial('layout/page_start');
+            include Router::direct();
+            require partial('layout/page_end');
         } else {
-            Router::direct();
+            include Router::direct();
         }
     }
 
-    public static function routes()
+    public static function theme()
     {
-        Router::get('', 'home', 'Home');
-        Router::get('login', 'login', 'Accedi');
-        Router::get('money', 'money', 'Conta');
-
-        if (Auth::$utente) {
-            Router::get('account', 'account', Auth::$utente->cognome);
-            Router::get('settings', 'settings', 'Impostazioni');
-            Router::get('logout', 'logout', 'Disconnetti');
-
-            if (Auth::amministratore())
-            {   
-                Router::get('account/create', 'register', 'Crea utente');
-                Router::post('db/reset');
-                Router::post('account/create');
-            }
-            Router::post('account/tema');
-            Router::post('logout');
+        if (Auth::check() && Auth::$dipendente->tema) {
+            return Auth::$dipendente->tema;
         } else {
-            Router::post('login');
+            return 'green';
         }
-     
     }
 
-    public static function view($name)
+    public static function today()
     {
-        include "views/$name.view.php";
+        return date("Y-m-d");
     }
-
-    public static function partial($name)
-    {
-        include "partials/$name.partial.php";
-    }
-
-    public static function action($name)
-    {
-        include "actions/$name.action.php";
-    }
-   
 }
 
+
+function view($name)
+{
+    return "views/$name.view.php";
+}
+
+function action($name)
+{
+    return "actions/$name.action.php";
+}
+
+function partial($name)
+{
+    return "partials/$name.partial.php";
+}
+
+function inc($path)
+{
+    require $path;
+}
+
+function slug($text)
+{
+    $text = preg_replace('~[^\pL\d]+~u', '-', $text);
+    $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+    $text = preg_replace('~[^-\w]+~', '', $text);
+    $text = trim($text, '-');
+    $text = preg_replace('~-+~', '-', $text);
+    $text = strtolower($text);
+    return $text;
+}
+
+function euro($value)
+{
+    return number_format($value, 2, ',', ' ');
+}
+
+function error($code)
+{
+    return partial("errors/$code");
+}
+
+function bannerSmall()
+{ ?>
+    <script>
+        ! function(d, l, e, s, c) {
+            e = d.createElement("script");
+            e.src = "//ad.altervista.org/js.ad/size=300X250/?ref=" + encodeURIComponent(l.hostname + l.pathname) + "&r=" + Date.now();
+            s = d.scripts;
+            c = d.currentScript || s[s.length - 1];
+            c.parentNode.insertBefore(e, c)
+        }(document, location)
+    </script>
+<?php
+}
+
+function bannerMedium()
+{ ?>
+<div class="w3-panel w3-center">
+
+    <script>
+        ! function(d, l, e, s, c) {
+            e = d.createElement("script");
+            e.src = "//ad.altervista.org/js.ad/size=728X90/?ref=" + encodeURIComponent(l.hostname + l.pathname) + "&r=" + Date.now();
+            s = d.scripts;
+            c = d.currentScript || s[s.length - 1];
+            c.parentNode.insertBefore(e, c)
+        }(document, location)
+    </script>
+</div>
+<?php
+}
+
+function bannerLarge()
+{ ?>
+    <script>
+        ! function(d, l, e, s, c) {
+            e = d.createElement("script");
+            e.src = "//ad.altervista.org/js.ad/size=2X2/?ref=" + encodeURIComponent(l.hostname + l.pathname) + "&r=" + Date.now();
+            s = d.scripts;
+            c = d.currentScript || s[s.length - 1];
+            c.parentNode.insertBefore(e, c)
+        }(document, location)
+    </script><?php
+            }

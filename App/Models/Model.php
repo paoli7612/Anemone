@@ -6,6 +6,16 @@ use App\core\Database;
             
         public static $table;
 
+        public static function edit($id, $vv)
+        {
+            self::get($id)->update($vv);
+        }
+
+        public static function updateById($id, $field, $value)
+        {
+            Database::query("UPDATE utenti SET $field=$value WHERE id=$id");
+        }
+
         public static function all($max=null)
         {
             return Database::all(static::class, static::$table, $max);
@@ -36,9 +46,14 @@ use App\core\Database;
             Database::delete(static::$table, "id=$id");
         }
 
+        public static function deleteAll()
+        {
+            Database::deleteAll(static::$table);
+        }
+
         public function remove()
         {
-            static::delete("id={$this->id}");
+            Database::delete(static::$table, "id={$this->id}");
         }
     
         public static function orderBy($col)
@@ -46,17 +61,15 @@ use App\core\Database;
             return Database::query("SELECT * FROM prodotti ORDER BY $col");
         }
 
+        public function update($changes) 
+        {
+            Database::update(static::$table, $changes, $this->id);
+        }
+
         public function url()
         {
             return static::$table . "/" . $this->slug;
         }
 
-        public static function exist($id)
-        {
-            if (static::get($id))
-                return true;
-            else
-                return false;
-        }
-
     }
+?>
