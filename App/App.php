@@ -40,6 +40,7 @@ class App
     {
         Router::get('', 'home', 'Home');
         Router::get('login', 'login', 'Accedi');
+        Router::get('money', 'money', 'Conta');
 
         if (Auth::$utente) {
             Router::get('account', 'account', Auth::$utente->cognome);
@@ -51,12 +52,13 @@ class App
                 Router::get('account/create', 'register', 'Crea utente');
                 Router::post('db/reset');
                 Router::post('account/create');
-
             }
+            Router::post('account/tema');
+            Router::post('logout');
+        } else {
+            Router::post('login');
         }
      
-        Router::post('login');
-        Router::post('logout');
     }
 
     public static function view($name)

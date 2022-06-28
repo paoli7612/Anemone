@@ -15,16 +15,26 @@ class Auth
                                         FROM utenti
                                         LEFT JOIN temi ON temi.id=utenti.id_tema
                                         WHERE utenti.id=" . $_SESSION['login_id'], Utente::class);
-            if (count($utenti) == 1)
+            if (count($utenti) == 1) {
                 Auth::$utente = $utenti[0];
-            else
+                if (!Auth::$utente->id_tema) {
+                    Auth::$utente->id_tema=1;
+                    Auth::$utente->tema="green";
+                }
+            }
+            else {
                 Auth::$utente = null;
+            }
+            
         }
     }
 
     public static function theme()
     {
-        return 'green';
+        if (Auth::$utente)
+            return Auth::$utente->tema;
+        else
+            return 'green';
     }
 
     public static function login($email, $password)

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\core\Database;
 use Model;
 
 class Utente extends Model {
@@ -11,6 +12,11 @@ class Utente extends Model {
     public function nomeCompleto()
     {
         return $this->nome . " " . $this->cognome;
+    }
+
+    public function cambiaTema($id_tema)
+    {
+        Database::update(static::$table, ['id_tema' => $id_tema], $this->id);
     }
 
 }

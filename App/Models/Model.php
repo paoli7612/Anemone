@@ -51,5 +51,12 @@ use App\core\Database;
             return static::$table . "/" . $this->slug;
         }
 
+        public static function exist($id)
+        {
+            if (static::get($id))
+                return true;
+            else
+                return false;
+        }
+
     }
-?>

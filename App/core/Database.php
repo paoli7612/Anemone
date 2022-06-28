@@ -94,6 +94,17 @@ class Database
         self::query($query);
     }
 
+    public static function update($table, $changes, $id)
+    {
+        $sql = "UPDATE $table SET ";
+        foreach ($changes as $key => $value) {
+            $sql = "$sql $key='$value', "; 
+        }
+        $sql = substr($sql, 0, -2);
+        $sql = "$sql WHERE id='$id'";
+        Database::query($sql);
+    }
+
 
 }
 

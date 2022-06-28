@@ -1,3 +1,14 @@
+<?php if (isset($_SESSION['error'])) : ?>
+    <div class="w3-red w3-center w3-panel w3-round-large w3-card-4 w3-display-container">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <br>
+        <?= $_SESSION['error'] ?>
+        <button class="w3-display-topright w3-btn w3-round-large w3-small">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+    <?php session_destroy() ?>
+<?php endif ?>
 <div class="w3-theme w3-card-4 w3-panel w3-padding w3-round-large">
     <fieldset class="w3-panel w3-padding w3-round-large" style="border-color: white">
         <legend>
