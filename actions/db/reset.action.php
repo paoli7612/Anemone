@@ -6,4 +6,5 @@ use App\core\Router;
 
     Database::reset();
     Auth::logout();
-    Router::redirect();
+    //Router::redirect();
+    

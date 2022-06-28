@@ -19,7 +19,8 @@ class Router
         } else {
             self::$routes[$method][$uri] = $dest;
         }
-        self::$titles[$uri] = $title;
+        if ($method == 'GET')
+            self::$titles[$uri] = $title;
     }
 
     public static function get($uri, $dest = NULL, $title = '')

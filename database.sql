@@ -1,4 +1,4 @@
-use my_anemone;
+USE `my_anemone`;
 
 DROP TABLE `scarti`;
 DROP TABLE `scontoScrontino`;
@@ -12,7 +12,6 @@ DROP TABLE `merceProdotto`;
 DROP TABLE `merci`;
 DROP TABLE `pagamenti`;
 DROP TABLE `fornitori`;
-DROP TABLE `utenteScontrino`;
 DROP TABLE `autoconsumoScontrino`;
 DROP TABLE `deliveryScontrino`;
 DROP TABLE `prodottoScontrino`;
@@ -21,6 +20,7 @@ DROP TABLE `scontrini`;
 DROP TABLE `autoconsumi`;
 DROP TABLE `delivery`;
 DROP TABLE `prodotti`;
+DROP TABLE `categorieProdotto`;
 DROP TABLE `conteggi`;
 DROP TABLE `casse`;
 DROP TABLE `turni`;
@@ -31,7 +31,7 @@ DROP TABLE `messaggioDipendente`;
 DROP TABLE `messaggi`;
 DROP TABLE `utenti`;
 DROP TABLE `temi`;
-DROP TABLE `categorieProdotto`;
+
 
 CREATE TABLE `temi`(
     `id` int(16) PRIMARY KEY AUTO_INCREMENT,

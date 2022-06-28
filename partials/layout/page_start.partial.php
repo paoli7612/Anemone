@@ -6,6 +6,7 @@ use App\App;
 <html lang="en">
 <head>
     <?php App::partial('layout/head') ?>
+
 </head>
 <body>
     <?php App::partial('layout/navbar') ?>
