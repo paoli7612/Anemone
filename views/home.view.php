@@ -26,7 +26,8 @@ use function App\core\bannerMedium;
 <?php else : ?>
     <div class="w3-panel w3-theme w3-card-4 w3-round-large">
         <h1>Welcome</h1>
-        <?php item('Login', 'right-to-bracket', 'Effettua il login con le credenziali dipendente', 'login') ?>
+        <?php item('Accedi', 'right-to-bracket', 'Effettua il login con le credenziali dipendente', 'login') ?>
+        <?php item('Fascia', 'clock', 'Inserisci dati fascia', 'fascia') ?>
         <?php item('Conteggio cassetto', 'calculator', 'Effettua il login con le credenziali dipendente', 'money') ?>
         <?php item('Stato locale', 'building', 'Mostra lo stato attuale del locale', 'archive') ?>
 

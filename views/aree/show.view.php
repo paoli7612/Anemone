@@ -8,5 +8,4 @@ use App\Models\Area;
 ?>
 
 
-<?php print_r($area) ?>
 

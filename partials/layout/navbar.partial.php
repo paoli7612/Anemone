@@ -12,8 +12,9 @@ use App\core\Request; ?>
             <a href="/delivery" class="w3-bar-item w3-button <?= (Request::uri_starts_with('delivery')) ? 'w3-grey' : 'w3-theme' ?> ">
                 <i class="fa-solid fa-person-biking"></i>
             </a>
-            <a href="/prodotti" class="w3-bar-item w3-button <?= (Request::uri_starts_with('prodotti')) ? 'w3-grey' : 'w3-theme' ?> ">
-                <i class="fa-solid fa-cookie-bite"></i> </a>
+            <a href="/fascia" class="w3-bar-item w3-button <?= (Request::uri_starts_with('fascia')) ? 'w3-grey' : 'w3-theme' ?> ">
+                <i class="fa-solid fa-clock"></i>
+            </a>
             <a href="/dailyCount" class="w3-bar-item w3-button <?= (Request::uri_starts_with('dailyCount')) ? 'w3-grey' : 'w3-theme' ?> ">
                 <i class="fa-solid fa-list-ol"></i>
             </a>

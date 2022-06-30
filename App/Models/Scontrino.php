@@ -4,7 +4,7 @@ use App\core\Database;
 
     class Scontrino extends Model {
             
-        protected static $table = 'scontrini';
+        public static $table = 'scontrini';
 
         public static function delivery($id_delivery, $date)
         {

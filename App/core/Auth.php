@@ -46,7 +46,6 @@ use App\Models\Dipendente;
                                             WHERE `email`='$email'
                                             AND `password`=SHA('$password')",
                                         Dipendente::class);
-            print_r($dipendenti);
             if (count($dipendenti) == 1)
             {
                 $id = $dipendenti[0]->id;

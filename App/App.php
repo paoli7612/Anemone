@@ -3,6 +3,7 @@
 namespace App;
 
 use App\core\Auth;
+use App\core\Database;
 use App\core\Request;
 use App\core\Router;
 
@@ -16,12 +17,16 @@ class App
     public static function main($webserver)
     {
         session_start();
-        self::$config = require('config' . $webserver . '.php');
+        App::$config = require('config.php');
+        if ($webserver == 'altervista'){
+            App::$config->username = 'anemone';
+            array_shift($_GET);
+        }
+
+        Database::init();
         Auth::init();
         Router::init();
 
-        if (App::$config['name'] == 'altervista')
-            array_shift($_GET);
 
         if (Request::method() == 'GET') {
             require partial('layout/page_start');

@@ -3,6 +3,7 @@
 namespace App\core;
 
 use App\Models\Area;
+use App\Models\Delivery;
 use App\Models\Dipendente;
 use App\Models\Locale as ModelsLocale;
 use App\Models\Prodotto;
@@ -15,11 +16,16 @@ class Router
         Router::get('banner');
         Router::get('login');
         Router::get('logout');
+        Router::get('fascia');
         Router::get('archive');
         Router::post('archive');
         Router::post('glovo');
         Router::get('money');
         Router::get('delivery');
+        Router::get('mdb/create');
+        Router::get('mdb/insert');
+        Router::get('mdb/drop');
+
         Router::get('dailyCount');
         Router::get('calculator', 'calculator');
         Router::get('delivery/edit', 'delivery/edit');
@@ -37,10 +43,13 @@ class Router
         Router::post('db/reset');
         Router::post('merce/add');
         Router::post('dipendente/edit');
-        Area::routes();
-        Dipendente::routes();
-        ModelsLocale::routes();
-        Prodotto::routes();
+        try {
+            Area::routes();
+            Dipendente::routes();
+            ModelsLocale::routes();
+            Delivery::routes();
+        } catch (\Throwable $th) {
+        }
     }
 
     private static $routes = [

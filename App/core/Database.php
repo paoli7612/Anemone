@@ -3,17 +3,22 @@
 namespace App\core;
 
 use App\App;
-use App\Models\Theme;
 use PDO;
 
 class Database
 {
     private static $pdo;
-    private static $config;
+
+    public static function mdb($action)
+    {
+        $query = file_get_contents("db/$action.sql");
+        echo $query;
+        return Database::query($query);
+    }
 
     public static function reset()
     {
-        Database::$pdo = new \PDO("mysql:host=" . self::$config['host'], self::$config['username'], self::$config['password']);
+        Database::$pdo = new \PDO("mysql:host=" . App::$config['host'], App::$config['username'], App::$config['password']);
         $query = file_get_contents("database.sql");
         Database::query($query);
     }
@@ -34,12 +39,11 @@ class Database
 
     public static function init()
     {
-        self::$config = App::$config['database'];
         try {
             self::$pdo = new \PDO(
-                "mysql:host=" . self::$config['host'] . ";dbname=" . self::$config['dbname'],
-                self::$config['username'],
-                self::$config['password']
+                "mysql:host=" . App::$config['host'] . ";dbname=" . App::$config['dbname'],
+                App::$config['username'],
+                App::$config['password']
             );
         } catch (\PDOException $exception) {
             if ($exception->getCode() == 1049) { // database non creato
@@ -96,13 +100,6 @@ class Database
         self::query("DELETE FROM `$table` where 1<2");
     }
 
-    public static function p_print()
-    {
-        print_r(self::query("SELECT * FROM users"));
-        print_r(self::query("SELECT * FROM drinks"));
-        print_r(self::query("SELECT * FROM ingredients"));
-    }
-
     public static function update($table, $changes, $id)
     {
         $sql = "UPDATE $table SET ";
@@ -115,4 +112,3 @@ class Database
     }
 }
 
-Database::init();

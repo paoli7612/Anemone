@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use App\core\Database;
-use Model;
+use Oggetto;
 
-class Delivery extends Model
+class Delivery extends Oggetto
 {
 
     public static $table = 'delivery';

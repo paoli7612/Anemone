@@ -20,7 +20,6 @@
 </div>
 
 <!-- DELIVERY -->
-<?php print_r((date_diff(date_create($_DAY), date_create())->invert)) ?>
 <?php if (date_diff(date_create($_DAY), date_create())->invert) : ?>
     <div class="w3-panel">
         <div class="w3-quarter"><br></div>

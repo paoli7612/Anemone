@@ -68,7 +68,7 @@ use App\core\Database;
 
         public function url()
         {
-            return static::$table . "/" . $this->slug;
+            return static::$table . "/" . $this->slug ;
         }
 
     }

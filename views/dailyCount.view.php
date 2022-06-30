@@ -17,9 +17,6 @@ use App\App; ?>
                             <span class="w3-hide-small">
                                 <?= $merce->nominativo ?>
                             </span>
-                            <span class="w3-hide-medium">
-                                <?= $merce->sigla ?>
-                            </span>
                         </div>
                     </div>
                     <div class="w3-display-right" style="width: 60%">

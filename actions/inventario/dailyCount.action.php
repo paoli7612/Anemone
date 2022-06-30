@@ -1,5 +1,4 @@
 <?php
-    print_r($_POST);
     use App\Models\Inventory;
 
     $tot = array();
@@ -22,6 +21,3 @@
     {
         Inventory::create(['id_merce', 'qta'], [$id, $qta]);
     }
-
-
-    print_r($tot);

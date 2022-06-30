@@ -7,6 +7,49 @@ use App\core\Request;
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="profile" href="https://anemone.altervista.org/">
+    <link rel="pingback" href="https://anemone.altervista.org/">
+    <link rel="shortcut icon" href="https://anemone.altervista.org/">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="alternate" hreflang="it" href="https://anemone.altervista.org/">
+    <link rel="alternate" hreflang="en" href="https://anemone.altervista.org/">
+    <link rel="canonical" href="https://anemone.altervista.org/">
+    <!-- OG -->
+    <meta property="og:site_name" content="Anemone">
+    <meta property="og:url" content="https://anemone.altervista.org/" />
+    <meta property="og:title" content="Anemone - <?= Request::name() ?>">
+    <meta property="og:description" content="Proviamo in questo modo" />
+    <meta property="og:image" itemprop="image" content="/favicon.png" />
+    <meta property="og:locale" content="it_IT">
+    <meta property="og:type" content="website">
+
+    <meta property="article:publisher" content="https://github.com/paoli7612/anemone">
+    <meta property="article:modified_time" content="2022-06-30T01:00:10+00:00">
+    <meta name="author" content="Tommaso Paoli">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:label1" content="Tempo di lettura stimato">
+    <meta name="twitter:data1" content="5 minuti">
+
+    <link rel="dns-prefetch" href="//anemone.altervista.org/">
+    <link rel="dns-prefetch" href="//anemone.altervista.org/">
+    <link rel="dns-prefetch" href="//anemone.altervista.org/">
+    <link href="https://anemone.altervista.org/" crossorigin="anonymous" rel="preconnect">
+    <link href="https://anemone.altervista.org/" rel="preconnect">
+    <link href="https://anemone.altervista.org/" rel="preconnect">
+    <link rel="alternate" type="application/rss+xml" title="Anemone &raquo; Feed" href="https://anemone.altervista.org/feed">
+    <link rel="alternate" type="application/rss+xml" title="Anemone &raquo; Feed dei commenti" href="https://anemone.altervista.org/feed">
+
+    <meta name="generator" content="Powered by pure PHP.">
+    <link rel="alternate" type="application/json" href="https://anemone.altervista.org/">
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://anemone.altervista.org/">
+    <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://anemone.altervista.org/">
+    <meta name="generator" content="WordPress 5.8.1">
+    <link rel="shortlink" href="https://anemone.altervista.org/">
+    <link rel="alternate" type="application/json+oembed" href="https://anemone.altervista.org/">
+    <link rel="alternate" type="text/xml+oembed" href="https://anemone.altervista.org/">
+    <meta name="generator" content="WPML ver:4.3.19 stt:1,27;">
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Gestore gratuito locale e delivery">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -60,6 +103,6 @@ use App\core\Request;
             },
         }
     </script>
-    <!--<script async src="https://cdn.iubenda.com/cs/iubenda_cs.js"></script>-->
+    <script async src="https://cdn.iubenda.com/cs/iubenda_cs.js"></script>
 
 </head>

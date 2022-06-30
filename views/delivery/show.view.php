@@ -1,26 +1,30 @@
-<?php $sigla = array_keys($_GET)[0] ?>
-<?php use App\App; use App\Models\Delivery; ?>
-<?php $delivery = Delivery::getBy('sigla', $sigla) ?>
+<?php
+
+use App\App;
+use App\core\Request;
+use App\Models\Delivery;
+
+$delivery = Delivery::getBy('slug', Request::uri(1)) ?>
 
 <div class="w3-panel w3-card-4 w3-round-large" style="background-color: <?= $delivery->colore ?>">
     <h1 class="w3-left"><?= $delivery->nominativo ?></h1>
     <div class="w3-panel w3-third w3-right">
-        <input class="w3-input w3-card-4 w3-round-large" type="date" name="" value="<?= App::today() ?>" readonly>
+        <input class="w3-input w3-card-4 w3-round-large" type="date" name="data" value="<?= App::today() ?>" readonly>
     </div>
-    
+
 </div>
 
 <script>
     var id = 1;
     var elimina = function(id) {
-        var totale = parseFloat($('#'+id+' .totale').text());
-        var fascia = parseInt($('#'+id+' .fascia').text());
+        var totale = parseFloat($('#' + id + ' .totale').text());
+        var fascia = parseInt($('#' + id + ' .fascia').text());
         console.log(id, totale, fascia);
         $.ajax({
             method: "POST",
             url: '/delivery/remove',
             data: {
-                "totale": totale, 
+                "totale": totale,
                 "fascia": fascia
             }
         }).done(function() {
@@ -44,7 +48,7 @@
                 </td>
             </tr>
         `);
-        id=id+1;
+        id = id + 1;
     };
     var aggiungi = function(totale, fascia) {
         if (!totale) return;
@@ -65,13 +69,17 @@
 
 <div class="w3-panel w3-card-4 w3-round-large" style="background-color: <?= $delivery->colore ?>">
     <table class="w3-panel w3-table-all w3-card" id="lista">
-        <tr><th>Prezzo</th><th>Fascia</th><th></th></tr>
+        <tr>
+            <th>Prezzo</th>
+            <th>Fascia</th>
+            <th></th>
+        </tr>
     </table>
 </div>
 
 <div class="w3-panel w3-card-4 w3-round-large" style="background-color: <?= $delivery->colore ?>">
     <div class="w3-panel w3-row">
-        <label class="w3-col m5 w3-margin-left">
+        <label class="w3-half">
             <select id="tempo" class="w3-select w3-card w3-round-large">
                 <option value="<?= App::today() ?> 12:00:00">apertura-15:00</option>
                 <option value="<?= App::today() ?> 16:00:00">15:00-18:00</option>
@@ -79,11 +87,11 @@
             </select>
             tempo
         </label>
-        <label class="w3-col m3">
+        <label class="w3-third w3-margin-left">
             <input type="number" id="totale" class="w3-input w3-card w3-round-large">
             totale
         </label>
-        <div class="w3-col m2 w3-right">
+        <div class="w3-rest w3-right">
             <button id="submit" class="w3-btn w3-card w3-white w3-circle" onclick="aggiungi($('#totale').val(), $('#tempo').val())">
                 <i class="fa fa-plus"></i>
             </button>
@@ -94,14 +102,16 @@
 
 <script>
     $("#totale").keyup(function(event) {
-    if (event.keyCode === 13) {
-        $("#submit").click();
-    }
-});
-<?php foreach(Scontrino::delivery($delivery->id, App::today()) as $scontrino): ?>
-    mostra(<?= $scontrino->totale ?>, <?= $scontrino->fascia ?>);
-<?php endforeach ?>
+        if (event.keyCode === 13) {
+            $("#submit").click();
+        }
+    });
+    <?php foreach (Scontrino::delivery($delivery->id, App::today()) as $scontrino) : ?>
+        mostra(<?= $scontrino->totale ?>, <?= $scontrino->fascia ?>);
+    <?php endforeach ?>
 </script>
 
 
-<?php use function App\core\partial; ?>
+<?php
+
+use function App\core\partial; ?>
