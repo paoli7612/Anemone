@@ -32,25 +32,28 @@ INSERT INTO `dipendenteLocale` (`id_dipendente`, `id_locale`) VALUES
     (3, 2);
 
 INSERT INTO `merci` (`nominativo`, `slug`, `stock`, `img`, `daily`) VALUES
-    ('Cocacola pet', 'cocaPet', 24, 'cocaPet.png', 1),
-    ('Fanta orange ', 'fantaO', 12, 'fanta.png', 1),
-    ('Fanta lemon pet', 'fantaL', 12, 'fantaLemon.png', 1),
-    ('Sprite', 'sprite', 12, 'sprite.png', 1),
-    ('Estathe pesca', 'estatheP', 12, 'estathePesca.png', 1),
-    ('Estathe limone', 'estatheL', 12, 'estatheLimone.png', 1),
-    ('Fuze pesca', 'fuzeP', 12, 'fuzePesca.png', 1),
-    ('Fuze limone', 'fuzeL', 12, 'fuzeLimone.png', 1),
-    ('Limonata', 'limonata', 4, 'limonata.png', 1),
-    ('Gassosa', 'gassosa', 4, 'gassosa.png', 1),
-    ('Chinotto', 'chinotto', 4, 'chinotto.png', 1);
+    ('Acqua naturale', 'aNat', 24, 'cocaPet.png', 1),
+    ('Acqua frizzante', 'aGas', 24, 'cocaPet.png', 1),
+    ('Cocacola pet', 'cocaPet', 24, 'cocaPet.png', 0),
+    ('Fanta orange ', 'fantaO', 12, 'fanta.png', 0),
+    ('Fanta lemon pet', 'fantaL', 12, 'fantaLemon.png', 0),
+    ('Sprite', 'sprite', 12, 'sprite.png', 0),
+    ('Estathe pesca', 'estatheP', 12, 'estathePesca.png', 0),
+    ('Estathe limone', 'estatheL', 12, 'estatheLimone.png', 0),
+    ('Fuze pesca', 'fuzeP', 12, 'fuzePesca.png', 0),
+    ('Fuze limone', 'fuzeL', 12, 'fuzeLimone.png', 0),
+    ('Limonata', 'limonata', 4, 'limonata.png', 0),
+    ('Gassosa', 'gassosa', 4, 'gassosa.png', 0),
+    ('Chinotto', 'chinotto', 4, 'chinotto.png', 0);
 
 INSERT INTO `merci` (`nominativo`, `stock`, `categoria`, `daily`, `img`) VALUES
-    ('Impasto normale', 40, 'impasto', 1, 'normale.png'),
-    ('Impasto integrale', 32, 'impasto', 1, 'integrale.png'),
-    ('Impasto khorasan', 32, 'impasto', 1, 'kamut.png');
+    ('Impasto normale', 40, 'impasto', 0, 'normale.png'),
+    ('Impasto integrale', 32, 'impasto', 0, 'integrale.png'),
+    ('Impasto khorasan', 32, 'impasto', 0, 'kamut.png');
 
-INSERT INTO `merci` (`nominativo`, `stock`, `categoria`) VALUES
-    ('Mozzarella', 4, 'formaggi'),
-    ('Provola', 1, 'formaggi'),
-    ('Caciotta', 1, 'formaggi');
+INSERT INTO `merci` (`nominativo`, `categoria`, `daily`, `gr`) VALUES
+    ('Mozzarella', 'formaggi', 1, 1),
+    ('Crudo', 'salumi', 1, 1),
+    ('Squacquerone', 'formaggi', 1, 1),
+    ('Provola', 'formaggi', 0, 1);
 

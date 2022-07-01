@@ -20,8 +20,12 @@ use App\App; ?>
                         </div>
                     </div>
                     <div class="w3-display-right" style="width: 60%">
-                        <input type="number" name="<?= $merce->id ?>_1" class="w3-input w3-card w3-round-large w3-left" style="width: 50%" placeholder="x1" onkeyup="update()">
-                        <input type="number" name="<?= $merce->id ?>_<?= $merce->stock ?>" class="w3-input w3-card w3-round-large w3-right" style="width: 50%" placeholder="x<?= $merce->stock ?>" onkeyup="update()">
+                        <?php if ($merce->gr) : ?>
+                            <input type="number" name="<?= $merce->id ?>_1" class="w3-input w3-card w3-round-large w3-left" placeholder="gr">
+                        <?php else : ?>
+                            <input type="number" name="<?= $merce->id ?>_1" class="w3-input w3-card w3-round-large w3-left" style="width: 50%" placeholder="x1">
+                            <input type="number" name="<?= $merce->id ?>_<?= $merce->stock ?>" class="w3-input w3-card w3-round-large w3-right" style="width: 50%" placeholder="x<?= $merce->stock ?>">
+                        <?php endif ?>
                     </div>
                 </div>
             <?php endforeach ?>

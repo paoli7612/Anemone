@@ -1,5 +1,6 @@
 use my_anemone;
 
+DROP TABLE `fasce`;
 DROP TABLE `scarti`;
 DROP TABLE `inventari`;
 DROP TABLE `merci`;

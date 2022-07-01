@@ -1,5 +1,6 @@
 <?php
 
+use App\App;
 use App\core\Database;
 
     class Model {
@@ -69,6 +70,11 @@ use App\core\Database;
         public function url()
         {
             return static::$table . "/" . $this->slug ;
+        }
+
+        public static function today()
+        {
+            return static::where("date(tempo)='" . App::today() . "'");
         }
 
     }

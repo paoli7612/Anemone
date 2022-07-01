@@ -25,6 +25,7 @@ class Router
         Router::get('mdb/create');
         Router::get('mdb/insert');
         Router::get('mdb/drop');
+        Router::get('mdb/all');
 
         Router::get('dailyCount');
         Router::get('calculator', 'calculator');
@@ -35,8 +36,11 @@ class Router
         Router::get('dipendente/company', 'company');
         Router::get('dipendente/calendar', 'calendar');
 
-        Router::post('login', 'login');
-        Router::post('logout', 'logout');
+        Router::post('login');
+        Router::post('logout');
+        Router::post('logout');
+        Router::post('fascia');
+        Router::post('fascia/delete', 'fascia_delete');
         Router::post('dailyCount', 'inventario/dailyCount');
         Router::post('delivery/add', 'delivery/add');
         Router::post('delivery/remove', 'delivery/remove');

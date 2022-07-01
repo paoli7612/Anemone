@@ -1,10 +1,13 @@
-<?php use function App\core\partial;
-    if (!isset(array_keys($_GET)[0])) {
-        header('Location: /archive?' . date('y-m-d'));
-    }
-?>
+<?php
 
-<?php $_DAY = array_keys($_GET)[0] ?>
+use function App\core\partial; ?>
+<?php
+if (!isset(array_keys($_GET)[0])) {
+    $_DAY = date('y-m-d');
+} else {
+    $_DAY = array_keys($_GET)[0];
+}
+?>
 
 <!-- HEADER -->
 <div class="w3-panel w3-theme w3-center w3-card-4 w3-round-large w3-display-container w3-padding">

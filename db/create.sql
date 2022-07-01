@@ -86,7 +86,8 @@ CREATE TABLE `merci`(
     `id` int(16) PRIMARY KEY AUTO_INCREMENT,
     `nominativo` varchar(32) UNIQUE NOT NULL,
     `slug` varchar(16) NOT NULL DEFAULT (`nominativo`),
-    `stock` int(16) NOT NULL,
+    `stock` int(16),
+    `gr` int(16),
     `prezzo` float(15, 2) NOT NULL DEFAULT 0,
     `categoria` enum(
         'impasto',
@@ -122,4 +123,13 @@ CREATE TABLE `scarti`(
     `qta` int(16) NOT NULL,
     FOREIGN KEY (`id_merce`) REFERENCES `merci` (`id`),
     FOREIGN KEY (`id_locale`) REFERENCES `locali` (`id`)
+);
+
+CREATE TABLE `fasce`(
+    `id` int(16) PRIMARY KEY AUTO_INCREMENT,
+    `tempo` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `piade` int(16) NOT NULL,
+    `baby` int(16) NOT NULL,
+    `scontrini` int(16) NOT NULL,
+    `imponibile` float(15, 2) NOT NULL
 );
