@@ -11,13 +11,15 @@
             <thead>
                 <td></td>
                 <td>Quanti</td>
-                <td>Valore</td>
+                <td>Carta</td>
+                <td>Contante</td>
             </thead>
             <?php foreach ($deliverys as $delivery) : ?>
                 <tr>
                     <td><?= $delivery->nominativo ?></td>
                     <td><?= $delivery->qta ?></td>
-                    <td><?= $delivery->totale ?></td>
+                    <td><?= $delivery->carta ?></td>
+                    <td><?= $delivery->contante ?></td>
                 </tr>
             <?php endforeach ?>
         </table>

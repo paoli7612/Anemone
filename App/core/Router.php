@@ -41,6 +41,7 @@ class Router
         Router::post('logout');
         Router::post('logout');
         Router::post('fascia');
+        Router::post('primaNota');
         Router::post('fascia/delete', 'fascia_delete');
         Router::post('dailyCount', 'inventario/dailyCount');
         Router::post('delivery/add', 'delivery/add');

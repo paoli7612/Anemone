@@ -134,3 +134,25 @@ CREATE TABLE `fasce`(
     `scontrini` int(16) NOT NULL,
     `imponibile` float(15, 2) NOT NULL
 );
+
+CREATE TABLE `primaNota`(
+    `id` int(16) PRIMARY KEY AUTO_INCREMENT,
+    `id_dipendente` int(16),
+    `lordo` int(16),
+    `scontrini` int(16),
+    `pos1` float(15, 2),
+    `cassetto1` float(15, 2),
+    `pos2` float(15, 2),
+    `cassetto2` float(15, 2),
+    `dlv` float(15, 2),
+    `dlvc` float(15, 2),
+    `glv` float(15, 2),
+    `glvc` float(15, 2),
+    `JE` float(15, 2),
+    `JEc` float(15, 2),
+    `UB` float(15, 2),
+    `UBc` float(15, 2),
+    `edenred` float(15, 2),
+    `pellegrini` float(15, 2),
+    FOREIGN KEY (`id_dipendente`) REFERENCES `dipendenti` (`id`) ON DELETE SET NULL
+);

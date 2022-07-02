@@ -13,9 +13,9 @@
             </div>
             <?php
 
-use function App\core\bannerMedium;
+            use function App\core\bannerMedium;
 
- for ($i = 0; $i < 4; $i++) : ?>
+            for ($i = 0; $i < 4; $i++) : ?>
                 <?php foreach (array(1, 2, 5) as $value) : ?>
                     <?php $value *= pow(10, $i) ?>
                     <div class="w3-panel w3-row">
@@ -69,12 +69,9 @@ use function App\core\bannerMedium;
                             if (differenza >= (o / 100)) {
                                 quanti = Math.min($('input#c' + v).val() / (v / 100), Math.floor(differenza / (v / 100)))
                                 $('#t' + v).val(quanti);
-                                console.log(v);
                                 $('#d' + v).removeClass('w3-hide');
                                 differenza = differenza - quanti * (v / 100);
                             } else {
-                                console.log(differenza);
-                                console.log("nascondo " + "#d" + v);
                                 $('#d' + v).addClass('w3-hide');
                             }
                         })
