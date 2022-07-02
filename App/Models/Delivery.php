@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\App;
 use App\core\Database;
 use Oggetto;
 
@@ -11,22 +12,27 @@ class Delivery extends Oggetto
     public static $table = 'delivery';
 
 
-    public static function allDay($date)
+    public static function allDay($date = null)
     {
+        if ($date == NULL)
+            $date = App::today();
         return Database::query(
             "SELECT
                 delivery.*,
                 count(scontrini.id) as qta,
-                SUM(scontrini.totale) as totale
+                SUM(scontrini.carta) as carta,
+                SUM(scontrini.contante) as contante
             FROM delivery
                 LEFT JOIN (
-                    SELECT scontrini.id, scontrini.id_delivery, scontrini.totale
+                    SELECT scontrini.id, scontrini.id_delivery, scontrini.carta, scontrini.contante
                     FROM
                         scontrini
                     WHERE DATE(scontrini.tempo)=DATE('$date')
                 ) AS scontrini ON scontrini.id_delivery=delivery.id
             GROUP BY
-                delivery.id",
+                delivery.id
+            ORDER BY
+            delivery.id, scontrini.carta",
             Inventory::class
         );
     }

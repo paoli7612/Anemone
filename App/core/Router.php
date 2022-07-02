@@ -22,9 +22,10 @@ class Router
         Router::post('glovo');
         Router::get('money');
         Router::get('delivery');
+        Router::get('primaNota');
         Router::get('mdb/create');
-        Router::get('mdb/insert');
-        Router::get('mdb/drop');
+        // Router::get('mdb/insert');
+        // Router::get('mdb/drop');
         Router::get('mdb/all');
 
         Router::get('dailyCount');

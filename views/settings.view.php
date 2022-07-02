@@ -4,8 +4,8 @@ use App\core\Auth; ?>
 <div class="w3-panel w3-theme w3-card-4 w3-round-large">
     <div class="w3-panel">
         Database
-        <form action="/db/reset" method="post">
-            <input class="w3-btn w3-white w3-card w3-round-large" type="submit" value="reset">
+        <form action="/mdb/all" method="get">
+            <input class="w3-btn w3-white w3-card w3-round-large" type="submit" value="reset" name="a">
         </form>
     </div>
 

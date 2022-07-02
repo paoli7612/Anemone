@@ -6,6 +6,9 @@ use App\Models\Delivery;
 
 $delivery = Delivery::getBy('slug', Request::uri(1)) ?>
 
+<a href="/delivery" class="w3-btn w3-card-4 w3-circle" style="background-color: <?= $delivery->colore ?>">
+    <i class="fa-solid fa-arrow-left"></i></a>
+
 <div class="w3-panel w3-card-4 w3-round-large" style="background-color: <?= $delivery->colore ?>">
     <h1 class="w3-left"><?= $delivery->nominativo ?></h1>
     <div class="w3-panel w3-third w3-right">
@@ -19,20 +22,21 @@ $delivery = Delivery::getBy('slug', Request::uri(1)) ?>
     var elimina = function(id) {
         var totale = parseFloat($('#' + id + ' .totale').text());
         var fascia = parseInt($('#' + id + ' .fascia').text());
-        console.log(id, totale, fascia);
+        var pagamento = $('#' + id + ' .pagamento').text();
         $.ajax({
             method: "POST",
             url: '/delivery/remove',
             data: {
                 "totale": totale,
-                "fascia": fascia
+                "fascia": fascia,
+                "pagamento": pagamento
             }
         }).done(function() {
             $('#' + id).remove()
         });
     }
 
-    var mostra = function(totale, fascia) {
+    var mostra = function(totale, fascia, pagamento) {
         $('#lista').append(`
             <tr id="` + (id) + `">
                 <td class="totale">
@@ -40,6 +44,9 @@ $delivery = Delivery::getBy('slug', Request::uri(1)) ?>
                 </td>
                 <td class="fascia">
                     ` + fascia + `
+                </td>
+                <td>
+                    ` + pagamento + `
                 </td>
                 <td>
                     <button class="w3-btn w3-circle w3-card" onclick="elimina(` + id + `)">
@@ -50,7 +57,7 @@ $delivery = Delivery::getBy('slug', Request::uri(1)) ?>
         `);
         id = id + 1;
     };
-    var aggiungi = function(totale, fascia) {
+    var aggiungi = function(totale, fascia, pagamento) {
         if (!totale) return;
         $.ajax({
             method: "POST",
@@ -58,10 +65,11 @@ $delivery = Delivery::getBy('slug', Request::uri(1)) ?>
             data: {
                 "totale": totale,
                 "id": <?= $delivery->id ?>,
-                "tempo": $('#tempo').val()
+                "tempo": $('#tempo').val(),
+                "pagamento": pagamento
             }
         }).done(function() {
-            mostra(totale, fascia);
+            mostra(totale, fascia, pagamento);
             $('#totale').val('');
         });
     }
@@ -72,6 +80,7 @@ $delivery = Delivery::getBy('slug', Request::uri(1)) ?>
         <tr>
             <th>Prezzo</th>
             <th>Fascia</th>
+            <th>Pagamento</th>
             <th></th>
         </tr>
     </table>
@@ -92,8 +101,11 @@ $delivery = Delivery::getBy('slug', Request::uri(1)) ?>
             totale
         </label>
         <div class="w3-rest w3-right">
-            <button id="submit" class="w3-btn w3-card w3-white w3-circle" onclick="aggiungi($('#totale').val(), $('#tempo').val())">
-                <i class="fa fa-plus"></i>
+            <button id="submit" class="w3-btn w3-card w3-white w3-circle" onclick="aggiungi($('#totale').val(), $('#tempo').val(), 'carta')">
+                <i class="fa fa-credit-card"></i>
+            </button>
+            <button id="submit2" class="w3-btn w3-card w3-white w3-circle" onclick="aggiungi($('#totale').val(), $('#tempo').val(), 'contante')">
+                <i class="fa-solid fa-money-bill"></i>
             </button>
         </div>
 
@@ -107,7 +119,7 @@ $delivery = Delivery::getBy('slug', Request::uri(1)) ?>
         }
     });
     <?php foreach (Scontrino::delivery($delivery->id, App::today()) as $scontrino) : ?>
-        mostra(<?= $scontrino->totale ?>, <?= $scontrino->fascia ?>);
+        mostra(<?= $scontrino->carta + $scontrino->contante ?>, <?= $scontrino->fascia ?>, '<?= $scontrino->carta ? 'Carta': 'Contante' ?>');
     <?php endforeach ?>
 </script>
 

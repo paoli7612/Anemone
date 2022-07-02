@@ -9,7 +9,7 @@ use App\core\Database;
         public static function delivery($id_delivery, $date)
         {
             return Database::query("
-                SELECT totale,
+                SELECT carta, contante,
                     CASE
                         WHEN tempo <= '$date 15:00:00' THEN 1
                         WHEN tempo <= '$date 18:00:00' THEN 2

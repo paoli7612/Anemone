@@ -64,7 +64,8 @@ CREATE TABLE `scontrini`(
     `pi` int(11),
     `id_delivery` int(16),
     `id_dipendente` int(16),
-    `totale` float(15, 2),
+    `carta` float(15, 2),
+    `contante` float(15, 2),
     `pager` int(4),
     FOREIGN KEY (`id_delivery`) REFERENCES `delivery` (`id`) ON DELETE
     SET
