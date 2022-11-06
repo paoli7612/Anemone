@@ -6,6 +6,7 @@ use App\Models\Area;
 use App\Models\Delivery;
 use App\Models\Dipendente;
 use App\Models\Locale as ModelsLocale;
+use App\Models\PrimaNota;
 use App\Models\Prodotto;
 
 class Router
@@ -22,7 +23,6 @@ class Router
         Router::post('glovo');
         Router::get('money');
         Router::get('delivery');
-        Router::get('primaNota');
         Router::get('mdb/create');
         // Router::get('mdb/insert');
         // Router::get('mdb/drop');
@@ -41,7 +41,6 @@ class Router
         Router::post('logout');
         Router::post('logout');
         Router::post('fascia');
-        Router::post('primaNota');
         Router::post('fascia/delete', 'fascia_delete');
         Router::post('dailyCount', 'inventario/dailyCount');
         Router::post('delivery/add', 'delivery/add');
@@ -54,6 +53,7 @@ class Router
             Dipendente::routes();
             ModelsLocale::routes();
             Delivery::routes();
+            PrimaNota::routes();
         } catch (\Throwable $th) {
         }
     }

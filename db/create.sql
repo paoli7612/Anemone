@@ -137,6 +137,7 @@ CREATE TABLE `fasce`(
 
 CREATE TABLE `primaNota`(
     `id` int(16) PRIMARY KEY AUTO_INCREMENT,
+    `data` date UNIQUE NOT NULL DEFAULT CURRENT_DATE,
     `id_dipendente` int(16),
     `lordo` int(16),
     `scontrini` int(16),

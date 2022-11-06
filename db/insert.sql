@@ -32,8 +32,8 @@ INSERT INTO `dipendenteLocale` (`id_dipendente`, `id_locale`) VALUES
     (3, 2);
 
 INSERT INTO `merci` (`nominativo`, `slug`, `stock`, `img`, `daily`) VALUES
-    ('Acqua naturale', 'aNat', 24, 'cocaPet.png', 1),
-    ('Acqua frizzante', 'aGas', 24, 'cocaPet.png', 1),
+    ('Acqua naturale', 'aNat', 24, 'naturale.png', 1),
+    ('Acqua frizzante', 'aGas', 24, 'frizzante.png', 1),
     ('Cocacola pet', 'cocaPet', 24, 'cocaPet.png', 0),
     ('Fanta orange ', 'fantaO', 12, 'fanta.png', 0),
     ('Fanta lemon pet', 'fantaL', 12, 'fantaLemon.png', 0),

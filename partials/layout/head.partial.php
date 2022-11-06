@@ -67,7 +67,7 @@ use App\core\Request;
     <link rel="icon" href="/favicon.ico">
 
 
-    <link rel="preload" as="script" href="https://cdn.iubenda.com/cs/iubenda_cs.js" />
+    <!-- <link rel="preload" as="script" href="https://cdn.iubenda.com/cs/iubenda_cs.js" />
     <link rel="preload" as="script" href="https://cdn.iubenda.com/cs/tcf/stub-v2.js" />
     <script src="https://cdn.iubenda.com/cs/tcf/stub-v2.js"></script>
     <script>
@@ -103,6 +103,6 @@ use App\core\Request;
             },
         }
     </script>
-    <script async src="https://cdn.iubenda.com/cs/iubenda_cs.js"></script>
+    <script async src="https://cdn.iubenda.com/cs/iubenda_cs.js"></script> -->
 
 </head>

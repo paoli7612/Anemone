@@ -1,17 +1,12 @@
 <?php
 
+use App\core\Router;
 use App\Models\PrimaNota;
 
-    print_r(array_keys($_POST));
-
+try {
+    $primaNota = PrimaNota::getBy('data', $_POST['data']);
+    $primaNota->update($_POST);
+} catch (Exception $th) {
     PrimaNota::create(array_keys($_POST), array_values($_POST));
-
-?>
-
-<?php foreach($_POST as $key => $value): ?>
-    <div>
-        
-        <h1><?= $key ?></h1>
-        <?= $value ?>
-    </div>
-    <?php endforeach ?>
+}
+Router::redirect('primaNota');

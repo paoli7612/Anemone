@@ -29,7 +29,10 @@ use App\core\Database;
         
         public static function getBy($key, $value)
         {
-            return Database::select(static::$table, static::class, "$key='$value'")[0];
+            $s=Database::select(static::$table, static::class, "$key='$value'");
+            if (count($s) == 0)
+                throw new Exception("non vè");
+            else return $s[0];
         }
 
         public static function create($keys, $values)
@@ -59,7 +62,7 @@ use App\core\Database;
     
         public static function orderBy($col)
         {
-            return Database::query("SELECT * FROM prodotti ORDER BY $col");
+            return Database::query("SELECT * FROM " . static::$table . " ORDER BY $col", static::class);
         }
 
         public function update($changes) 
