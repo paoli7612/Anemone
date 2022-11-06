@@ -4,7 +4,7 @@
 
     require_once 'vendor/autoload.php';
 
-    if ($_SERVER['SERVER_NAME'] == 'anemone.altervista.org')
-        App::main('Altervista');
+    if ($_SERVER['SERVER_NAME'] == 'localhost')
+        App::main('localhost');
     else
-        App::main('Php');
+        App::main('Ovh');

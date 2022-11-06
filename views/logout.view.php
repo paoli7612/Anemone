@@ -13,5 +13,3 @@
         </div>
     </form>
 </div>
-
-<?php include partial('layout/fbar') ?>

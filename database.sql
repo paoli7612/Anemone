@@ -26,6 +26,6 @@ CREATE TABLE `accounts`(
 
 INSERT INTO `themes` (`name`) VALUES ('red'), ('blue'), ('yellow'), ('amber'), ('indigo');
 
-INSERT INTO `accounts` (`username`, `email`, `password`, `isAmministratore`) VALUES
+INSERT INTO `accounts` (`username`, `email`, `password`, `isAdmin`) VALUES
     ('root', 'admin@anemone.ovh', SHA('qwerty'), 1),
     ('tomaoli', 'tomaoli@anemone.ovh', SHA('qwerty'), 0);

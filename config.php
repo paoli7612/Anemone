@@ -1,7 +1,7 @@
 <?php
 return [
-    'dbname' => 'my_anemone',
-    'host' => 'localhost',
-    'username' => 'root',
-    'password' => ''
+    'dbname' => 'anemonitomaoli',
+    'host' => 'anemonitomaoli.mysql.db',
+    'username' => 'anemonitomaoli',
+    'password' => 'Nintendo2000'
 ];

@@ -1,7 +1,5 @@
 <?php
 
-use App\core\Auth;
-use App\core\Router;
-
+    use App\core\Auth;
     Auth::logout();
     header('Location: /');

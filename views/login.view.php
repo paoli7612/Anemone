@@ -1,22 +1,20 @@
-
-<div class="w3-panel w3-center">
-    <div class="w3-panel w3-theme w3-card-4 w3-round-large">
-        <form action="/login" method="post">
-            <div class="w3-panel w3-row">
-                <input type="email" name="email" placeholder="Username" class="w3-input w3-card-2 w3-round-large w3-col m11" required="required">
-                <h4 class="w3-hide-small">
-                    <i class="fa fa-user"></i>
-                </h4>
-            </div>
-            <div class="w3-panel w3-row">
-                <input type="password" name="password" placeholder="Password" class="w3-input w3-card-2 w3-round-large w3-col m11">
-                <h4 class="w3-hide-small">
-                    <i class="fa fa-key"></i>
-                </h4>
-            </div>
-            <div class="w3-panel">
-                <input type="submit" value="Login" class="w3-button w3-white w3-center w3-card-2 w3-round-large">
-            </div>
-        </form>
-    </div>
+<div class="w3-panel w3-theme w3-card-4 w3-round-large">
+    <form action="register" method="post">
+        <div class="w3-panel">
+            <label>Username
+                <input name="username" type="text" class="w3-input w3-card w3-round-large" required="required">
+            </label>
+        </div>
+        <div class="w3-panel">
+            <label>Password
+                <input name="password" type="password" class="w3-input w3-card w3-round-large" required="required">
+            </label>
+        </div>
+        <div class="w3-padding w3-center">
+            <button type="submit" class="w3-button w3-card-4 w3-white w3-round-large">
+                Accedi
+            </button>
+            <a href="/register">Registrati</a>
+        </div>
+    </form>
 </div>

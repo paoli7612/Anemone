@@ -8,16 +8,16 @@ use App\core\Request;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="profile" href="https://anemone.altervista.org/">
-    <link rel="pingback" href="https://anemone.altervista.org/">
-    <link rel="shortcut icon" href="https://anemone.altervista.org/">
+    <link rel="profile" href="https://anemone.obh/">
+    <link rel="pingback" href="https://anemone.ovh/">
+    <link rel="shortcut icon" href="https://anemone.ovh/">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    <link rel="alternate" hreflang="it" href="https://anemone.altervista.org/">
-    <link rel="alternate" hreflang="en" href="https://anemone.altervista.org/">
-    <link rel="canonical" href="https://anemone.altervista.org/">
+    <link rel="alternate" hreflang="it" href="https://anemone.ovh/">
+    <link rel="alternate" hreflang="en" href="https://anemone.ovh/">
+    <link rel="canonical" href="https://anemone.ovh/">
     <!-- OG -->
     <meta property="og:site_name" content="Anemone">
-    <meta property="og:url" content="https://anemone.altervista.org/" />
+    <meta property="og:url" content="https://anemone.ovh/" />
     <meta property="og:title" content="Anemone - <?= Request::name() ?>">
     <meta property="og:description" content="Proviamo in questo modo" />
     <meta property="og:image" itemprop="image" content="/favicon.png" />
@@ -31,23 +31,23 @@ use App\core\Request;
     <meta name="twitter:label1" content="Tempo di lettura stimato">
     <meta name="twitter:data1" content="5 minuti">
 
-    <link rel="dns-prefetch" href="//anemone.altervista.org/">
-    <link rel="dns-prefetch" href="//anemone.altervista.org/">
-    <link rel="dns-prefetch" href="//anemone.altervista.org/">
-    <link href="https://anemone.altervista.org/" crossorigin="anonymous" rel="preconnect">
-    <link href="https://anemone.altervista.org/" rel="preconnect">
-    <link href="https://anemone.altervista.org/" rel="preconnect">
-    <link rel="alternate" type="application/rss+xml" title="Anemone &raquo; Feed" href="https://anemone.altervista.org/feed">
-    <link rel="alternate" type="application/rss+xml" title="Anemone &raquo; Feed dei commenti" href="https://anemone.altervista.org/feed">
+    <link rel="dns-prefetch" href="//anemone.ovh/">
+    <link rel="dns-prefetch" href="//anemone.ovh/">
+    <link rel="dns-prefetch" href="//anemone.ovh/">
+    <link href="https://anemone.ovh/" crossorigin="anonymous" rel="preconnect">
+    <link href="https://anemone.ovh/" rel="preconnect">
+    <link href="https://anemone.ovh/" rel="preconnect">
+    <link rel="alternate" type="application/rss+xml" title="Anemone &raquo; Feed" href="https://anemone.ovh/feed">
+    <link rel="alternate" type="application/rss+xml" title="Anemone &raquo; Feed dei commenti" href="https://anemone.ovh/feed">
 
     <meta name="generator" content="Powered by pure PHP.">
-    <link rel="alternate" type="application/json" href="https://anemone.altervista.org/">
-    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://anemone.altervista.org/">
-    <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://anemone.altervista.org/">
+    <link rel="alternate" type="application/json" href="https://anemone.ovh/">
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://anemone.ovh/">
+    <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://anemone.ovh/">
     <meta name="generator" content="WordPress 5.8.1">
-    <link rel="shortlink" href="https://anemone.altervista.org/">
-    <link rel="alternate" type="application/json+oembed" href="https://anemone.altervista.org/">
-    <link rel="alternate" type="text/xml+oembed" href="https://anemone.altervista.org/">
+    <link rel="shortlink" href="https://anemone.ovh/">
+    <link rel="alternate" type="application/json+oembed" href="https://anemone.ovh/">
+    <link rel="alternate" type="text/xml+oembed" href="https://anemone.ovh/">
     <meta name="generator" content="WPML ver:4.3.19 stt:1,27;">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -65,44 +65,4 @@ use App\core\Request;
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" href="/favicon.ico">
-
-
-    <!-- <link rel="preload" as="script" href="https://cdn.iubenda.com/cs/iubenda_cs.js" />
-    <link rel="preload" as="script" href="https://cdn.iubenda.com/cs/tcf/stub-v2.js" />
-    <script src="https://cdn.iubenda.com/cs/tcf/stub-v2.js"></script>
-    <script>
-        (_iub = self._iub || []).csConfiguration = {
-            cookiePolicyId: 13166603,
-            siteId: 2707190,
-            localConsentDomain: 'anemone.altervista.org',
-            timeoutLoadConfiguration: 30000,
-            lang: 'it',
-            enableTcf: true,
-            tcfVersion: 2,
-            tcfPurposes: {
-                "2": "consent_only",
-                "3": "consent_only",
-                "4": "consent_only",
-                "5": "consent_only",
-                "6": "consent_only",
-                "7": "consent_only",
-                "8": "consent_only",
-                "9": "consent_only",
-                "10": "consent_only"
-            },
-            invalidateConsentWithoutLog: true,
-            googleAdditionalConsentMode: true,
-            consentOnContinuedBrowsing: false,
-            banner: {
-                position: "top",
-                acceptButtonDisplay: true,
-                customizeButtonDisplay: true,
-                closeButtonDisplay: true,
-                closeButtonRejects: true,
-                fontSizeBody: "14px",
-            },
-        }
-    </script>
-    <script async src="https://cdn.iubenda.com/cs/iubenda_cs.js"></script> -->
-
 </head>

@@ -17,10 +17,13 @@ class App
     public static function main($webserver)
     {
         session_start();
+
         App::$config = require('config.php');
-        if ($webserver == 'altervista'){
-            App::$config->username = 'anemone';
-            array_shift($_GET);
+        
+        if ($webserver == 'localhost') {
+            App::$config['username'] = 'root';
+            App::$config['host'] = 'localhost';
+            App::$config['password'] = '';
         }
 
         Database::init();
@@ -31,16 +34,18 @@ class App
         if (Request::method() == 'GET') {
             require partial('layout/page_start');
             include Router::direct();
+            
             require partial('layout/page_end');
         } else {
             include Router::direct();
         }
+
     }
 
     public static function theme()
     {
-        if (Auth::check() && Auth::$dipendente->tema) {
-            return Auth::$dipendente->tema;
+        if (Auth::check() && Auth::$account->theme) {
+            return Auth::$account->theme;
         } else {
             return 'green';
         }
@@ -93,47 +98,3 @@ function error($code)
 {
     return partial("errors/$code");
 }
-
-function bannerSmall()
-{ ?>
-    <script>
-        ! function(d, l, e, s, c) {
-            e = d.createElement("script");
-            e.src = "//ad.altervista.org/js.ad/size=300X250/?ref=" + encodeURIComponent(l.hostname + l.pathname) + "&r=" + Date.now();
-            s = d.scripts;
-            c = d.currentScript || s[s.length - 1];
-            c.parentNode.insertBefore(e, c)
-        }(document, location)
-    </script>
-<?php
-}
-
-function bannerMedium()
-{ ?>
-<div class="w3-panel w3-center">
-
-    <script>
-        ! function(d, l, e, s, c) {
-            e = d.createElement("script");
-            e.src = "//ad.altervista.org/js.ad/size=728X90/?ref=" + encodeURIComponent(l.hostname + l.pathname) + "&r=" + Date.now();
-            s = d.scripts;
-            c = d.currentScript || s[s.length - 1];
-            c.parentNode.insertBefore(e, c)
-        }(document, location)
-    </script>
-</div>
-<?php
-}
-
-function bannerLarge()
-{ ?>
-    <script>
-        ! function(d, l, e, s, c) {
-            e = d.createElement("script");
-            e.src = "//ad.altervista.org/js.ad/size=2X2/?ref=" + encodeURIComponent(l.hostname + l.pathname) + "&r=" + Date.now();
-            s = d.scripts;
-            c = d.currentScript || s[s.length - 1];
-            c.parentNode.insertBefore(e, c)
-        }(document, location)
-    </script><?php
-            }
