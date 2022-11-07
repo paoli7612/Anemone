@@ -14,13 +14,8 @@ use App\core\Auth;
 <div class="w3-panel w3-theme w3-round-large w3-card w3-padding">
     <a href="/logout" class="w3-btn w3-card w3-round-large w3-white">
         <i class="fa-solid fa-right-to-bracket"></i>
-        Disconnetti</a>
+        Logout</a>
     <a href="/settings" class="w3-btn w3-card w3-round-large w3-white">
         <i class="fa-solid fa-cog"></i>
-        Impostazioni</a>
-    <?php if(Auth::admin()): ?>
-        <a href="account/create" class="w3-btn w3-card w3-round-large w3-white">
-        <i class="fa-solid fa-add"></i>
-        Nuovo utente</a>
-    <?php endif ?>
+        Settings</a>
 </div>

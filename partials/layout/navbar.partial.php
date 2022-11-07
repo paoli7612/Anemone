@@ -10,11 +10,6 @@ use App\core\Request;
             <i class="fa-solid fa-house"></i>
         </a>
     </div>
-    <div class="w3-bar w3-left w3-card" style="border-radius: 0px 0px 10px 0px;">
-        <a href="/money" class="w3-left w3-button <?= (Request::name() == 'Money') ? 'w3-grey' : 'w3-theme' ?> ">
-            <i class="fa-solid fa-money-bill"></i>
-        </a>
-    </div>
     <div class="w3-card w3-right" style="border-radius: 0px 0px 0px 10px;">
         <?php if (Auth::check()) : ?>
             <a style="border-radius: 0px 0px 0px 10px;" href="/account" class="w3-right w3-button <?= (Request::uri_starts_with('user')) ? 'w3-grey' : 'w3-theme' ?>  ">

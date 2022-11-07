@@ -1,5 +1,5 @@
 <div class="w3-panel w3-theme w3-card-4 w3-round-large">
-    <form action="register" method="post">
+    <form action="login" method="post">
         <div class="w3-panel">
             <label>Username
                 <input name="username" type="text" class="w3-input w3-card w3-round-large" required="required">

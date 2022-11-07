@@ -14,12 +14,12 @@ class Router
     public static function init()
     {
         Router::get('', 'home');
-        Router::get('money');
-        Router::get('feed');
         Router::get('destroy');
 
         if (Auth::check()) {
             Router::get('account');
+            Router::get('settings');
+            Router::post('settings');
             Router::get('logout');
             Router::post('logout');
         } else {

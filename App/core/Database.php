@@ -47,18 +47,15 @@ class Database
                 App::$config['password']
             );
         } catch (\PDOException $exception) {
-            if ($exception->getCode() == 1049) { // database non creato
-                self::reset();
-            } else {
-                include view('errors/2002');
-                die();
-            }
+            die($exception);
+            include view('errors/2002');
+            die();
         }
     }
 
     public static function query($query, $model='')
     {
-        // echo $query . '<br>';
+        echo $query . '<br>';
         $s = self::$pdo->prepare($query);
         $s->execute();
         if ($model == '') {

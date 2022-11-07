@@ -7,7 +7,7 @@ use App\Models\Account;
 class Auth
 {
     private static $login_id;
-    public static $account;
+    public static Account $account;
 
     public static function init()
     {

@@ -17,13 +17,20 @@ class App
     public static function main($webserver)
     {
         session_start();
-
-        App::$config = require('config.php');
-        
         if ($webserver == 'localhost') {
-            App::$config['username'] = 'root';
-            App::$config['host'] = 'localhost';
-            App::$config['password'] = '';
+            App::$config = [
+                'dbname' => 'my_anemone',
+                'host' => 'localhost',
+                'username' => 'root',
+                'password' => ''
+            ];
+        } else { // ovh hosting
+            App::$config = [
+                'dbname' => 'anemonitomaoli',
+                'host' => 'anemonitomaoli.mysql.db',
+                'username' => 'anemonitomaoli',
+                'password' => 'Nintendo2000'
+            ];
         }
 
         Database::init();
@@ -34,12 +41,11 @@ class App
         if (Request::method() == 'GET') {
             require partial('layout/page_start');
             include Router::direct();
-            
+
             require partial('layout/page_end');
         } else {
             include Router::direct();
         }
-
     }
 
     public static function theme()
