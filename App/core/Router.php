@@ -22,6 +22,8 @@ class Router
             Router::post('settings');
             Router::get('logout');
             Router::post('logout');
+
+            Router::get('search');
         } else {
             Router::get('login');
             Router::post('login');

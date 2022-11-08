@@ -55,7 +55,7 @@ class Database
 
     public static function query($query, $model='')
     {
-        echo $query . '<br>';
+        echo "<div class=\"w3-red w3-panel\">".$query . '</div>';
         $s = self::$pdo->prepare($query);
         $s->execute();
         if ($model == '') {
